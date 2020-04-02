@@ -1,9 +1,9 @@
 === Ocean Modal Window ===
-Contributors: oceanwp
+Contributors: oceanwp, apprimit
 Tags: modal, modal popup, oceanwp
-Requires at least: 4.0
-Tested up to: 5.2
-Stable tag: 1.0.14
+Requires at least: 5.3
+Tested up to: 5.4
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,9 @@ This plugin will only work with the [OceanWP](https://oceanwp.org/) theme.
 3. Modal with image.
 
 == Changelog ==
+
+= 1.1.0 =
+- Added: Version updated for WordPress 5.4.
 
 = 1.0.14 =
 - Added: Codes for the Freemius switch.
