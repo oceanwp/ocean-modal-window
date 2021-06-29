@@ -31,12 +31,16 @@ class OW_ModalWindow extends OW_Base {
     onInit() {
         super.onInit();
 
-        if (this.isDesktopBrowser()) {
+        if (!!this.elements.modalWindow && this.isDesktopBrowser()) {
             this.initPerfectScrollbar();
         }
     }
 
     bindEvents() {
+        if (!this.elements.modalWindow) {
+            return;
+        }
+
         this.elements.modalWindowOpenButtons.forEach((modalOpenBtn) => {
             modalOpenBtn.addEventListener("click", this.openModal.bind(this));
         });
