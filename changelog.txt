@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.0.0 =
+- Added: Vanilla JS.
+
 = 1.1.0 =
 - Added: Version updated for WordPress 5.4.
 
