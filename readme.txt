@@ -1,5 +1,5 @@
 === Ocean Modal Window ===
-Contributors: oceanwp, apprimit, markhollo
+Contributors: oceanwp, apprimit, wpfleek
 Tags: modal, modal popup, oceanwp
 Requires at least: 5.3
 Tested up to: 5.8
