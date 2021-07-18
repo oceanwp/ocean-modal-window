@@ -77,3 +77,55 @@ export const slideDown = (element, duration = 300) => {
         element.style.removeProperty("margin-bottom");
     }, duration);
 };
+export const fadeIn = (element, _options = {}) => {
+    const options = {
+        opacity: 1,
+        speed: "normal",
+        display: null,
+        callback: null,
+    };
+
+    Object.assign(options, _options);
+
+    element.style.opacity = 0;
+    element.style.display = !!options.display || "block";
+
+    const fade = () => {
+        let opacity = parseFloat(element.style.opacity);
+
+        if ((opacity += options.speed === "fast" ? 0.2 : 0.1) <= options.opacity) {
+            element.style.opacity = opacity;
+
+            if (opacity === 1 && options.callback) {
+                callback();
+            }
+
+            window.requestAnimationFrame(fade);
+        }
+    };
+
+    window.requestAnimationFrame(fade);
+};
+
+export const fadeOut = (element, speed = "normal", display, callback = null) => {
+    element.style.opacity = 1;
+    element.style.display = display || "block";
+
+    const fade = () => {
+        let opacity = parseFloat(element.style.opacity);
+
+        if ((opacity -= speed === "fast" ? 0.2 : 0.1) < 0) {
+            element.style.display = "none";
+        } else {
+            element.style.opacity = opacity;
+
+            if (opacity === 0 && callback) {
+                callback();
+            }
+
+            window.requestAnimationFrame(fade);
+        }
+    };
+
+    window.requestAnimationFrame(fade);
+};
