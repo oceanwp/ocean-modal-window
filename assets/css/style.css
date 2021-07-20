@@ -39,11 +39,7 @@
     .omw-modal .omw-close-modal:hover {
       background-color: #0b7cac; }
     .omw-modal .omw-close-modal:before, .omw-modal .omw-close-modal:after {
-<<<<<<< HEAD
       content: "";
-=======
-      content: '';
->>>>>>> origin/master
       position: absolute;
       height: 2px;
       width: 16px;
@@ -69,11 +65,7 @@
   left: 0;
   right: 0;
   background-color: #000;
-<<<<<<< HEAD
   opacity: 0.9 !important;
-=======
-  opacity: 0.9;
->>>>>>> origin/master
   z-index: 100001; }
 
 /* Modal */
