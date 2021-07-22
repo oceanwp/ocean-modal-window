@@ -30,5 +30,8 @@
     "jit-grunt": "^0.10.0",
     "node-sass": "^6.0.0",
     "time-grunt": "^2.0.0"
+  },
+  "dependencies": {
+    "delegate": "^3.2.0"
   }
 }

@@ -1,5 +1,6 @@
 import OW_Base from "./base/base";
 import { fadeIn, fadeOut } from "./lib/utils";
+import delegate from "delegate";
 
 class OW_ModalWindow extends OW_Base {
     modal;
@@ -45,7 +46,7 @@ class OW_ModalWindow extends OW_Base {
             modalOpenBtn.addEventListener("click", this.openModal.bind(this));
         });
 
-        this.elements.modalWindowCloseBtn.addEventListener("click", this.closeModal.bind(this));
+        delegate(document.body, ".omw-close-modal", "click", this.closeModal.bind(this));
         this.elements.overlay.addEventListener("click", this.closeModal.bind(this));
 
         window.addEventListener("keyup", this.onWindowKeyup.bind(this));

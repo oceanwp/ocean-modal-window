@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.0.1 =
+- Fixed: close button issue.
+
 = 2.0.0 =
 - Added: Vanilla JS.
 

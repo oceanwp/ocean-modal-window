@@ -193,10 +193,17 @@ module.exports = function (grunt) {
     });
 
     // Dev task
-    grunt.registerTask("default", ["sass:dev"]);
+    grunt.registerTask("default", [
+        "browserify:dev",
+        "uglify:prod",
+        "sass:dev",
+        "sass:prod",
+        "autoprefixer:main",
+        "csscomb:main",
+    ]);
 
     // Production task
-    grunt.registerTask("build", ["newer:uglify:prod", "sass:prod", "autoprefixer:main", "csscomb:main", "copy"]);
+    grunt.registerTask("build", ["copy"]);
 
     // Package task
     grunt.registerTask("package", ["compress"]);
