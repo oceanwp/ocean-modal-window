@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 2.0.2 =
+- Improved: Fade and Slide transition effects.
+- Fixed: Background Overlay: main page scrolls to top in background.
+
 = 2.0.1 =
 - Fixed: close button issue.
 

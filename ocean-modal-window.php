@@ -3,7 +3,7 @@
  * Plugin Name:         Ocean Modal Window
  * Plugin URI:          https://oceanwp.org/extension/ocean-modal-window/
  * Description:         Insert any content in a modals and place the open button anywhere to open it.
- * Version:             2.0.1
+ * Version:             2.0.2
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.3
@@ -91,7 +91,7 @@ final class Ocean_Modal_Window {
 		$this->token       = 'ocean-modal-window';
 		$this->plugin_url  = plugin_dir_url( __FILE__ );
 		$this->plugin_path = plugin_dir_path( __FILE__ );
-		$this->version     = '2.0.1';
+		$this->version     = '2.0.2';
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
