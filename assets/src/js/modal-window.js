@@ -10,7 +10,7 @@ class OW_ModalWindow extends OW_Base {
             selectors: {
                 modalWindow: ".omw-modal",
                 modalWindowOpenButtons:
-                    ".omw-open-modal, .omw-open-modal a, .omw-open-modal a.elementor-button, li.sidr-class-omw-open-modal > a",
+                    ".omw-open-modal, .omw-open-modal a, .omw-open-modal a.elementor-button, li.sidr-class-omw-open-modal > a, li.sidr-class-opl-login-li > a",
                 modalWindowCloseBtn: ".omw-close-modal",
                 overlay: ".omw-modal-overlay",
             },
@@ -32,7 +32,7 @@ class OW_ModalWindow extends OW_Base {
     onInit() {
         super.onInit();
 
-        if (!!this.elements.modalWindow && this.isDesktopBrowser()) {
+        if (!!this.elements.modalWindow) {
             this.initPerfectScrollbar();
         }
     }
@@ -111,10 +111,6 @@ class OW_ModalWindow extends OW_Base {
             suppressScrollX: false,
             suppressScrollY: false,
         });
-    }
-
-    isDesktopBrowser() {
-        return !navigator.userAgent.match(/(Android|iPod|iPhone|iPad|IEMobile|Opera Mini)/);
     }
 }
 
