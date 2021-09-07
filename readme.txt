@@ -32,6 +32,9 @@ This plugin will only work with the [OceanWP](https://oceanwp.org/) theme.
 
 == Changelog ==
 
+= 2.0.3 =
+- Fixed: Scripts: load issue.
+
 = 2.0.2 =
 - Improved: Fade and Slide transition effects.
 - Fixed: Background Overlay: main page scrolls to top in background.

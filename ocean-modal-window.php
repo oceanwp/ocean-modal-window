@@ -3,7 +3,7 @@
  * Plugin Name:         Ocean Modal Window
  * Plugin URI:          https://oceanwp.org/extension/ocean-modal-window/
  * Description:         Insert any content in a modals and place the open button anywhere to open it.
- * Version:             2.0.2
+ * Version:             2.0.3
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.3
@@ -91,7 +91,7 @@ final class Ocean_Modal_Window {
 		$this->token       = 'ocean-modal-window';
 		$this->plugin_url  = plugin_dir_url( __FILE__ );
 		$this->plugin_path = plugin_dir_path( __FILE__ );
-		$this->version     = '2.0.2';
+		$this->version     = '2.0.3';
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
@@ -1329,12 +1329,12 @@ final class Ocean_Modal_Window {
 	public function enqueue_scripts() {
 
 		// Load Vendors Scripts.
-		wp_enqueue_style( 'perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.css', __FILE__ ) );
-		wp_enqueue_script( 'perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js', __FILE__ ), array(), null, true );
+		wp_enqueue_style( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.css', __FILE__ ) );
+		wp_enqueue_script( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js', __FILE__ ), array(), null, true );
 
 		// Load Ocean Modal Window Scripts.
 		wp_enqueue_style( 'omw-styles', plugins_url( '/assets/css/style.min.css', __FILE__ ) );
-		wp_enqueue_script( 'omw-js-scripts', plugins_url( '/assets/js/modal-window.min.js', __FILE__ ), array( 'oceanwp-main', 'perfect-scrollbar' ), $this->version, true );
+		wp_enqueue_script( 'omw-js-scripts', plugins_url( '/assets/js/modal-window.min.js', __FILE__ ), array( 'oceanwp-main', 'ow-perfect-scrollbar' ), $this->version, true );
 	}
 
 	/**
