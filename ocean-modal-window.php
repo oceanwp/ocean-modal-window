@@ -95,6 +95,8 @@ final class Ocean_Modal_Window {
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
+		add_action( 'after_oceanwp_register_customizer_controls', array( $this, 'setup_customizer_register' ) );
+
 		add_action( 'init', array( $this, 'omw_load_plugin_textdomain' ) );
 
 		add_action( 'init', array( $this, 'omw_setup' ) );
@@ -183,7 +185,7 @@ final class Ocean_Modal_Window {
 
 		if ( 'OceanWP' == $theme->name || 'oceanwp' == $theme->template ) {
 			add_action( 'customize_preview_init', array( $this, 'customize_preview_js' ) );
-			add_action( 'customize_register', array( $this, 'customize_register' ) );
+			add_filter( 'oceanwp-customizer-tabs', array( $this, 'register_customizer_tab' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 999 );
 			add_filter( 'ocean_metaboxes_post_types_scripts', array( $this, 'post_type' ) );
 			add_action( 'butterbean_register', array( $this, 'metabox' ), 10, 2 );
@@ -192,6 +194,35 @@ final class Ocean_Modal_Window {
 			add_action( 'wp_footer', array( $this, 'modal_display' ) );
 			add_filter( 'ocean_head_css', array( $this, 'head_css' ) );
 		}
+	}
+
+	/**
+	 * Register Customizer Tabs
+	 *
+	 * @param array $tabs Theme Customizer Tabs Array.
+	 * @since   2.0.0
+	 */
+	public function register_customizer_tab( $tabs ) {
+		$tabs['ocean-extensions'] = __('Ocean Extensions', 'oceanwp');
+		return $tabs;
+	}
+
+	/**
+	 * Add Customizer Register hook
+	 *
+	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+	 * @since   1.0.0
+	 */
+	public function setup_customizer_register( $tab = 'all' ) {
+
+		// Check Customizer Current Tab
+		if( $tab !== 'all'
+			&& $tab !== 'ocean-extensions'
+		) {
+			return;
+		}
+
+		add_action( 'customize_register', array( $this, 'customize_register' ) );
 	}
 
 	/**
