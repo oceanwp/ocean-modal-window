@@ -1,9 +1,9 @@
 === Ocean Modal Window ===
-Contributors: oceanwp, apprimit
+Contributors: oceanwp, apprimit, wpfleek
 Tags: modal, modal popup, oceanwp
 Requires at least: 5.3
-Tested up to: 5.7
-Stable tag: 1.1.1
+Tested up to: 5.9
+Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,22 @@ This plugin will only work with the [OceanWP](https://oceanwp.org/) theme.
 3. Modal with image.
 
 == Changelog ==
+
+= 2.0.4 =
+- Added: Updated: WordPress version number for compatibility.
+
+= 2.0.3 =
+- Fixed: Scripts: load issue.
+
+= 2.0.2 =
+- Improved: Fade and Slide transition effects.
+- Fixed: Background Overlay: main page scrolls to top in background.
+
+= 2.0.1 =
+- Fixed: close button issue.
+
+= 2.0.0 =
+- Added: Vanilla JS.
 
 = 1.1.1 =
 - Added: Version updated for WordPress 5.7.
