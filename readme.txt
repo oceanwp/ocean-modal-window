@@ -33,7 +33,7 @@ This plugin will only work with the [OceanWP](https://oceanwp.org/) theme.
 == Changelog ==
 
 = 2.0.4 =
-- Added: Updated: WordPress version number for compatibility.
+- Updated: WordPress version number for compatibility.
 
 = 2.0.3 =
 - Fixed: Scripts: load issue.
