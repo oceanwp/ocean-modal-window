@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.0.5 =
+- Added: Metabox settings to enable/disable the modal window at page level.
+
 = 2.0.4 =
 - Updated: WordPress version number for compatibility.
 

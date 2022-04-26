@@ -3,11 +3,11 @@
  * Plugin Name:         Ocean Modal Window
  * Plugin URI:          https://oceanwp.org/extension/ocean-modal-window/
  * Description:         Insert any content in a modals and place the open button anywhere to open it.
- * Version:             2.0.4
+ * Version:             2.0.5
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.3
- * Tested up to:        5.9
+ * Tested up to:        5.9.3
  *
  * Text Domain: ocean-modal-window
  * Domain Path: /languages
@@ -91,7 +91,7 @@ final class Ocean_Modal_Window {
 		$this->token       = 'ocean-modal-window';
 		$this->plugin_url  = plugin_dir_url( __FILE__ );
 		$this->plugin_path = plugin_dir_path( __FILE__ );
-		$this->version     = '2.0.4';
+		$this->version     = '2.0.5';
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
@@ -191,6 +191,11 @@ final class Ocean_Modal_Window {
 			add_action( 'wp_enqueue_scripts', array( $this, 'load_fonts' ) );
 			add_action( 'wp_footer', array( $this, 'modal_display' ) );
 			add_filter( 'ocean_head_css', array( $this, 'head_css' ) );
+
+			$capabilities = apply_filters( 'ocean_main_metaboxes_capabilities', 'manage_options' );
+			if ( current_user_can( $capabilities ) ) {
+				add_action( 'butterbean_register', array( $this, 'new_tab' ), 10, 2 );
+			}
 		}
 	}
 
@@ -1328,6 +1333,11 @@ final class Ocean_Modal_Window {
 	 */
 	public function enqueue_scripts() {
 
+		// If Modal Window enabled
+		if ( 'enable' != get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true ) ) {
+			return;
+		}
+
 		// Load Vendors Scripts.
 		wp_enqueue_style( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.css', __FILE__ ) );
 		wp_enqueue_script( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js', __FILE__ ), array(), null, true );
@@ -2169,6 +2179,47 @@ final class Ocean_Modal_Window {
 	}
 
 	/**
+	 * Add new tab in metabox.
+	 *
+	 * @since  1.0.0
+	 */
+	public function new_tab( $butterbean, $post_type ) {
+
+		// Gets the manager object we want to add sections to.
+		$manager = $butterbean->get_manager( 'oceanwp_mb_settings' );
+
+		$manager->register_section(
+			'oceanwp_mb_modal_window',
+			array(
+				'label' => esc_html__( 'Modal Window', 'ocean-modal-window' ),
+				'icon'  => 'dashicons-editor-expand',
+			)
+		);
+
+		$manager->register_control(
+			'omw_enable_modal_window', // Same as setting name.
+			array(
+				'section'     => 'oceanwp_mb_modal_window',
+				'type'        => 'buttonset',
+				'label'       => esc_html__( 'Enable Modal Window For This Page', 'ocean-modal-window' ),
+				'description' => esc_html__( 'Enable or disable the modal window for this page.', 'ocean-modal-window' ),
+				'choices'     => array(
+					'enable'  => esc_html__( 'Enable', 'ocean-modal-window' ),
+					'disable' => esc_html__( 'Disable', 'ocean-modal-window' ),
+				),
+			)
+		);
+
+		$manager->register_setting(
+			'omw_enable_modal_window', // Same as control name.
+			array(
+				'default'           => 'enable',
+				'sanitize_callback' => 'sanitize_key',
+			)
+		);
+	}
+
+	/**
 	 * Sanitize function for integers
 	 *
 	 * @since  1.0.0
@@ -2333,6 +2384,11 @@ final class Ocean_Modal_Window {
 	 * @since  1.0.0
 	 */
 	public function modal_display() {
+
+		// If Modal Window enabled
+		if ( 'enable' != get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true ) ) {
+			return;
+		}
 
 		$query = new WP_Query(
 			array(
