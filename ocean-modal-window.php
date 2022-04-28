@@ -1334,7 +1334,7 @@ final class Ocean_Modal_Window {
 	public function enqueue_scripts() {
 
 		// If Modal Window enabled
-		if ( 'enable' != get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true ) ) {
+		if ( 'disable' === get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true ) ) {
 			return;
 		}
 
@@ -2386,7 +2386,7 @@ final class Ocean_Modal_Window {
 	public function modal_display() {
 
 		// If Modal Window enabled
-		if ( 'enable' != get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true ) ) {
+		if ( 'disable' === get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true ) ) {
 			return;
 		}
 
