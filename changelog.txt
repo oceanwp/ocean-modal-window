@@ -1,5 +1,24 @@
 == Changelog ==
 
+= 2.0.5 =
+- Added: Metabox settings to enable/disable the modal window at page level.
+
+= 2.0.4 =
+- Updated: WordPress version number for compatibility.
+
+= 2.0.3 =
+- Fixed: Scripts: load issue.
+
+= 2.0.2 =
+- Improved: Fade and Slide transition effects.
+- Fixed: Background Overlay: main page scrolls to top in background.
+
+= 2.0.1 =
+- Fixed: close button issue.
+
+= 2.0.0 =
+- Added: Vanilla JS.
+
 = 1.1.0 =
 - Added: Version updated for WordPress 5.4.
 
