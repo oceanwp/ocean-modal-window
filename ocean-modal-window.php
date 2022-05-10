@@ -191,7 +191,7 @@ final class Ocean_Modal_Window {
 			add_action( 'wp_enqueue_scripts', array( $this, 'load_fonts' ) );
 			add_action( 'wp_footer', array( $this, 'modal_display' ) );
 			add_filter( 'ocean_head_css', array( $this, 'head_css' ) );
-add_filter( 'oe_theme_panels', array( $this, 'oe_theme_panels' ) );
+      add_filter( 'oe_theme_panels', array( $this, 'oe_theme_panels' ) );
 			$capabilities = apply_filters( 'ocean_main_metaboxes_capabilities', 'manage_options' );
 			if ( current_user_can( $capabilities ) ) {
 				add_action( 'butterbean_register', array( $this, 'new_tab' ), 10, 2 );
@@ -1345,6 +1345,7 @@ add_filter( 'oe_theme_panels', array( $this, 'oe_theme_panels' ) );
 		if ( 'disable' === get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true ) ) {
 			return;
 		}
+
 
 		// Load Vendors Scripts.
 		wp_enqueue_style( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.css', __FILE__ ) );
