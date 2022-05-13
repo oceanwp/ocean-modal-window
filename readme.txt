@@ -34,6 +34,7 @@ This plugin will only work with the [OceanWP](https://oceanwp.org/) theme.
 
 = 2.0.5 =
 - Added: Metabox settings to enable/disable the modal window at page level.
+- Fixed: Custom Template is not rendering perfectly for custom locations.
 
 = 2.0.4 =
 - Updated: WordPress version number for compatibility.
