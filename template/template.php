@@ -49,6 +49,6 @@ else if ( class_exists( 'FLBuilder' ) && ! empty( $get_id ) ) {
 else {
 
     // Display template content
-    echo do_shortcode( $get_content );
+    echo do_blocks( $get_content );
 
 }
