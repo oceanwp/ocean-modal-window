@@ -1,9 +1,9 @@
 === Ocean Modal Window ===
 Contributors: oceanwp, apprimit, wpfleek
 Tags: modal, modal popup, oceanwp
-Requires at least: 5.3
-Tested up to: 5.9
-Stable tag: 2.0.4
+Requires at least: 5.6
+Tested up to: 56.0.0
+Stable tag: 2.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,11 @@ This plugin will only work with the [OceanWP](https://oceanwp.org/) theme.
 3. Modal with image.
 
 == Changelog ==
+
+= 2.0.5 =
+- Added: Metabox settings to enable/disable the modal window at page level.
+- Added: Block editor support Modal Window post type.
+- Fixed: Custom Template is not rendering perfectly for custom locations.
 
 = 2.0.4 =
 - Updated: WordPress version number for compatibility.
