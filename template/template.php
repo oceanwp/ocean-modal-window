@@ -45,10 +45,18 @@ else if ( class_exists( 'FLBuilder' ) && ! empty( $get_id ) ) {
 
 }
 
+// If Gutenberg template
+else if ( ocean_is_block_template( $get_id ) ) {
+
+	// Display block template content.
+	echo do_blocks( $get_content );
+
+}
+
 // Else
 else {
 
-    // Display template content
-    echo do_blocks( $get_content );
+	// Display template content.
+	echo do_shortcode( $get_content );
 
 }

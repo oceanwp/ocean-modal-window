@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.0.6 =
+- Fixed: My Library: custom template render issues with custom locations with other page builders.
+
 = 2.0.5 =
 - Added: Metabox settings to enable/disable the modal window at page level.
 - Added: Block editor support Modal Window post type.
