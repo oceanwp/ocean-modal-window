@@ -48,7 +48,9 @@ else if ( class_exists( 'FLBuilder' ) && ! empty( $get_id ) ) {
 // Else
 else {
 
-    // Display template content
-    echo do_blocks( $get_content );
+	// Display template content.
+	if ( function_exists( 'ocean_do_template_content' ) ) {
+		echo ocean_do_template_content( $get_id );
+	}
 
 }
