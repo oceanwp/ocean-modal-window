@@ -33,7 +33,7 @@ This plugin will only work with the [OceanWP](https://oceanwp.org/) theme.
 == Changelog ==
 
 = 2.0.6 =
-- Fixed: My Library: custom template render issues with custom locations with other page builders.
+- Fixed: Custom Templates: Content display issues when templates used on Elementor pages.
 
 = 2.0.5 =
 - Added: Metabox settings to enable/disable the modal window at page level.
