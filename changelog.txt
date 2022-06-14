@@ -1,7 +1,7 @@
 == Changelog ==
 
 = 2.0.7 =
-- Fixed: My Library: Custom Template: dyanamic blocks is not rendering in custom template.
+- Fixed: My Library: Custom Template: dynamic blocks is not rendering in custom template.
 
 = 2.0.6 =
 - Fixed: Custom Templates: Content display issues when templates used on Elementor pages.
