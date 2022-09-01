@@ -1,5 +1,5 @@
 module.exports = function (grunt) {
-    const sass = require("node-sass");
+    const sass = require("sass");
 
     // require it at the top and pass in the grunt instance
     require("time-grunt")(grunt);
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
             dev: {
                 options: {
                     implementation: sass,
-                    outputStyle: "nested",
+                    outputStyle: "expanded",
                     sourceMap: false,
                 },
                 files: {

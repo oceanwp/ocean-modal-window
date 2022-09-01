@@ -2,8 +2,8 @@
 Contributors: oceanwp, apprimit, wpfleek
 Tags: modal, modal popup, oceanwp
 Requires at least: 5.6
-Tested up to: 6.0.0
-Stable tag: 2.0.7
+Tested up to: 6.0.2
+Stable tag: 2.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,9 @@ This plugin will only work with the [OceanWP](https://oceanwp.org/) theme.
 3. Modal with image.
 
 == Changelog ==
+
+= 2.0.8 =
+- Added: Option to choose modal title tag in metabox settings.
 
 = 2.0.7 =
 - Fixed: My Library: Custom Template: dynamic blocks is not rendering in custom template.
