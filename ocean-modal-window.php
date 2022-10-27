@@ -1464,6 +1464,7 @@ final class Ocean_Modal_Window {
 			'oceanwp_mw_title_tag', // Same as control name.
 			array(
 				'sanitize_callback' => 'sanitize_key',
+				'default'           => 'h2',
 			)
 		);
 
