@@ -126,8 +126,9 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 
 == Changelog ==
 
-= 2.0.8 =
+= 2.0.8 - NOV 9 2022 =
 - Added: Option to choose modal title tag in metabox settings.
+- Updated: Plugin description.
 
 = 2.0.7 =
 - Fixed: My Library: Custom Template: dynamic blocks is not rendering in custom template.

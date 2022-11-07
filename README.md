@@ -9,5 +9,5 @@
 
 ## Description
 
-Insert any content in a modals and place the opening button anywhere to open it.
+Create the good kind of popups with ease. Display any content in a modal, anywhere on your website.
 This plugin requires the [OceanWP](https://oceanwp.org/) theme to be installed.
