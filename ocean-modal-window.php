@@ -2,12 +2,12 @@
 /**
  * Plugin Name:         Ocean Modal Window
  * Plugin URI:          https://oceanwp.org/extension/ocean-modal-window/
- * Description:         Insert any content in a modals and place the open button anywhere to open it.
- * Version:             2.0.5
+ * Description:         Create the good kind of popups with ease. Display any content in a modal, anywhere on your website.
+ * Version:             2.0.8
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.6
- * Tested up to:        6.0.0
+ * Tested up to:        6.1
  *
  * Text Domain: ocean-modal-window
  * Domain Path: /languages
@@ -91,7 +91,7 @@ final class Ocean_Modal_Window {
 		$this->token       = 'ocean-modal-window';
 		$this->plugin_url  = plugin_dir_url( __FILE__ );
 		$this->plugin_path = plugin_dir_path( __FILE__ );
-		$this->version     = '2.0.5';
+		$this->version     = '2.0.8';
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
@@ -1440,6 +1440,35 @@ final class Ocean_Modal_Window {
 		);
 
 		$manager->register_control(
+			'oceanwp_mw_title_tag', // Same as setting name.
+			array(
+				'section'     => 'oceanwp_mw_general',
+				'type'        => 'select',
+				'label'       => esc_html__( 'Title Tag', 'ocean-modal-window' ),
+				'description' => esc_html__( 'Select title tag for this modal.', 'ocean-modal-window' ),
+				'choices'     => array(
+					'h1'   => 'H1',
+					'h2'   => 'H2',
+					'h3'   => 'H3',
+					'h4'   => 'H4',
+					'h5'   => 'H5',
+					'h6'   => 'H6',
+					'p'    => 'p',
+					'span' => 'span',
+					'div'  => 'div'
+				),
+			)
+		);
+
+		$manager->register_setting(
+			'oceanwp_mw_title_tag', // Same as control name.
+			array(
+				'sanitize_callback' => 'sanitize_key',
+				'default'           => 'h2',
+			)
+		);
+
+		$manager->register_control(
 			'oceanwp_mw_close_btn', // Same as setting name.
 			array(
 				'section'     => 'oceanwp_mw_general',
@@ -2419,6 +2448,8 @@ final class Ocean_Modal_Window {
 				// Vars
 				$title     = get_post_meta( get_the_ID(), 'oceanwp_mw_title', true );
 				$title     = $title ? $title : 'off';
+				$title_tag = get_post_meta( get_the_ID(), 'oceanwp_mw_title_tag', true );
+				$title_tag = $title_tag ? $title_tag : 'h2';
 				$close_btn = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn', true );
 				$close_btn = $close_btn ? $close_btn : 'on';
 				?>
@@ -2429,7 +2460,7 @@ final class Ocean_Modal_Window {
 					// Title
 					if ( 'on' == $title ) {
 						?>
-						<h2 class="omw-modal-title"><?php the_title(); ?></h2>
+						<<?php echo esc_attr( $title_tag ); ?> class="omw-modal-title"><?php the_title(); ?></<?php echo esc_attr( $title_tag ); ?>>
 						<?php
 					}
 
@@ -2640,7 +2671,7 @@ final class Ocean_Modal_Window {
 
 				// Add title color
 				if ( ! empty( $title_color ) && '#333333' != $title_color ) {
-					$css .= '#omw-' . esc_attr( get_the_ID() ) . ' h2{color:' . $title_color . ';}';
+					$css .= '#omw-' . esc_attr( get_the_ID() ) . ' .omw-modal-title{color:' . $title_color . ';}';
 				}
 
 				// Add close button background color
@@ -2958,7 +2989,7 @@ final class Ocean_Modal_Window {
 
 		// Add title color
 		if ( ! empty( $title_color ) && '#333333' != $title_color ) {
-			$css .= '.omw-modal h2{color:' . $title_color . ';}';
+			$css .= '.omw-modal .omw-modal-title{color:' . $title_color . ';}';
 		}
 
 		// Add close button background color

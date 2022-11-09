@@ -2,35 +2,139 @@
 Contributors: oceanwp, apprimit, wpfleek
 Tags: modal, modal popup, oceanwp
 Requires at least: 5.6
-Tested up to: 56.0.0
-Stable tag: 2.0.5
+Tested up to: 6.1
+Stable tag: 2.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Insert any content in a modals and place the opening button anywhere to open it.
+Create the good kind of popups with ease and display anywhere on your website!
+
+Ocean Modal Window allows you to display any content in a modal window. A modal window is a popup that loads on click action.
+
 This plugin requires the [OceanWP](https://oceanwp.org/) theme to be installed.
+
+👉 [Ocean Core Extensions Bundle](https://oceanwp.org/core-extensions-bundle/)
+📘 [Documentation](https://docs.oceanwp.org/category/360-modal-window)
+🎬 [Video Tutorials](https://www.youtube.com/@OceanWP)
+
+💙 Join the [official OceanWP Facebook community](https://www.facebook.com/groups/oceanwptheme) and always be up to speed with the latest news.
+
+Ocean Modal Window is a 100% free WordPress plugin that helps you display all content types and templates in a modal window. Place the opening link or the button anywhere on your website, including menus.
+
+🔥 [Check out the OceanWP Premium Features](https://oceanwp.org/core-extensions-bundle/) for additional power, energy and ability.
+
+== Features ==
+
+* Display any content
+* Custom templates support
+* Opening link / button anywhere on website
+* Gutenberg support
+* Page builders support
+* Multiple styling options
+* Responsive settings
+
+= DISPLAY ANY CONTENT =
+
+Display contact forms, newsletter subscription forms, relevant information, images or just about anything you want your visitors to have quick access to.
+
+= CUSTOM TEMPLATES SUPPORT =
+
+Design an awesome Call to Action or Newsletter Subscription form via OceanWP > My Library, and then display through your modal.
+
+= OPENING LINK OR BUTTON ANYWHERE ON WEBSITE =
+
+Place the modal opening link or button absolutely anywhere on your website: header menu item, custom header templates, content links and all types of buttons.
+
+= GUTENBERG SUPPORT =
+
+You can create the content for your modal window using Gutenberg, the default WordPress editor.
+
+= PAGE BUILDERS SUPPORT =
+
+You can create the content for your modal window using any page builder of your choice.
+
+= MULTIPLE STYLING OPTIONS =
+
+Make it perfect! Adjust the modal window height, width, background color overlay, backround image, typography, padding and more.
+
+= RESPONSIVE SETTINGS =
+
+Your modal windows will look amazing on all devices thanks to available responsive settings for tablets and mobile.
 
 == Installation ==
 
-1. Upload `ocean-modal-window` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Done!
+= USING WORDPRESS PLUGIN INSTALLER =
+
+1. Go to your WordPress Dashboard, 'Plugins > Add New'.
+2. Search for 'Ocean Modal Window'.
+3. Click 'Install' and then 'Activate'.
+4. Done!
+
+= MANUAL INSTALLATION =
+
+1. Download the 'ocean-modal-window' zip file.
+2. Extract the content and copy to the `/wp-content/plugins/` directory of your WordPress installation.
+3. Navigate to your WordPress dashboard, 'Plugins > Installed Plugins'.
+4. Find the 'Ocean Modal Window' plugin and activate.
+5. Done!
 
 == Frequently Asked Questions ==
 
 = I installed the plugin but it does not work =
 
-This plugin will only work with the [OceanWP](https://oceanwp.org/) theme.
+This plugin will only function with the [OceanWP](https://oceanwp.org/) theme.
+
+= Is Ocean Modal Window free? =
+
+Ocean Modal Window is a 100% free WordPress plugin on full power mode and without any limitations on its features.
+
+= Where can I get support? =
+
+You can post your questions on the [plugin support forum](https://wordpress.org/support/plugin/ocean-modal-window/) or the [OceanWP support forum](https://wordpress.org/support/topic/ocean-popup-login-error/) which is mostly used by all our users.
+If you have a [premium license](https://oceanwp.org/core-extensions-bundle/), you can also submit a [customer support ticket](https://oceanwp.org/support/).
+
+= How do I know it's safe to update the plugin? =
+
+We do our best to test all changes before the official release. However, we will never be able to replicate all website conditions.
+No matter what plugins you are running, it's always recommended to test an update on a staging or test environment.
+
+You can also check [Support Notes and User Feedback](https://docs.oceanwp.org/article/776-known-bugs-issues) before updating your plugin.
+
+= Where can I report problems or bugs? =
+
+You can report problems on [this support forum](https://wordpress.org/support/plugin/ocean-modal-window/) or on [GitHub](https://github.com/oceanwp/ocean-modal-window/issues).
 
 == Screenshots ==
 
-1. The options of the modal.
-2. The modal.
-3. Modal with image.
+1. OceanWP Tech Website Template making use of the modal window through the contact menu item.
+2. Contact form in a modal window through the menu item, as shown on the example of the OceanWP Tech Template.
+3. OceanWP Recipes Website Template making use of the modal window through the contact button on a page.
+4. Contact form in a modal window through the content button, as shown on the example of the OceanWP Recipes Template.
+5. OceanWP Minimal Website Template making use of the modal window through the custom vertical header template and menu button.
+6. Contact form in a modal window through the custom vertical header button, as shown on the example of the OceanWP Minimal Template.
+7. OceanWP Simple Website Template making use of the modal window through the Ocean Sticky Footer menu item.
+8. Display of the contact form in a modal window through the website sticky footer, as shown on the example of the OceanWP Simple Template.
+9. Making use of the modal window default template type and WordPress Gutenberg editor to create content.
+10. Making use of custom templates to display in a modal. You can use any page builder to design the template.
+11. Overview of the available main settings for a modal window item.
+12. Additional modal window item settings available, such as styling, color, typography and responsive settings.
+13. Overview of available modal link information that are used to display a modal window item.
+14. Example of using an HTML Gutenberg block to display a modal window item link.
+15. Overview of the Ocean Modal Window options and settings in the WordPress dashboard.
 
 == Changelog ==
+
+= 2.0.8 - NOV 9 2022 =
+- Added: Option to choose modal title tag in metabox settings.
+- Updated: Plugin description.
+
+= 2.0.7 =
+- Fixed: My Library: Custom Template: dynamic blocks is not rendering in custom template.
+
+= 2.0.6 =
+- Fixed: Custom Templates: Content display issues when templates used on Elementor pages.
 
 = 2.0.5 =
 - Added: Metabox settings to enable/disable the modal window at page level.
