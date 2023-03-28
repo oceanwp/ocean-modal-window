@@ -126,6 +126,9 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 
 == Changelog ==
 
+= 2.0.9 - MAR 29 2023 =
+- Updated: Version numbers for compatibility.
+
 = 2.0.8 - NOV 9 2022 =
 - Added: Option to choose modal title tag in metabox settings.
 - Updated: Plugin description.
