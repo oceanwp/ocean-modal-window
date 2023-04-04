@@ -2,8 +2,8 @@
 Contributors: oceanwp, apprimit, wpfleek
 Tags: modal, modal popup, oceanwp
 Requires at least: 5.6
-Tested up to: 6.1
-Stable tag: 2.0.8
+Tested up to: 6.1.1
+Stable tag: 2.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -125,6 +125,9 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 15. Overview of the Ocean Modal Window options and settings in the WordPress dashboard.
 
 == Changelog ==
+
+= 2.0.9 - MAR 29 2023 =
+- Updated: Version numbers for compatibility.
 
 = 2.0.8 - NOV 9 2022 =
 - Added: Option to choose modal title tag in metabox settings.
