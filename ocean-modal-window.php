@@ -3,11 +3,11 @@
  * Plugin Name:         Ocean Modal Window
  * Plugin URI:          https://oceanwp.org/extension/ocean-modal-window/
  * Description:         Create the good kind of popups with ease. Display any content in a modal, anywhere on your website.
- * Version:             2.0.9
+ * Version:             2.1.0
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.6
- * Tested up to:        6.1.1
+ * Tested up to:        6.2
  *
  * Text Domain: ocean-modal-window
  * Domain Path: /languages
@@ -91,7 +91,7 @@ final class Ocean_Modal_Window {
 		$this->token       = 'ocean-modal-window';
 		$this->plugin_url  = plugin_dir_url( __FILE__ );
 		$this->plugin_path = plugin_dir_path( __FILE__ );
-		$this->version     = '2.0.9';
+		$this->version     = '2.1.0';
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
@@ -189,9 +189,12 @@ final class Ocean_Modal_Window {
 			add_action( 'butterbean_register', array( $this, 'metabox' ), 10, 2 );
 			add_action( 'add_meta_boxes_ocean_modal_window', array( $this, 'add_meta_box' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'load_fonts' ) );
+			add_action( 'wp_ajax_get_mw_conditional_rules', array( $this, 'omw_conditional_rules_callback' ) );
 			add_action( 'wp_footer', array( $this, 'modal_display' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'mw_enqueue_admin_assets' ) );
+			add_action( 'save_post', array( $this, 'save_mw_conditions_rules' ), 200 );
 			add_filter( 'ocean_head_css', array( $this, 'head_css' ) );
-      add_filter( 'oe_theme_panels', array( $this, 'oe_theme_panels' ) );
+      		add_filter( 'oe_theme_panels', array( $this, 'oe_theme_panels' ) );
 			$capabilities = apply_filters( 'ocean_main_metaboxes_capabilities', 'manage_options' );
 			if ( current_user_can( $capabilities ) ) {
 				add_action( 'butterbean_register', array( $this, 'new_tab' ), 10, 2 );
@@ -256,6 +259,23 @@ final class Ocean_Modal_Window {
 				'googleFontsUrl' => '//fonts.googleapis.com',
 			)
 		);
+	}
+
+	/**
+	 * Add hook scripts
+	 *
+	 * @since  2.1.0
+	 */
+	public function mw_enqueue_admin_assets( $hook ) {
+		$screen = get_current_screen();
+
+		if ( ( $hook == 'edit.php' || $hook == 'post.php' || $hook == 'post-new.php' ) && $screen->post_type == 'ocean_modal_window' ) {
+
+			wp_enqueue_script( 'omw-script', plugins_url( '/assets/js/metabox.min.js', __FILE__ ), array( 'jquery', 'wp-util' ), $this->version, true );
+
+			wp_enqueue_style( 'omw-style', plugins_url( '/assets/css/metabox.min.css', __FILE__ ) );
+
+		}
 	}
 
 	/**
@@ -1347,6 +1367,9 @@ final class Ocean_Modal_Window {
 			return;
 		}
 
+		if( $this->omw_display_rules() === false ) {
+			return;
+		}
 
 		// Load Vendors Scripts.
 		wp_enqueue_style( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.css', __FILE__ ) );
@@ -1487,6 +1510,23 @@ final class Ocean_Modal_Window {
 			array(
 				'sanitize_callback' => 'sanitize_key',
 				'default'           => 'on',
+			)
+		);
+
+		$manager->register_control(
+			'oceanwp_mw_cond_logic',
+			array(
+				'section'     => 'oceanwp_mw_general',
+				'type'        => 'checkbox',
+				'label'       => esc_html__( 'Conditional Logic', 'ocean-modal-window' ),
+				'description' => esc_html__( 'Enable Conditional Logic for this Modal.', 'ocean-modal-window' ),
+			)
+		);
+
+		$manager->register_setting(
+			'oceanwp_mw_cond_logic',
+			array(
+				'sanitize_callback' => 'butterbean_validate_boolean',
 			)
 		);
 
@@ -2328,6 +2368,300 @@ final class Ocean_Modal_Window {
 	}
 
 	/**
+	 * Ajax function to add conditional rules section.
+	 *
+	 * @since  2.1.0
+	 */
+	public function omw_conditional_rules_callback() {
+		$activeCond = boolval( $_POST['activeCond'] );
+		$mwId       = intval( $_POST['mwId'] );
+
+		// get conditional logic section \\\
+		// Hide on selected options
+		$hide_on = ! empty( get_post_meta( $mwId, 'mw_hide_on', true ) ) && $activeCond ? get_post_meta( $mwId, 'mw_hide_on', true ) : '';
+
+		// Display on selected options
+		$display_on = ! empty( get_post_meta( $mwId, 'mw_display_on', true ) ) && $activeCond ? get_post_meta( $mwId, 'mw_display_on', true ) : '';
+
+		$condHTML  = '';
+		$condHTML .= '<div class="options options-cond boxes"';
+		if ( ! $activeCond ) {
+			$condHTML .= ' style="display: none"';
+		}
+		$condHTML .= '>';
+		$condHTML .= '<div class="condition-container dispaly-on container-wrap">';
+		$condHTML .= '<div class="display-on-fields display-on-field">';
+		if ( empty( $display_on ) ) {
+			$condHTML .= '<div class="dispaly-on field-wrap">';
+			$condHTML .= $this->get_conditional_select_for_mw( 'mw_display_on', esc_html__( 'Show on', 'ocean-modal-window' ), false );
+			$condHTML .= '</div>';
+		}
+		if ( ! empty( $display_on ) ) {
+			foreach ( $display_on as $index => $dis_on ) {
+				$condHTML .= '<div class="dispaly-on field-wrap">';
+				$condHTML .= $this->get_conditional_select_for_mw( 'mw_display_on', esc_html__( 'Show on', 'ocean-modal-window' ), true, $dis_on, $index );
+				$condHTML .= '</div>';
+			}
+		}
+		$condHTML .= '</div>';
+		$condHTML .= '<button type="button" class="display-on-add omw-btn" onClick="add_mw_display_on();"; >' . esc_html__( 'Add new row', 'ocean-modal-window' ) . '</button>';
+		$condHTML .= '</div>';
+		$condHTML .= '<script type="text/html" id="tmpl-dispaly-on-field">';
+		$condHTML .= '<div class="dispaly-on field-wrap">';
+		$condHTML .= $this->get_conditional_select_for_mw( 'mw_display_on', esc_html__( 'Show on', 'ocean-modal-window' ), true );
+		$condHTML .= '</div>';
+		$condHTML .= '</script>';
+		$condHTML .= '<div class="condition-container hide-on container-wrap">';
+		$condHTML .= '<div class="hide-on-fields hide-on-field">';
+		if ( empty( $hide_on ) ) {
+			$condHTML .= '<div class="hide-on field-wrap">';
+			$condHTML .= $this->get_conditional_select_for_mw( 'mw_hide_on', esc_html__( 'Hide on', 'ocean-modal-window' ), false );
+			$condHTML .= '</div>';
+		}
+
+		if ( ! empty( $hide_on ) ) {
+			foreach ( $hide_on as $index => $hid_on ) {
+				$condHTML .= '<div class="hide-on field-wrap">';
+				$condHTML .= $this->get_conditional_select_for_mw( 'mw_hide_on', esc_html__( 'Hide on', 'ocean-modal-window' ), true, $hid_on, $index );
+				$condHTML .= '</div>';
+			}
+		}
+		$condHTML .= '</div>';
+		$condHTML .= '<button type="button" class="hide-on-add omw-btn" onClick="add_mw_hide_on();"; >' . esc_html__( 'Add new row', 'ocean-modal-window' ) . '</button>';
+		$condHTML .= '</div>';
+
+		$condHTML .= '<script type="text/html" id="tmpl-hide-on-field">';
+		$condHTML .= '<div class="hide-on field-wrap">';
+		$condHTML .= $this->get_conditional_select_for_mw( 'mw_hide_on', esc_html__( 'Hide on', 'ocean-modal-window' ), true );
+		$condHTML .= '</div>';
+		$condHTML .= '</script>';
+		$condHTML .= '</div>';
+
+		print_r(
+			json_encode(
+				array(
+					'status'    => true,
+					'condHTML'  => $condHTML,
+				)
+			)
+		);
+
+		wp_die(); // this is required to terminate immediately and return a proper response
+	}
+
+	/**
+	 * Get the conditional select.
+	 *
+	 * @since  2.1.0
+	 */
+	public function get_conditional_select_for_mw( $condition_type, $label, $template = false, $selected_value = '', $show_remove_btn = true ) {
+		ob_start(); ?>
+
+		<div class="label-wrap div-wrap">
+			<span class="condition-arrow"></span>
+			<label for="omw_rules[<?php echo $condition_type; ?>][]"><?php esc_html_e( $label, 'ocean-modal-window' ); ?></label>
+		</div>
+
+		<div class="select-wrap div-wrap">
+			<select name="omw_rules[<?php echo $condition_type; ?>][]" class="omw-select">
+
+				<option value="0"><?php esc_html_e( 'Please Select', 'ocean-modal-window' ); ?></option>
+
+				<optgroup label="Pages"></optgroup>
+				<?php
+				$pg_templates = $this->omw_get_page_templates();
+				foreach ( $pg_templates['pages'] as $pg_funcs => $pg_template ) :
+					?>
+					<option value="<?php echo $pg_funcs; ?>" <?php selected( $selected_value, $pg_funcs ); ?>>
+						<?php echo $pg_template; ?>
+					</option>
+				<?php endforeach; ?>
+
+				<?php if ( isset( $pg_templates['shop'] ) ) : ?>
+					<optgroup label="Shop"></optgroup>
+					<?php
+					foreach ( $pg_templates['shop'] as $pg_funcs => $pg_template ) :
+						?>
+						<option value="<?php echo $pg_funcs; ?>" <?php selected( $selected_value, $pg_funcs ); ?>>
+							<?php echo $pg_template; ?>
+						</option>
+					<?php endforeach; ?>
+				<?php endif; ?>
+
+				<optgroup label="Other"></optgroup>
+				<?php
+				foreach ( $pg_templates['others'] as $pg_funcs => $pg_template ) :
+					?>
+					<option value="<?php echo $pg_funcs; ?>" <?php selected( $selected_value, $pg_funcs ); ?>>
+						<?php echo $pg_template; ?>
+					</option>
+				<?php endforeach; ?>
+
+			</select>
+		</div>
+
+		<?php
+		if ( $condition_type == 'mw_display_on' && $template && $show_remove_btn ) :
+			?>
+			<div class="close-wrap div-wrap"><span class="dashicons dashicons-dismiss display-on-remove"></span></div>
+			<?php
+		endif;
+		?>
+		<?php
+		if ( $condition_type == 'mw_hide_on' && $template && $show_remove_btn ) :
+			?>
+			<div class="close-wrap div-wrap"><span class="dashicons dashicons-dismiss hide-on-remove"></span></div>
+			<?php
+		endif;
+
+		return ob_get_clean();
+	}
+
+	/**
+	 * Return WooCommerce specific pages
+	 *
+	 * @since  2.1.0
+	 */
+	public function omw_get_woocommerce_pages() {
+
+		$shop_page_id = get_option( 'woocommerce_shop_page_id' );
+		if ( $shop_page_id ) {
+			$pg_templates['is_shop()'] = get_the_title( $shop_page_id );
+		}
+
+		$pg_templates['is_product_category()'] = esc_html__( 'Product Category', 'ocean-modal-window' );
+
+		$pg_templates['is_product_tag()'] = esc_html__( 'Product Tag', 'ocean-modal-window' );
+
+		$pg_templates['is_product()'] = esc_html__( 'Single Product', 'ocean-modal-window' );
+
+		$shop_page_id = get_option( 'woocommerce_cart_page_id' );
+		if ( $shop_page_id ) {
+			$pg_templates[ 'is_page(' . $shop_page_id . ')' ] = get_the_title( $shop_page_id );
+		}
+
+		$shop_page_id = get_option( 'woocommerce_checkout_page_id' );
+		if ( $shop_page_id ) {
+			$pg_templates[ 'is_page(' . $shop_page_id . ')' ] = get_the_title( $shop_page_id );
+		}
+
+		$shop_page_id = get_option( 'woocommerce_pay_page_id' );
+		if ( $shop_page_id ) {
+			$pg_templates[ 'is_page(' . $shop_page_id . ')' ] = get_the_title( $shop_page_id );
+		}
+
+		$shop_page_id = get_option( 'woocommerce_thanks_page_id' );
+		if ( $shop_page_id ) {
+			$pg_templates[ 'is_page(' . $shop_page_id . ')' ] = get_the_title( $shop_page_id );
+		}
+
+		$shop_page_id = get_option( 'woocommerce_myaccount_page_id' );
+		if ( $shop_page_id ) {
+			$pg_templates[ 'is_page(' . $shop_page_id . ')' ] = get_the_title( $shop_page_id );
+		}
+
+		$shop_page_id = get_option( 'woocommerce_edit_address_page_id' );
+		if ( $shop_page_id ) {
+			$pg_templates[ 'is_page(' . $shop_page_id . ')' ] = get_the_title( $shop_page_id );
+		}
+
+		$shop_page_id = get_option( 'woocommerce_view_order_page_id' );
+		if ( $shop_page_id ) {
+			$pg_templates[ 'is_page(' . $shop_page_id . ')' ] = get_the_title( $shop_page_id );
+		}
+
+		$shop_page_id = get_option( 'woocommerce_terms_page_id' );
+		if ( $shop_page_id ) {
+			$pg_templates[ 'is_page(' . $shop_page_id . ')' ] = get_the_title( $shop_page_id );
+		}
+
+		return $pg_templates;
+	}
+
+	/**
+	 * Get Templates
+	 *
+	 * @since  2.1.0
+	 */
+	public function omw_get_page_templates() {
+		$pg_templates['pages'] = array(
+			'is_page()'       => esc_html__( 'All Pages', 'ocean-modal-window' ),
+			'is_home()'       => esc_html__( 'Home Page ( is_home() )', 'ocean-modal-window' ),
+			'is_front_page()' => esc_html__( 'Front Page ( is_front_page() )', 'ocean-modal-window' ),
+		);
+
+		$pages = get_pages();
+
+		if ( ! empty( $pages ) ) {
+			foreach ( $pages as $page ) {
+				$pg_templates['pages'][ 'is_page(' . $page->ID . ')' ] = $page->post_title;
+			}
+		}
+		$pg_templates['others'] = array(
+			'is_single()'          => esc_html__( 'Single Post', 'ocean-modal-window' ),
+			'is_category()'        => esc_html__( 'Category Page', 'ocean-modal-window' ),
+			'is_archive()'         => esc_html__( 'Archive Page', 'ocean-modal-window' ),
+			'is_user_logged_in()'  => esc_html__( 'Logged In User', 'ocean-modal-window' ),
+			'!is_user_logged_in()' => esc_html__( 'Logged Out User', 'ocean-modal-window' ),
+		);
+
+		// Getting Wocommerce specidic pages
+		if ( class_exists( 'WooCommerce' ) ) {
+			$pg_templates['shop'] = $this->omw_get_woocommerce_pages();
+		}
+
+		return $pg_templates;
+	}
+
+	/**
+	 * Save conditional rules added to modal window.
+	 */
+	public function save_mw_conditions_rules( $mw_id ) {
+		$post_type = get_post_type( $mw_id );
+
+		if ( 'ocean_modal_window' != $post_type ) {
+			return;
+		}
+
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		// check if elementor
+		$elementor = false;
+		if ( isset( $_POST['action'] ) && $_POST['action'] == 'elementor_ajax' ) {
+			$elementor = true;
+		}
+
+		if ( isset( $_POST['butterbean_oceanwp_mw_settings_setting_oceanwp_mw_cond_logic'] ) && $_POST['butterbean_oceanwp_mw_settings_setting_oceanwp_mw_cond_logic'] ) {
+			$display = array();
+			$hide    = array();
+
+			if ( isset( $_POST['omw_rules']['mw_display_on'] ) ) {
+				foreach ( $_POST['omw_rules']['mw_display_on'] as $key => $displayCond ) {
+					if ( $displayCond != '0' ) {
+						$display[] = $displayCond;
+					}
+				}
+			}
+
+			if ( isset( $_POST['omw_rules']['mw_hide_on'] ) ) {
+				foreach ( $_POST['omw_rules']['mw_hide_on'] as $key => $hideCond ) {
+					if ( $hideCond != '0' ) {
+						$hide[] = $hideCond;
+					}
+				}
+			}
+
+			update_post_meta( $mw_id, 'mw_display_on', $display );
+			update_post_meta( $mw_id, 'mw_hide_on', $hide );
+		} elseif ( ! $elementor ) {
+			delete_post_meta( $mw_id, 'mw_display_on' );
+			delete_post_meta( $mw_id, 'mw_hide_on' );
+		}
+	}
+
+	/**
 	 * Display open modal link in metabox
 	 *
 	 * @since  1.0.0
@@ -2418,6 +2752,51 @@ final class Ocean_Modal_Window {
 	}
 
 	/**
+	 * Display rules
+	 *
+	 * @since  2.1.0
+	 */
+	public function omw_display_rules() {
+
+		$status = true;
+
+		$query = new WP_Query(
+			array(
+				'post_type'      => 'ocean_modal_window',
+				'posts_per_page' => -1,
+			)
+		);
+
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$display_conds = get_post_meta( get_the_ID(), 'mw_display_on', true );
+				$hide_conds    = get_post_meta( get_the_ID(), 'mw_hide_on', true );
+
+				if ( ! empty( $display_conds ) ) {
+					$display_pages_cond  = implode( ' || ', $display_conds );
+					$is_template_matched = eval( "return $display_pages_cond;" );
+					if ( ! $is_template_matched ) {
+						$status = false;
+					}
+				}
+
+				if ( ! empty( $hide_conds ) ) {
+					$hidden_pages_cond   = implode( ' || ', $hide_conds );
+					$is_template_matched = eval( "return $hidden_pages_cond;" );
+
+					if ( $is_template_matched ) {
+						$status = false;
+					}
+				}
+			}
+		}
+
+		return $status;
+	}
+
+	/**
 	 * Display the modal in the footer
 	 *
 	 * @since  1.0.0
@@ -2452,6 +2831,11 @@ final class Ocean_Modal_Window {
 				$title_tag = $title_tag ? $title_tag : 'h2';
 				$close_btn = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn', true );
 				$close_btn = $close_btn ? $close_btn : 'on';
+
+				if ( $this->omw_display_rules() === false ) {
+					return;
+				}
+
 				?>
 
 				<div id="omw-<?php echo esc_attr( get_the_ID() ); ?>" class="omw-modal">
