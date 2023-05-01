@@ -17,7 +17,7 @@
  * @author OceanWP
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -194,7 +194,7 @@ final class Ocean_Modal_Window {
 			add_action( 'admin_enqueue_scripts', array( $this, 'mw_enqueue_admin_assets' ) );
 			add_action( 'save_post', array( $this, 'save_mw_conditions_rules' ), 200 );
 			add_filter( 'ocean_head_css', array( $this, 'head_css' ) );
-      		add_filter( 'oe_theme_panels', array( $this, 'oe_theme_panels' ) );
+			add_filter( 'oe_theme_panels', array( $this, 'oe_theme_panels' ) );
 			$capabilities = apply_filters( 'ocean_main_metaboxes_capabilities', 'manage_options' );
 			if ( current_user_can( $capabilities ) ) {
 				add_action( 'butterbean_register', array( $this, 'new_tab' ), 10, 2 );
@@ -1367,17 +1367,53 @@ final class Ocean_Modal_Window {
 			return;
 		}
 
-		if( $this->omw_display_rules() === false ) {
-			return;
+		$query = new WP_Query(
+			array(
+				'post_type'      => 'ocean_modal_window',
+				'posts_per_page' => -1,
+			)
+		);
+
+		$status = true;
+
+		if ( $query->have_posts() ) {
+
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$display_conds = get_post_meta( get_the_ID(), 'mw_display_on', true );
+				$hide_conds    = get_post_meta( get_the_ID(), 'mw_hide_on', true );
+
+				if ( ! empty( $display_conds ) ) {
+					$display_pages_cond  = implode( ' || ', $display_conds );
+					$is_template_matched = eval( "return $display_pages_cond;" );
+					if ( ! $is_template_matched ) {
+						$status = false;
+					}
+				}
+
+				if ( ! empty( $hide_conds ) ) {
+					$hidden_pages_cond   = implode( ' || ', $hide_conds );
+					$is_template_matched = eval( "return $hidden_pages_cond;" );
+
+					if ( $is_template_matched ) {
+						$status = false;
+					}
+				}
+
+				if ( $status === false ) {
+					continue;
+				}
+
+				// Load Vendors Scripts.
+				wp_enqueue_style( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.css', __FILE__ ) );
+				wp_enqueue_script( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js', __FILE__ ), array(), null, true );
+
+				// Load Ocean Modal Window Scripts.
+				wp_enqueue_style( 'omw-styles', plugins_url( '/assets/css/style.min.css', __FILE__ ) );
+				wp_enqueue_script( 'omw-js-scripts', plugins_url( '/assets/js/modal-window.min.js', __FILE__ ), array( 'oceanwp-main', 'ow-perfect-scrollbar' ), $this->version, true );
+			}
 		}
-
-		// Load Vendors Scripts.
-		wp_enqueue_style( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.css', __FILE__ ) );
-		wp_enqueue_script( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js', __FILE__ ), array(), null, true );
-
-		// Load Ocean Modal Window Scripts.
-		wp_enqueue_style( 'omw-styles', plugins_url( '/assets/css/style.min.css', __FILE__ ) );
-		wp_enqueue_script( 'omw-js-scripts', plugins_url( '/assets/js/modal-window.min.js', __FILE__ ), array( 'oceanwp-main', 'ow-perfect-scrollbar' ), $this->version, true );
 	}
 
 	/**
@@ -2752,13 +2788,16 @@ final class Ocean_Modal_Window {
 	}
 
 	/**
-	 * Display rules
+	 * Display the modal in the footer
 	 *
-	 * @since  2.1.0
+	 * @since  1.0.0
 	 */
-	public function omw_display_rules() {
+	public function modal_display() {
 
-		$status = true;
+		// If Modal Window enabled
+		if ( 'disable' === get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true ) ) {
+			return;
+		}
 
 		$query = new WP_Query(
 			array(
@@ -2767,9 +2806,24 @@ final class Ocean_Modal_Window {
 			)
 		);
 
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
+		$status = true;
+
+		if ( $query->have_posts() ) :
+
+			while ( $query->have_posts() ) :
 				$query->the_post();
+
+				// Get the template
+				$templates = get_post_meta( get_the_ID(), 'oceanwp_mw_template', true );
+				$templates = $templates ? $templates : '';
+
+				// Vars
+				$title     = get_post_meta( get_the_ID(), 'oceanwp_mw_title', true );
+				$title     = $title ? $title : 'off';
+				$title_tag = get_post_meta( get_the_ID(), 'oceanwp_mw_title_tag', true );
+				$title_tag = $title_tag ? $title_tag : 'h2';
+				$close_btn = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn', true );
+				$close_btn = $close_btn ? $close_btn : 'on';
 
 				$display_conds = get_post_meta( get_the_ID(), 'mw_display_on', true );
 				$hide_conds    = get_post_meta( get_the_ID(), 'mw_hide_on', true );
@@ -2790,50 +2844,9 @@ final class Ocean_Modal_Window {
 						$status = false;
 					}
 				}
-			}
-		}
 
-		return $status;
-	}
-
-	/**
-	 * Display the modal in the footer
-	 *
-	 * @since  1.0.0
-	 */
-	public function modal_display() {
-
-		// If Modal Window enabled
-		if ( 'disable' === get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true ) ) {
-			return;
-		}
-
-		$query = new WP_Query(
-			array(
-				'post_type'      => 'ocean_modal_window',
-				'posts_per_page' => -1,
-			)
-		);
-
-		if ( $query->have_posts() ) :
-
-			while ( $query->have_posts() ) :
-				$query->the_post();
-
-				// Get the template
-				$templates = get_post_meta( get_the_ID(), 'oceanwp_mw_template', true );
-				$templates = $templates ? $templates : '';
-
-				// Vars
-				$title     = get_post_meta( get_the_ID(), 'oceanwp_mw_title', true );
-				$title     = $title ? $title : 'off';
-				$title_tag = get_post_meta( get_the_ID(), 'oceanwp_mw_title_tag', true );
-				$title_tag = $title_tag ? $title_tag : 'h2';
-				$close_btn = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn', true );
-				$close_btn = $close_btn ? $close_btn : 'on';
-
-				if ( $this->omw_display_rules() === false ) {
-					return;
+				if ( $status === false ) {
+					continue;
 				}
 
 				?>
@@ -2863,8 +2876,7 @@ final class Ocean_Modal_Window {
 							the_content();
 						}
 						?>
-					 </div>
-
+					</div>
 				</div>
 
 				<?php
