@@ -1367,53 +1367,14 @@ final class Ocean_Modal_Window {
 			return;
 		}
 
-		$query = new WP_Query(
-			array(
-				'post_type'      => 'ocean_modal_window',
-				'posts_per_page' => -1,
-			)
-		);
+		// Load Vendors Scripts.
+		wp_enqueue_style( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.css', __FILE__ ) );
+		wp_enqueue_script( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js', __FILE__ ), array(), null, true );
 
-		$status = true;
+		// Load Ocean Modal Window Scripts.
+		wp_enqueue_style( 'omw-styles', plugins_url( '/assets/css/style.min.css', __FILE__ ) );
+		wp_enqueue_script( 'omw-js-scripts', plugins_url( '/assets/js/modal-window.min.js', __FILE__ ), array( 'oceanwp-main', 'ow-perfect-scrollbar' ), $this->version, true );
 
-		if ( $query->have_posts() ) {
-
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-				$display_conds = get_post_meta( get_the_ID(), 'mw_display_on', true );
-				$hide_conds    = get_post_meta( get_the_ID(), 'mw_hide_on', true );
-
-				if ( ! empty( $display_conds ) ) {
-					$display_pages_cond  = implode( ' || ', $display_conds );
-					$is_template_matched = eval( "return $display_pages_cond;" );
-					if ( ! $is_template_matched ) {
-						$status = false;
-					}
-				}
-
-				if ( ! empty( $hide_conds ) ) {
-					$hidden_pages_cond   = implode( ' || ', $hide_conds );
-					$is_template_matched = eval( "return $hidden_pages_cond;" );
-
-					if ( $is_template_matched ) {
-						$status = false;
-					}
-				}
-
-				if ( $status === false ) {
-					continue;
-				}
-
-				// Load Vendors Scripts.
-				wp_enqueue_style( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.css', __FILE__ ) );
-				wp_enqueue_script( 'ow-perfect-scrollbar', plugins_url( '/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js', __FILE__ ), array(), null, true );
-
-				// Load Ocean Modal Window Scripts.
-				wp_enqueue_style( 'omw-styles', plugins_url( '/assets/css/style.min.css', __FILE__ ) );
-				wp_enqueue_script( 'omw-js-scripts', plugins_url( '/assets/js/modal-window.min.js', __FILE__ ), array( 'oceanwp-main', 'ow-perfect-scrollbar' ), $this->version, true );
-			}
-		}
 	}
 
 	/**
