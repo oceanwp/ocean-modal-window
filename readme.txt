@@ -126,6 +126,11 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 
 == Changelog ==
 
+= 2.1.0 - MAY 17 2023 =
+- New: Option to load modal window content on specific pages only.
+- Added: Compatibility: SiteOrigin: Custom templates support.
+- Compatibility: PHP 8.2: Creation of dynamic property Ocean_Elementor_Widgets::$plugin_path and Ocean_Elementor_Widgets::$plugin_url is deprecated.
+
 = 2.0.9 - MAR 29 2023 =
 - Updated: Version numbers for compatibility.
 
