@@ -2,7 +2,7 @@
 Contributors: oceanwp, apprimit, wpfleek
 Tags: modal, modal popup, oceanwp
 Requires at least: 5.6
-Tested up to: 6.2
+Tested up to: 6.2.1
 Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -126,10 +126,10 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 
 == Changelog ==
 
-= 2.1.0 - MAY 17 2023 =
+= 2.1.0 - MAY 22 2023 =
 - New: Option to load modal window content on specific pages only.
 - Added: Compatibility: SiteOrigin: Custom templates support.
-- Compatibility: PHP 8.2: Creation of dynamic property Ocean_Elementor_Widgets::$plugin_path and Ocean_Elementor_Widgets::$plugin_url is deprecated.
+- Added: Compatibility: PHP 8.2.6: Creation of dynamic property Ocean_Modal_Window::$plugin_path and Ocean_Modal_Window::$plugin_url is deprecated.
 
 = 2.0.9 - MAR 29 2023 =
 - Updated: Version numbers for compatibility.
