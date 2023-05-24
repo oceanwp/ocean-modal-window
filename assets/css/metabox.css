@@ -1,0 +1,172 @@
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .omw-select {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 13px;
+  padding: 5px 12px;
+  height: 200px;
+  line-height: 20px;
+  width: 100%;
+  margin: 0;
+  box-shadow: none;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .omw-select:hover, #butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .omw-select:focus {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .omw-select {
+  height: 34px;
+  line-height: 1;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .omw-btn {
+  height: auto;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  background-color: #13aff0;
+  border: 0;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 2px;
+  letter-spacing: 0.4px;
+  text-align: center;
+  text-shadow: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: none !important;
+  transition: all 0.3s ease;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .omw-btn:hover {
+  background-color: #0b7cac;
+}
+
+/* Conditions CSS */
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap {
+  display: inline-block;
+  width: 100%;
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap:first-child {
+  margin-top: 0;
+  border-top: 0;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap:first-child .field-wrap:first-child {
+  padding-top: 0;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .field-wrap {
+  padding-top: 25px;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .field-wrap:nth-child(n+2) .condition-arrow {
+  display: block;
+  width: 12px;
+  height: 46px;
+  margin: 0;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  -ms-transform: translateY(-22px);
+      transform: translateY(-22px);
+  position: absolute;
+  top: 50%;
+  margin-top: -23px;
+  left: -9px;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .field-wrap:nth-child(n+2) label {
+  padding-left: 7px;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .field-wrap:nth-child(n+2) .select-wrap {
+  padding-left: 21px;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .div-wrap {
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .label-wrap label {
+  font-weight: 600;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .select-wrap {
+  padding-left: 28px;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .select-wrap .omw-select {
+  width: 250px;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .close-wrap {
+  padding-left: 20px;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .close-wrap > span {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  color: #888;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .close-wrap > span:hover {
+  color: #fe5252;
+}
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .omw-btn {
+  font-size: 14px;
+  text-transform: capitalize;
+  margin-top: 25px;
+}
+
+.boxes.options {
+  margin-bottom: 20px;
+}
+.boxes.options.options-roles {
+  margin-bottom: 0;
+}
+.boxes.options.show {
+  display: block;
+}
+.boxes.options.hide {
+  display: none;
+}
+
+/* RTL */
+body.rtl #butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .field-wrap:nth-child(n+2) .condition-arrow {
+  border-right: 1px solid #ddd;
+  border-left: 0;
+  right: -9px;
+  left: auto;
+}
+body.rtl #butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .field-wrap:nth-child(n+2) label {
+  padding-right: 7px;
+  padding-left: 0;
+}
+body.rtl #butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .field-wrap:nth-child(n+2) .select-wrap {
+  padding-right: 21px;
+  padding-left: 0;
+}
+body.rtl #butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .select-wrap {
+  padding-right: 28px;
+  padding-left: 0;
+}
+body.rtl #butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .close-wrap {
+  padding-right: 20px;
+  padding-left: 0;
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+  #butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .form-table td {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  #butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .label-wrap {
+    display: block;
+    margin-bottom: 5px;
+  }
+  #butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap label,
+#butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .select-wrap {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  #butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .field-wrap:nth-child(n+2) .condition-arrow {
+    display: none;
+  }
+  #butterbean-oceanwp_mw_settings-section-oceanwp_mw_general .container-wrap .close-wrap {
+    padding-left: 6px;
+  }
+}
