@@ -127,6 +127,7 @@ module.exports = function (grunt) {
                     "**",
                     "!node_modules/**",
                     "!build/**",
+                    "!src/**",
                     "!.git/**",
                     "!changelog.txt",
                     "!vendor/**",

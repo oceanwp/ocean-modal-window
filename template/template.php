@@ -3,7 +3,7 @@
  * Template content
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -11,10 +11,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Get ID
 $get_id = get_post_meta( get_the_ID(), 'oceanwp_mw_elementor_templates', true );
 
-// Get the template
-$template = get_post_meta( get_the_ID(), 'oceanwp_mw_template', true );
+$template = '';
+
+if ( class_exists( 'Ocean_Extra' ) && function_exists( 'oe_get_meta' ) ) {
+	$template = oe_get_meta( '_omw_meta_mw_template' );
+} else {
+	$template = get_post_meta( get_the_ID(), 'oceanwp_mw_template', true );
+}
+
 if ( ! empty( $template ) ) {
-    $get_id = $template;
+	$get_id = $template;
 }
 
 // Check if page is Elementor page
@@ -36,14 +42,14 @@ if ( ! empty( $get_id ) ) {
 // If Elementor
 if ( class_exists( 'Elementor\Plugin' ) && $elementor ) {
 
-    echo Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $get_id );
+	echo Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $get_id );
 
 }
 
 // If Beaver Builder
 else if ( class_exists( 'FLBuilder' ) && ! empty( $get_id ) ) {
 
-    echo do_shortcode( '[fl_builder_insert_layout id="' . $get_id . '"]' );
+	echo do_shortcode( '[fl_builder_insert_layout id="' . $get_id . '"]' );
 
 }
 
