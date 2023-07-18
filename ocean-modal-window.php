@@ -2398,7 +2398,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => '700'
+			'value'  => 700
 		);
 
 		$defaults['_omw_meta_mw_width_tablet'] = array(
@@ -2407,7 +2407,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => '700'
+			'value'  => 700
 		);
 
 		$defaults['_omw_meta_mw_width_mobile'] = array(
@@ -2416,7 +2416,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => '700'
+			'value'  => 700
 		);
 
 		$defaults['_omw_meta_mw_height'] = array(
@@ -2425,7 +2425,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => '0'
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_height_tablet'] = array(
@@ -2434,7 +2434,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => '0'
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_height_mobile'] = array(
@@ -2443,7 +2443,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => '0'
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_background_image'] = array(
@@ -2452,7 +2452,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => ''
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_padding'] = array(
@@ -2524,7 +2524,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => '0.9'
+			'value'  => 0.9
 		);
 
 		$defaults['_omw_meta_mw_bg_color'] = array(
@@ -2614,7 +2614,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => ''
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_font_size_tablet'] = array(
@@ -2623,7 +2623,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => ''
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_font_size_mobile'] = array(
@@ -2632,7 +2632,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => ''
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_font_size_unit'] = array(
@@ -2641,7 +2641,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => ''
+			'value'  => 'px'
 		);
 
 		$defaults['_omw_meta_mw_font_weight'] = array(
@@ -2713,7 +2713,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => ''
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_line_height_tablet'] = array(
@@ -2722,7 +2722,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => ''
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_line_height_mobile'] = array(
@@ -2731,7 +2731,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => ''
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_line_height_unit'] = array(
@@ -2749,7 +2749,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => ''
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_letter_spacing_tablet'] = array(
@@ -2758,7 +2758,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => ''
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_letter_spacing_mobile'] = array(
@@ -2767,7 +2767,7 @@ final class Ocean_Modal_Window {
 			'single' => true,
 			'rest'   => true,
 			'subType' => 'ocean_modal_window',
-			'value'  => ''
+			'value'  => 0
 		);
 
 		$defaults['_omw_meta_mw_letter_spacing_unit'] = array(
@@ -3546,7 +3546,7 @@ final class Ocean_Modal_Window {
 				}
 
 				// Add modal font size
-				if ( ! empty( $font_size ) ) {
+				if ( ! empty( $font_size && '0' != $font_size ) ) {
 					$typo_css .= 'font-size:' . $font_size . $font_size_unit . ';';
 				}
 
@@ -3566,12 +3566,12 @@ final class Ocean_Modal_Window {
 				}
 
 				// Add modal line height
-				if ( ! empty( $line_height ) ) {
+				if ( ! empty( $line_height && '0' != $line_height ) ) {
 					$typo_css .= 'line-height:' . $line_height . $line_height_unit . ';';
 				}
 
 				// Add modal letter spacing
-				if ( ! empty( $letter_spacing ) ) {
+				if ( ! empty( $letter_spacing && '0' != $letter_spacing ) ) {
 					$typo_css .= 'letter-spacing:' . $letter_spacing . $letter_spacing_unit . ';';
 				}
 
@@ -3643,7 +3643,7 @@ final class Ocean_Modal_Window {
 				}
 
 				// Tablet modal font size
-				if ( ! empty( $tablet_font_size ) ) {
+				if ( ! empty( $tablet_font_size && '0' != $tablet_font_size ) ) {
 					$tablet_css .= 'font-size:' . $tablet_font_size . $font_size_unit . ';';
 				}
 
@@ -3653,12 +3653,12 @@ final class Ocean_Modal_Window {
 				}
 
 				// Tablet modal line height
-				if ( ! empty( $tablet_line_height ) ) {
+				if ( ! empty( $tablet_line_height && '0' != $tablet_line_height ) ) {
 					$tablet_css .= 'line-height:' . $tablet_line_height . $line_height_unit . ';';
 				}
 
 				// Tablet modal letter spacing
-				if ( ! empty( $tablet_letter_spacing ) ) {
+				if ( ! empty( $tablet_letter_spacing && '0' != $tablet_letter_spacing ) ) {
 					$tablet_css .= 'letter-spacing:' . $tablet_letter_spacing . $letter_spacing_unit . ';';
 				}
 
@@ -3688,7 +3688,7 @@ final class Ocean_Modal_Window {
 				}
 
 				// Mobile modal font size
-				if ( ! empty( $mobile_font_size ) ) {
+				if ( ! empty( $mobile_font_size ) && '0' != $mobile_font_size ) {
 					$mobile_css .= 'font-size:' . $mobile_font_size . $font_size_unit . ';';
 				}
 
@@ -3698,12 +3698,12 @@ final class Ocean_Modal_Window {
 				}
 
 				// Mobile modal line height
-				if ( ! empty( $mobile_line_height ) ) {
+				if ( ! empty( $mobile_line_height ) && '0' != $mobile_line_height ) {
 					$mobile_css .= 'line-height:' . $mobile_line_height . $line_height_unit . ';';
 				}
 
 				// Mobile modal letter spacing
-				if ( ! empty( $mobile_letter_spacing ) ) {
+				if ( ! empty( $mobile_letter_spacing ) && '0' != $mobile_letter_spacing ) {
 					$mobile_css .= 'letter-spacing:' . $mobile_letter_spacing . $letter_spacing_unit . ';';
 				}
 
