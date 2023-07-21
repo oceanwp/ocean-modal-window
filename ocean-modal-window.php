@@ -3364,7 +3364,7 @@ final class Ocean_Modal_Window {
 				$display_conds = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_display_on', 'mw_display_on' );
 				$hide_conds    = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_hide_on', 'mw_hide_on' );
 
-				if ( ! empty( $display_conds ) ) {
+				if ( ! empty( $display_conds ) && is_array( $display_conds ) ) {
 					$display_pages_cond  = implode( ' || ', $display_conds );
 					$is_template_matched = eval( "return $display_pages_cond;" );
 					if ( ! $is_template_matched ) {
@@ -3372,7 +3372,7 @@ final class Ocean_Modal_Window {
 					}
 				}
 
-				if ( ! empty( $hide_conds ) ) {
+				if ( ! empty( $hide_conds ) && is_array( $hide_conds ) ) {
 					$hidden_pages_cond   = implode( ' || ', $hide_conds );
 					$is_template_matched = eval( "return $hidden_pages_cond;" );
 
