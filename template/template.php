@@ -11,13 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Get ID
 $get_id = get_post_meta( get_the_ID(), 'oceanwp_mw_elementor_templates', true );
 
-$template = '';
-
-if ( class_exists( 'Ocean_Extra' ) && function_exists( 'oe_get_meta' ) ) {
-	$template = oe_get_meta( '_omw_meta_mw_template' );
-} else {
-	$template = get_post_meta( get_the_ID(), 'oceanwp_mw_template', true );
-}
+$template = get_post_meta( get_the_ID(), 'oceanwp_mw_template', true );
 
 if ( ! empty( $template ) ) {
 	$get_id = $template;

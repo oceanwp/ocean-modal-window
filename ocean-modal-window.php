@@ -264,24 +264,6 @@ final class Ocean_Modal_Window {
 	}
 
 	/**
-	 * Get post meta
-	 */
-	public function omw_get_post_meta( $id = '', $option_name = '', $option_fallback = '' ) {
-
-		$result = '';
-
-		if ( class_exists( 'Ocean_Extra' ) && function_exists( 'oe_get_meta' ) ) {
-			$result = oe_get_meta( $option_name );
-		} else {
-			if ( $id && '' !== $option_fallback ) {
-				$result = get_post_meta( $id, $option_fallback, true );
-			}
-		}
-
-		return $result;
-	}
-
-	/**
 	 * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
 	 *
 	 * @since  1.0.0
@@ -1398,7 +1380,7 @@ final class Ocean_Modal_Window {
 	 */
 	public function enqueue_scripts() {
 
-		$meta_modal = $this->omw_get_post_meta( oceanwp_post_id(), '_omw_meta_modal_window', 'omw_enable_modal_window' );
+		$meta_modal = get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true );
 
 		// If Modal Window disabled
 		if ( 'disable' === $meta_modal ) {
@@ -2338,8 +2320,7 @@ final class Ocean_Modal_Window {
 	 */
 	public function omw_post_meta_args( $defaults ) {
 
-		$defaults['_omw_meta_modal_window'] = array(
-			'map'    => 'omw_enable_modal_window',
+		$defaults['omw_enable_modal_window'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2347,8 +2328,7 @@ final class Ocean_Modal_Window {
 			'value'  => 'enable'
 		);
 
-		$defaults['_omw_meta_mw_template'] = array(
-			'map'    => 'oceanwp_mw_template',
+		$defaults['oceanwp_mw_template'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2356,8 +2336,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_title'] = array(
-			'map'    => 'oceanwp_mw_title',
+		$defaults['oceanwp_mw_title'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2365,8 +2344,7 @@ final class Ocean_Modal_Window {
 			'value'  => 'off'
 		);
 
-		$defaults['_omw_meta_mw_title_tag'] = array(
-			'map'    => 'oceanwp_mw_title_tag',
+		$defaults['oceanwp_mw_title_tag'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2374,8 +2352,7 @@ final class Ocean_Modal_Window {
 			'value'  => 'h2'
 		);
 
-		$defaults['_omw_meta_mw_close_btn'] = array(
-			'map'    => 'oceanwp_mw_close_btn',
+		$defaults['oceanwp_mw_close_btn'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2383,8 +2360,7 @@ final class Ocean_Modal_Window {
 			'value'  => 'on'
 		);
 
-		$defaults['_omw_meta_mw_cond_logic'] = array(
-			'map'    => 'oceanwp_mw_cond_logic',
+		$defaults['oceanwp_mw_cond_logic'] = array(
 			'type'   => 'boolean',
 			'single' => true,
 			'rest'   => true,
@@ -2392,8 +2368,7 @@ final class Ocean_Modal_Window {
 			'value'  => false
 		);
 
-		$defaults['_omw_meta_mw_width'] = array(
-			'map'    => 'oceanwp_mw_width',
+		$defaults['oceanwp_mw_width'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2401,8 +2376,7 @@ final class Ocean_Modal_Window {
 			'value'  => 700
 		);
 
-		$defaults['_omw_meta_mw_width_tablet'] = array(
-			'map'    => 'oceanwp_mw_tablet_width',
+		$defaults['oceanwp_mw_tablet_width'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2410,8 +2384,7 @@ final class Ocean_Modal_Window {
 			'value'  => 700
 		);
 
-		$defaults['_omw_meta_mw_width_mobile'] = array(
-			'map'    => 'oceanwp_mw_mobile_width',
+		$defaults['oceanwp_mw_mobile_width'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2419,8 +2392,7 @@ final class Ocean_Modal_Window {
 			'value'  => 700
 		);
 
-		$defaults['_omw_meta_mw_height'] = array(
-			'map'    => 'oceanwp_mw_height',
+		$defaults['oceanwp_mw_height'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2428,8 +2400,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_height_tablet'] = array(
-			'map'    => 'oceanwp_mw_tablet_height',
+		$defaults['oceanwp_mw_tablet_height'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2437,8 +2408,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_height_mobile'] = array(
-			'map'    => 'oceanwp_mw_mobile_height',
+		$defaults['oceanwp_mw_mobile_height'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2446,8 +2416,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_background_image'] = array(
-			'map'    => 'oceanwp_mw_background_image',
+		$defaults['oceanwp_mw_background_image'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2455,8 +2424,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_padding'] = array(
-			'map'    => 'oceanwp_mw_padding',
+		$defaults['oceanwp_mw_padding'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2464,8 +2432,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_padding_tablet'] = array(
-			'map'    => 'oceanwp_mw_tablet_padding',
+		$defaults['oceanwp_mw_tablet_padding'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2473,8 +2440,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_padding_mobile'] = array(
-			'map'    => 'oceanwp_mw_mobile_padding',
+		$defaults['oceanwp_mw_mobile_padding'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2482,8 +2448,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_border'] = array(
-			'map'    => 'oceanwp_mw_border',
+		$defaults['oceanwp_mw_border'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2491,8 +2456,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_border_style'] = array(
-			'map'    => 'oceanwp_mw_border_style',
+		$defaults['oceanwp_mw_border_style'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2500,8 +2464,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_border_radius'] = array(
-			'map'    => 'oceanwp_mw_border_radius',
+		$defaults['oceanwp_mw_border_radius'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2509,8 +2472,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_overlay_bg_color'] = array(
-			'map'    => 'oceanwp_mw_overlay_bg_color',
+		$defaults['oceanwp_mw_overlay_bg_color'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2518,8 +2480,7 @@ final class Ocean_Modal_Window {
 			'value'  => '#000000'
 		);
 
-		$defaults['_omw_meta_mw_overlay_opacity'] = array(
-			'map'    => 'oceanwp_mw_overlay_opacity',
+		$defaults['oceanwp_mw_overlay_opacity'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2527,8 +2488,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0.9
 		);
 
-		$defaults['_omw_meta_mw_bg_color'] = array(
-			'map'    => 'oceanwp_mw_bg_color',
+		$defaults['oceanwp_mw_bg_color'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2536,8 +2496,7 @@ final class Ocean_Modal_Window {
 			'value'  => '#ffffff'
 		);
 
-		$defaults['_omw_meta_mw_border_color'] = array(
-			'map'    => 'oceanwp_mw_border_color',
+		$defaults['oceanwp_mw_border_color'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2545,8 +2504,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_text_color'] = array(
-			'map'    => 'oceanwp_mw_text_color',
+		$defaults['oceanwp_mw_text_color'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2554,8 +2512,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_title_color'] = array(
-			'map'    => 'oceanwp_mw_title_color',
+		$defaults['oceanwp_mw_title_color'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2563,8 +2520,7 @@ final class Ocean_Modal_Window {
 			'value'  => '#333333'
 		);
 
-		$defaults['_omw_meta_mw_close_btn_bg'] = array(
-			'map'    => 'oceanwp_mw_close_btn_bg',
+		$defaults['oceanwp_mw_close_btn_bg'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2572,8 +2528,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_close_btn_hover_bg'] = array(
-			'map'    => 'oceanwp_mw_close_btn_hover_bg',
+		$defaults['oceanwp_mw_close_btn_hover_bg'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2581,8 +2536,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_close_btn_color'] = array(
-			'map'    => 'oceanwp_mw_close_btn_color',
+		$defaults['oceanwp_mw_close_btn_color'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2590,8 +2544,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_close_btn_hover_color'] = array(
-			'map'    => 'oceanwp_mw_close_btn_hover_color',
+		$defaults['oceanwp_mw_close_btn_hover_color'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2599,8 +2552,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_font_family'] = array(
-			'map'    => 'oceanwp_mw_font_family',
+		$defaults['oceanwp_mw_font_family'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2608,8 +2560,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_font_size'] = array(
-			'map'    => 'oceanwp_mw_font_size',
+		$defaults['oceanwp_mw_font_size'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2617,8 +2568,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_font_size_tablet'] = array(
-			'map'    => 'oceanwp_mw_tablet_font_size',
+		$defaults['oceanwp_mw_tablet_font_size'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2626,8 +2576,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_font_size_mobile'] = array(
-			'map'    => 'oceanwp_mw_mobile_font_size',
+		$defaults['oceanwp_mw_mobile_font_size'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2635,8 +2584,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_font_size_unit'] = array(
-			'map'    => '',
+		$defaults['oceanwp_mw_font_size_unit'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2644,8 +2592,7 @@ final class Ocean_Modal_Window {
 			'value'  => 'px'
 		);
 
-		$defaults['_omw_meta_mw_font_weight'] = array(
-			'map'    => 'oceanwp_mw_font_weight',
+		$defaults['oceanwp_mw_font_weight'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2653,8 +2600,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_font_weight_tablet'] = array(
-			'map'    => '',
+		$defaults['oceanwp_mw_font_weight_tablet'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2662,8 +2608,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_font_weight_mobile'] = array(
-			'map'    => '',
+		$defaults['oceanwp_mw_font_weight_mobile'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2671,8 +2616,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_font_subset'] = array(
-			'map'    => '',
+		$defaults['oceanwp_mw_font_subset'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2680,8 +2624,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_text_transform'] = array(
-			'map'    => 'oceanwp_mw_text_transform',
+		$defaults['oceanwp_mw_text_transform'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2689,8 +2632,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_text_transform_tablet'] = array(
-			'map'    => 'oceanwp_mw_text_transform',
+		$defaults['oceanwp_mw_text_transform_tablet'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2698,8 +2640,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_text_transform_mobile'] = array(
-			'map'    => 'oceanwp_mw_text_transform',
+		$defaults['oceanwp_mw_text_transform_mobile'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2707,8 +2648,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_line_height'] = array(
-			'map'    => 'oceanwp_mw_line_height',
+		$defaults['oceanwp_mw_line_height'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2716,8 +2656,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_line_height_tablet'] = array(
-			'map'    => 'oceanwp_mw_tablet_line_height',
+		$defaults['oceanwp_mw_tablet_line_height'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2725,8 +2664,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_line_height_mobile'] = array(
-			'map'    => 'oceanwp_mw_mobile_line_height',
+		$defaults['oceanwp_mw_mobile_line_height'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2734,8 +2672,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_line_height_unit'] = array(
-			'map'    => '',
+		$defaults['oceanwp_mw_line_height_unit'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2743,8 +2680,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_letter_spacing'] = array(
-			'map'    => 'oceanwp_mw_letter_spacing',
+		$defaults['oceanwp_mw_letter_spacing'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2752,8 +2688,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_letter_spacing_tablet'] = array(
-			'map'    => 'oceanwp_mw_tablet_letter_spacing',
+		$defaults['oceanwp_mw_tablet_letter_spacing'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2761,8 +2696,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_letter_spacing_mobile'] = array(
-			'map'    => 'oceanwp_mw_mobile_letter_spacing',
+		$defaults['oceanwp_mw_mobile_letter_spacing'] = array(
 			'type'   => 'number',
 			'single' => true,
 			'rest'   => true,
@@ -2770,8 +2704,7 @@ final class Ocean_Modal_Window {
 			'value'  => 0
 		);
 
-		$defaults['_omw_meta_mw_letter_spacing_unit'] = array(
-			'map'    => '',
+		$defaults['oceanwp_mw_letter_spacing_unit'] = array(
 			'type'   => 'string',
 			'single' => true,
 			'rest'   => true,
@@ -2779,8 +2712,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_display_on'] = array(
-			'map'    => 'mw_display_on',
+		$defaults['mw_display_on'] = array(
 			'type'   => 'array',
 			'single' => true,
 			'rest'   => array(
@@ -2795,8 +2727,7 @@ final class Ocean_Modal_Window {
 			'value'  => ''
 		);
 
-		$defaults['_omw_meta_mw_hide_on'] = array(
-			'map'    => 'mw_hide_on',
+		$defaults['mw_hide_on'] = array(
 			'type'   => 'array',
 			'single' => true,
 			'rest'   => array(
@@ -3292,7 +3223,7 @@ final class Ocean_Modal_Window {
 				// Get fonts
 				$fonts = array();
 				$val   = get_theme_mod( 'omw_font_family' );
-				if ( $meta = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_font_family', 'oceanwp_mw_font_family' ) ) {
+				if ( $meta = get_post_meta( get_the_ID(), 'oceanwp_mw_font_family', true ) ) {
 					$val = $meta;
 				}
 
@@ -3328,7 +3259,7 @@ final class Ocean_Modal_Window {
 	 */
 	public function modal_display() {
 
-		$meta_modal = $this->omw_get_post_meta( oceanwp_post_id(), '_omw_meta_modal_window', 'omw_enable_modal_window' );
+		$meta_modal = get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true );
 
 		// If Modal Window disabled
 		if ( 'disable' === $meta_modal ) {
@@ -3350,19 +3281,19 @@ final class Ocean_Modal_Window {
 				$query->the_post();
 
 				// Get the template
-				$templates = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_template', 'oceanwp_mw_template' );
+				$templates = get_post_meta( get_the_ID(), 'oceanwp_mw_template', true );
 				$templates = $templates ? $templates : '';
 
 				// Vars
-				$title     = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_title', 'oceanwp_mw_title' );
+				$title     = get_post_meta( get_the_ID(), 'oceanwp_mw_title', true );
 				$title     = $title ? $title : 'off';
-				$title_tag = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_title_tag','oceanwp_mw_title_tag' );
+				$title_tag = get_post_meta( get_the_ID(), 'oceanwp_mw_title_tag', true );
 				$title_tag = $title_tag ? $title_tag : 'h2';
-				$close_btn = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_close_btn', 'oceanwp_mw_close_btn' );
+				$close_btn = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn', true );
 				$close_btn = $close_btn ? $close_btn : 'on';
 
-				$display_conds = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_display_on', 'mw_display_on' );
-				$hide_conds    = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_hide_on', 'mw_hide_on' );
+				$display_conds = get_post_meta( get_the_ID(), 'mw_display_on', true );
+				$hide_conds    = get_post_meta( get_the_ID(), 'mw_hide_on', true );
 
 				if ( ! empty( $display_conds ) && is_array( $display_conds ) ) {
 					$display_pages_cond  = implode( ' || ', $display_conds );
@@ -3417,50 +3348,50 @@ final class Ocean_Modal_Window {
 
 				<?php
 				// Styling vars
-				$modal_width           = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_width', 'oceanwp_mw_width' );
-				$modal_height          = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_height', 'oceanwp_mw_height' );
-				$modal_img             = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_background_image', 'oceanwp_mw_background_image' );
-				$modal_padding         = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_padding', 'oceanwp_mw_padding' );
-				$modal_border          = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_border', 'oceanwp_mw_border' );
-				$modal_border_style    = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_border_style', 'oceanwp_mw_border_style' );
-				$modal_border_color    = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_border_color', 'oceanwp_mw_border_color' );
-				$modal_border_radius   = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_border_radius', 'oceanwp_mw_border_radius' );
-				$overlay_bg            = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_overlay_bg_color', 'oceanwp_mw_overlay_bg_color' );
-				$overlay_opacity       = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_overlay_opacity', 'oceanwp_mw_overlay_opacity' );
-				$modal_bg              = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_bg_color', 'oceanwp_mw_bg_color' );
-				$modal_color           = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_text_color', 'oceanwp_mw_text_color' );
-				$title_color           = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_title_color', 'oceanwp_mw_title_color' );
-				$close_btn_bg          = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_close_btn_bg', 'oceanwp_mw_close_btn_bg' );
-				$close_btn_hover_bg    = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_close_btn_hover_bg', 'oceanwp_mw_close_btn_hover_bg' );
-				$close_btn_color       = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_close_btn_color', 'oceanwp_mw_close_btn_color' );
-				$close_btn_hover_color = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_close_btn_hover_color', 'oceanwp_mw_close_btn_hover_color' );
-				$font_size             = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_font_size', 'oceanwp_mw_font_size' );
-				$font_size_unit        = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_font_size_unit' );
-				$font_family           = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_font_family', 'oceanwp_mw_font_family' );
-				$font_weight           = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_font_weight', 'oceanwp_mw_font_weight' );
-				$text_transform        = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_text_transform', 'oceanwp_mw_text_transform' );
-				$line_height           = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_line_height', 'oceanwp_mw_line_height' );
-				$line_height_unit      = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_line_height_unit' );
-				$letter_spacing        = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_letter_spacing', 'oceanwp_mw_letter_spacing' );
-				$letter_spacing_unit   = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_letter_spacing_unit' );
+				$modal_width           = get_post_meta( get_the_ID(), 'oceanwp_mw_width', true );
+				$modal_height          = get_post_meta( get_the_ID(), 'oceanwp_mw_height', true );
+				$modal_img             = get_post_meta( get_the_ID(), 'oceanwp_mw_background_image', true );
+				$modal_padding         = get_post_meta( get_the_ID(), 'oceanwp_mw_padding', true );
+				$modal_border          = get_post_meta( get_the_ID(), 'oceanwp_mw_border', true );
+				$modal_border_style    = get_post_meta( get_the_ID(), 'oceanwp_mw_border_style', true );
+				$modal_border_color    = get_post_meta( get_the_ID(), 'oceanwp_mw_border_color', true );
+				$modal_border_radius   = get_post_meta( get_the_ID(), 'oceanwp_mw_border_radius', true );
+				$overlay_bg            = get_post_meta( get_the_ID(), 'oceanwp_mw_overlay_bg_color', true );
+				$overlay_opacity       = get_post_meta( get_the_ID(), 'oceanwp_mw_overlay_opacity', true );
+				$modal_bg              = get_post_meta( get_the_ID(), 'oceanwp_mw_bg_color', true );
+				$modal_color           = get_post_meta( get_the_ID(), 'oceanwp_mw_text_color', true );
+				$title_color           = get_post_meta( get_the_ID(), 'oceanwp_mw_title_color', true );
+				$close_btn_bg          = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn_bg', true );
+				$close_btn_hover_bg    = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn_hover_bg', true );
+				$close_btn_color       = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn_color', true );
+				$close_btn_hover_color = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn_hover_color', true );
+				$font_size             = get_post_meta( get_the_ID(), 'oceanwp_mw_font_size', true );
+				$font_size_unit        = get_post_meta( get_the_ID(), 'oceanwp_mw_font_size_unit', true );
+				$font_family           = get_post_meta( get_the_ID(), 'oceanwp_mw_font_family', true );
+				$font_weight           = get_post_meta( get_the_ID(), 'oceanwp_mw_font_weight', true );
+				$text_transform        = get_post_meta( get_the_ID(), 'oceanwp_mw_text_transform', true );
+				$line_height           = get_post_meta( get_the_ID(), 'oceanwp_mw_line_height', true );
+				$line_height_unit      = get_post_meta( get_the_ID(), 'oceanwp_mw_line_height_unit', true );
+				$letter_spacing        = get_post_meta( get_the_ID(), 'oceanwp_mw_letter_spacing', true );
+				$letter_spacing_unit   = get_post_meta( get_the_ID(), 'oceanwp_mw_letter_spacing_unit', true );
 
 				// Responsive
-				$tablet_modal_width    = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_width_tablet', 'oceanwp_mw_tablet_width' );
-				$tablet_modal_height   = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_height_tablet', 'oceanwp_mw_tablet_height', true );
-				$tablet_modal_padding  = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_padding_tablet', 'oceanwp_mw_tablet_padding' );
-				$tablet_font_size      = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_font_size_tablet', 'oceanwp_mw_tablet_font_size' );
-				$tablet_font_weight    = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_font_weight_tablet' );
-				$tablet_text_transform = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_text_transform_tablet' );
-				$tablet_line_height    = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_line_height_tablet', 'oceanwp_mw_tablet_line_height' );
-				$tablet_letter_spacing = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_letter_spacing_tablet', 'oceanwp_mw_tablet_letter_spacing' );
-				$mobile_modal_width    = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_width_mobile', 'oceanwp_mw_mobile_width' );
-				$mobile_modal_height   = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_height_mobile', 'oceanwp_mw_mobile_height' );
-				$mobile_modal_padding  = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_padding_mobile', 'oceanwp_mw_mobile_padding' );
-				$mobile_font_size      = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_font_size_mobile', 'oceanwp_mw_mobile_font_size' );
-				$tablet_font_weight    = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_font_weight_mobile' );
-				$mobile_text_transform = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_text_transform_mobile' );
-				$mobile_line_height    = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_line_height_mobile', 'oceanwp_mw_mobile_line_height' );
-				$mobile_letter_spacing = $this->omw_get_post_meta( get_the_ID(), '_omw_meta_mw_letter_spacing_mobile', 'oceanwp_mw_mobile_letter_spacing' );
+				$tablet_modal_width    = get_post_meta( get_the_ID(), 'oceanwp_mw_tablet_width', true );
+				$tablet_modal_height   = get_post_meta( get_the_ID(), 'oceanwp_mw_tablet_height', true );
+				$tablet_modal_padding  = get_post_meta( get_the_ID(), 'oceanwp_mw_tablet_padding', true );
+				$tablet_font_size      = get_post_meta( get_the_ID(), 'oceanwp_mw_tablet_font_size', true );
+				$tablet_font_weight    = get_post_meta( get_the_ID(), 'oceanwp_mw_font_weight_tablet', true );
+				$tablet_text_transform = get_post_meta( get_the_ID(), 'oceanwp_mw_text_transform_tablet', true );
+				$tablet_line_height    = get_post_meta( get_the_ID(), 'oceanwp_mw_tablet_line_height', true );
+				$tablet_letter_spacing = get_post_meta( get_the_ID(), 'oceanwp_mw_tablet_letter_spacing', true );
+				$mobile_modal_width    = get_post_meta( get_the_ID(), 'oceanwp_mw_mobile_width', true );
+				$mobile_modal_height   = get_post_meta( get_the_ID(), 'oceanwp_mw_mobile_height', true );
+				$mobile_modal_padding  = get_post_meta( get_the_ID(), 'oceanwp_mw_mobile_padding', true );
+				$mobile_font_size      = get_post_meta( get_the_ID(), 'oceanwp_mw_mobile_font_size', true );
+				$tablet_font_weight    = get_post_meta( get_the_ID(), 'oceanwp_mw_font_weight_mobile'. true );
+				$mobile_text_transform = get_post_meta( get_the_ID(), 'oceanwp_mw_text_transform_mobile', true );
+				$mobile_line_height    = get_post_meta( get_the_ID(), 'oceanwp_mw_mobile_line_height', true );
+				$mobile_letter_spacing = get_post_meta( get_the_ID(), 'oceanwp_mw_mobile_letter_spacing', true );
 
 				// Define css var
 				$css         = '';
