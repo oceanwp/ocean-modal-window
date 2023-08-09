@@ -7,7 +7,7 @@
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.6
- * Tested up to:        6.2.2
+ * Tested up to:        6.3
  *
  * Text Domain: ocean-modal-window
  * Domain Path: /languages
@@ -3156,9 +3156,6 @@ final class Ocean_Modal_Window {
 
 			update_post_meta( $mw_id, 'mw_display_on', $display );
 			update_post_meta( $mw_id, 'mw_hide_on', $hide );
-		} elseif ( ! $elementor ) {
-			delete_post_meta( $mw_id, 'mw_display_on' );
-			delete_post_meta( $mw_id, 'mw_hide_on' );
 		}
 	}
 
@@ -4038,5 +4035,4 @@ if ( ! function_exists( 'ocean_modal_window_fs' ) ) {
 		}
 	}
 }
-
 // endregion

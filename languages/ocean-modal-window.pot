@@ -9,9 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-08-07T09:34:17+00:00\n"
+"POT-Creation-Date: 2023-08-09T13:16:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.7.1\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: ocean-modal-window\n"
 
 #. Plugin Name of the plugin
@@ -73,7 +73,7 @@ msgstr ""
 
 #: ocean-modal-window.php:323
 #: ocean-modal-window.php:2290
-#: ocean-modal-window.php:3987
+#: ocean-modal-window.php:3984
 msgid "Modal Window"
 msgstr ""
 
@@ -197,8 +197,6 @@ msgstr ""
 #: ocean-modal-window.php:1895
 #: ocean-modal-window.php:2107
 #: ocean-modal-window.php:2229
-#: assets/dist/modal-settings.js:2
-#: src/controls/typography/font-format.js:161
 msgid "Font Size"
 msgstr ""
 
@@ -213,15 +211,11 @@ msgstr ""
 
 #: ocean-modal-window.php:862
 #: ocean-modal-window.php:1912
-#: assets/dist/modal-settings.js:2
-#: src/controls/typography/font-family.js:136
 msgid "Font Family"
 msgstr ""
 
 #: ocean-modal-window.php:887
 #: ocean-modal-window.php:1930
-#: assets/dist/modal-settings.js:2
-#: src/controls/typography/font-family.js:162
 msgid "Font Weight"
 msgstr ""
 
@@ -238,9 +232,6 @@ msgstr ""
 #: ocean-modal-window.php:1982
 #: ocean-modal-window.php:2820
 #: ocean-modal-window.php:2851
-#: assets/dist/modal-settings.js:2
-#: src/controls/typography/font-family.js:40
-#: src/controls/typography/font-family.js:63
 msgid "Default"
 msgstr ""
 
@@ -291,8 +282,6 @@ msgstr ""
 
 #: ocean-modal-window.php:931
 #: ocean-modal-window.php:1961
-#: assets/dist/modal-settings.js:2
-#: src/controls/typography/font-family.js:64
 msgid "Normal"
 msgstr ""
 
@@ -303,8 +292,6 @@ msgstr ""
 
 #: ocean-modal-window.php:954
 #: ocean-modal-window.php:1979
-#: assets/dist/modal-settings.js:2
-#: src/controls/typography/font-format.js:190
 msgid "Text Transform"
 msgstr ""
 
@@ -334,8 +321,6 @@ msgstr ""
 #: ocean-modal-window.php:2002
 #: ocean-modal-window.php:2124
 #: ocean-modal-window.php:2246
-#: assets/dist/modal-settings.js:3
-#: src/controls/typography/font-format.js:225
 msgid "Line Height"
 msgstr ""
 
@@ -354,8 +339,6 @@ msgstr ""
 #: ocean-modal-window.php:2019
 #: ocean-modal-window.php:2141
 #: ocean-modal-window.php:2263
-#: assets/dist/modal-settings.js:3
-#: src/controls/typography/font-format.js:254
 msgid "Letter Spacing"
 msgstr ""
 
@@ -667,23 +650,23 @@ msgstr ""
 msgid "Logged Out User"
 msgstr ""
 
-#: ocean-modal-window.php:3174
+#: ocean-modal-window.php:3171
 msgid "Modal Link"
 msgstr ""
 
-#: ocean-modal-window.php:3190
+#: ocean-modal-window.php:3187
 msgid "This is the ID, class and the full link to open your modal."
 msgstr ""
 
-#: ocean-modal-window.php:3192
+#: ocean-modal-window.php:3189
 msgid "Modal ID:"
 msgstr ""
 
-#: ocean-modal-window.php:3195
+#: ocean-modal-window.php:3192
 msgid "Link Class:"
 msgstr ""
 
-#: ocean-modal-window.php:3198
+#: ocean-modal-window.php:3195
 msgid "Full Link:"
 msgstr ""
 
@@ -789,24 +772,6 @@ msgid "Enter your custom border radius for the modal. ex: 2px 1px 2px 1px (Top R
 msgstr ""
 
 #: assets/dist/modal-settings.js:2
-#: src/controls/color-picker/index.js:57
-#: src/controls/color-picker/index.js:73
-msgid "Select Color"
-msgstr ""
-
-#: assets/dist/modal-settings.js:2
-#: src/controls/color-picker/index.js:63
-#: src/controls/color-picker/index.js:79
-msgid "Color picker"
-msgstr ""
-
-#: assets/dist/modal-settings.js:2
-#: src/controls/color-picker/index.js:166
-#: src/controls/color-picker/index.js:170
-msgid "Opacity"
-msgstr ""
-
-#: assets/dist/modal-settings.js:2
 #: src/modal-settings/colors.js:95
 msgid "Close Button Background: Hover"
 msgstr ""
@@ -814,56 +779,4 @@ msgstr ""
 #: assets/dist/modal-settings.js:2
 #: src/modal-settings/colors.js:111
 msgid "Close Button Color: Hover"
-msgstr ""
-
-#: assets/dist/modal-settings.js:2
-#: src/controls/typography/font-family.js:65
-msgid "Bold"
-msgstr ""
-
-#: assets/dist/modal-settings.js:2
-#: src/controls/typography/font-family.js:183
-msgid "Font Subset"
-msgstr ""
-
-#: assets/dist/modal-settings.js:2
-#: assets/dist/modal-settings.js:3
-#: src/controls/typography/font-format.js:173
-#: src/controls/typography/font-format.js:237
-#: src/controls/typography/font-format.js:266
-msgid "px"
-msgstr ""
-
-#: assets/dist/modal-settings.js:2
-#: assets/dist/modal-settings.js:3
-#: src/controls/typography/font-format.js:174
-#: src/controls/typography/font-format.js:238
-#: src/controls/typography/font-format.js:267
-msgid "%"
-msgstr ""
-
-#: assets/dist/modal-settings.js:2
-#: assets/dist/modal-settings.js:3
-#: src/controls/typography/font-format.js:175
-#: src/controls/typography/font-format.js:239
-#: src/controls/typography/font-format.js:268
-msgid "em"
-msgstr ""
-
-#. translators: option name
-#: assets/dist/modal-settings.js:3
-#: src/controls/typography/font-format.js:197
-msgid "%s"
-msgstr ""
-
-#: assets/dist/modal-settings.js:3
-#: src/controls/typography/index.js:49
-#: src/controls/typography/index.js:62
-msgid "Typograhpy"
-msgstr ""
-
-#: assets/dist/modal-settings.js:3
-#: src/controls/typography/index.js:54
-#: src/controls/typography/index.js:67
-msgid "Typograhpy Settings"
 msgstr ""
