@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.2.0 - AUG XX 2023 =
+- New: Metabox Settings new framework.
+
 = 2.1.0 - MAY 23 2023 =
 - New: Option to load modal window content on specific pages only.
 - Added: Compatibility: SiteOrigin: Custom templates support.

@@ -3,7 +3,7 @@
  * Plugin Name:         Ocean Modal Window
  * Plugin URI:          https://oceanwp.org/extension/ocean-modal-window/
  * Description:         Create the good kind of popups with ease. Display any content in a modal, anywhere on your website.
- * Version:             2.1.1
+ * Version:             2.2.0
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.6
@@ -107,7 +107,7 @@ final class Ocean_Modal_Window {
 		$this->token       = 'ocean-modal-window';
 		$this->plugin_url  = plugin_dir_url( __FILE__ );
 		$this->plugin_path = plugin_dir_path( __FILE__ );
-		$this->version     = '2.1.1';
+		$this->version     = '2.2.0';
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
