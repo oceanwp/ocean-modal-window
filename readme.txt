@@ -2,7 +2,7 @@
 Contributors: oceanwp, apprimit, wpfleek
 Tags: modal, modal popup, oceanwp
 Requires at least: 5.6
-Tested up to: 6.3
+Tested up to: 6.3.1
 Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -126,7 +126,7 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 
 == Changelog ==
 
-= 2.2.0 - AUG XX 2023 =
+= 2.2.0 - SEP 5 2023 =
 - New: Metabox Settings new framework.
 
 = 2.1.0 - MAY 23 2023 =
