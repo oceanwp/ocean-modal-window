@@ -127,7 +127,8 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 == Changelog ==
 
 = 2.2.0 - SEP 5 2023 =
-- New: Metabox Settings new framework.
+- NEW: Metabox Settings Interface: https://docs.oceanwp.org/category/826-oceanwp-settings
+- Updated: Compatibility: WordPress version number.
 
 = 2.1.0 - MAY 23 2023 =
 - New: Option to load modal window content on specific pages only.
