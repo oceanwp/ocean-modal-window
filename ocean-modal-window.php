@@ -3,11 +3,11 @@
  * Plugin Name:         Ocean Modal Window
  * Plugin URI:          https://oceanwp.org/extension/ocean-modal-window/
  * Description:         Create the good kind of popups with ease. Display any content in a modal, anywhere on your website.
- * Version:             2.1.0
+ * Version:             2.2.0
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.6
- * Tested up to:        6.2.2
+ * Tested up to:        6.3.1
  *
  * Text Domain: ocean-modal-window
  * Domain Path: /languages
@@ -107,7 +107,7 @@ final class Ocean_Modal_Window {
 		$this->token       = 'ocean-modal-window';
 		$this->plugin_url  = plugin_dir_url( __FILE__ );
 		$this->plugin_path = plugin_dir_path( __FILE__ );
-		$this->version     = '2.1.0';
+		$this->version     = '2.2.0';
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
@@ -214,6 +214,8 @@ final class Ocean_Modal_Window {
 			$capabilities = apply_filters( 'ocean_main_metaboxes_capabilities', 'manage_options' );
 			if ( current_user_can( $capabilities ) ) {
 				add_action( 'butterbean_register', array( $this, 'new_tab' ), 10, 2 );
+				add_filter( 'ocean_post_setting_meta', array( $this, 'omw_post_meta_args' ) );
+				add_action( 'enqueue_block_editor_assets', array( $this, 'metabox_assets' ) );
 			}
 		}
 	}
@@ -248,14 +250,14 @@ final class Ocean_Modal_Window {
 					'show_in_menu'        => true,
 					'show_in_admin_bar'   => false,
 					'show_in_nav_menus'   => false,
-					'show_in_rest'		  => true,
+					'show_in_rest'        => true,
 					'can_export'          => true,
 					'exclude_from_search' => true,
 					'publicly_queryable'  => false,
 					'capability_type'     => 'page',
 					'menu_icon'           => 'dashicons-editor-expand',
 					'menu_position'       => 20,
-					'supports'            => array( 'title', 'editor' ),
+					'supports'            => array( 'title', 'editor', 'custom-fields' ),
 				)
 			)
 		);
@@ -1378,8 +1380,10 @@ final class Ocean_Modal_Window {
 	 */
 	public function enqueue_scripts() {
 
-		// If Modal Window enabled
-		if ( 'disable' === get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true ) ) {
+		$meta_modal = get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true );
+
+		// If Modal Window disabled
+		if ( 'disable' === $meta_modal ) {
 			return;
 		}
 
@@ -2312,6 +2316,490 @@ final class Ocean_Modal_Window {
 	}
 
 	/**
+	 * Post setting arguments
+	 */
+	public function omw_post_meta_args( $defaults ) {
+
+		$defaults['omw_enable_modal_window'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 'enable'
+		);
+
+		$defaults['oceanwp_mw_template'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_title'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 'off'
+		);
+
+		$defaults['oceanwp_mw_title_tag'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 'h2'
+		);
+
+		$defaults['oceanwp_mw_close_btn'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 'on'
+		);
+
+		$defaults['oceanwp_mw_cond_logic'] = array(
+			'type'   => 'boolean',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => false
+		);
+
+		$defaults['oceanwp_mw_width'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 700
+		);
+
+		$defaults['oceanwp_mw_tablet_width'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 700
+		);
+
+		$defaults['oceanwp_mw_mobile_width'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 700
+		);
+
+		$defaults['oceanwp_mw_height'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_tablet_height'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_mobile_height'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_background_image'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_padding'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_tablet_padding'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_mobile_padding'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_border'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_border_style'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_border_radius'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_overlay_bg_color'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => '#000000'
+		);
+
+		$defaults['oceanwp_mw_overlay_opacity'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0.9
+		);
+
+		$defaults['oceanwp_mw_bg_color'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => '#ffffff'
+		);
+
+		$defaults['oceanwp_mw_border_color'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_text_color'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_title_color'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => '#333333'
+		);
+
+		$defaults['oceanwp_mw_close_btn_bg'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_close_btn_hover_bg'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_close_btn_color'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_close_btn_hover_color'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_font_family'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_font_size'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_tablet_font_size'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_mobile_font_size'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_font_size_unit'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 'px'
+		);
+
+		$defaults['oceanwp_mw_font_weight'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_font_weight_tablet'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_font_weight_mobile'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_font_subset'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_text_transform'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_text_transform_tablet'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_text_transform_mobile'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_line_height'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_tablet_line_height'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_mobile_line_height'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_line_height_unit'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['oceanwp_mw_letter_spacing'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_tablet_letter_spacing'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_mobile_letter_spacing'] = array(
+			'type'   => 'number',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => 0
+		);
+
+		$defaults['oceanwp_mw_letter_spacing_unit'] = array(
+			'type'   => 'string',
+			'single' => true,
+			'rest'   => true,
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['mw_display_on'] = array(
+			'type'   => 'array',
+			'single' => true,
+			'rest'   => array(
+				'schema' => array(
+					'type'  => 'array',
+					'items' => array(
+						'type' => 'string'
+					)
+				)
+			),
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		$defaults['mw_hide_on'] = array(
+			'type'   => 'array',
+			'single' => true,
+			'rest'   => array(
+				'schema' => array(
+					'type'  => 'array',
+					'items' => array(
+						'type' => 'string'
+					)
+				)
+			),
+			'subType' => 'ocean_modal_window',
+			'value'  => ''
+		);
+
+		return apply_filters( 'omw_post_meta_args', $defaults );
+	}
+
+	/**
+	 * Enqueque Editor Scripts
+	 */
+	public function metabox_assets() {
+
+		$uri   = $this->plugin_url . 'assets/dist/';
+		$asset = require $this->plugin_path . 'assets/dist/modal-settings.asset.php';
+		$deps  = $asset['dependencies'];
+		array_push( $deps, 'updates' );
+
+		wp_register_script(
+			'omw-meta-modal-settings',
+			$uri . 'modal-settings.js',
+			$deps,
+			filemtime( $this->plugin_path . 'assets/dist/modal-settings.js' ),
+			true
+		);
+
+		wp_enqueue_script( 'omw-meta-modal-settings' );
+
+		wp_enqueue_style(
+			'omw-meta-modal-settings',
+			$uri . 'style-modal-settings.css',
+			array( 'wp-components' ),
+			filemtime( $this->plugin_path . 'assets/dist/style-modal-settings.css' )
+		);
+
+		if ( function_exists( 'oe_check_post_types_settings' ) ) {
+			if ( false === oe_check_post_types_settings() ) {
+				return;
+			}
+		} else {
+			return;
+		}
+
+		$asset = require $this->plugin_path . 'assets/dist/metabox.asset.php';
+		$deps  = $asset['dependencies'];
+		array_push( $deps, 'updates' );
+
+		wp_register_script(
+			'omw-metabox-settings',
+			$uri . 'metabox.js',
+			$deps,
+			filemtime( $this->plugin_path . 'assets/dist/metabox.js' ),
+			true
+		);
+
+		wp_enqueue_script( 'omw-metabox-settings' );
+
+		if ( function_exists( 'wp_set_script_translations' ) ) {
+			wp_set_script_translations( 'omw-metabox-settings', 'ocean-modal-window' );
+		}
+	}
+
+	/**
 	 * Sanitize function for integers
 	 *
 	 * @since  1.0.0
@@ -2668,9 +3156,6 @@ final class Ocean_Modal_Window {
 
 			update_post_meta( $mw_id, 'mw_display_on', $display );
 			update_post_meta( $mw_id, 'mw_hide_on', $hide );
-		} elseif ( ! $elementor ) {
-			delete_post_meta( $mw_id, 'mw_display_on' );
-			delete_post_meta( $mw_id, 'mw_hide_on' );
 		}
 	}
 
@@ -2771,8 +3256,10 @@ final class Ocean_Modal_Window {
 	 */
 	public function modal_display() {
 
-		// If Modal Window enabled
-		if ( 'disable' === get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true ) ) {
+		$meta_modal = get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true );
+
+		// If Modal Window disabled
+		if ( 'disable' === $meta_modal ) {
 			return;
 		}
 
@@ -2805,7 +3292,7 @@ final class Ocean_Modal_Window {
 				$display_conds = get_post_meta( get_the_ID(), 'mw_display_on', true );
 				$hide_conds    = get_post_meta( get_the_ID(), 'mw_hide_on', true );
 
-				if ( ! empty( $display_conds ) ) {
+				if ( ! empty( $display_conds ) && is_array( $display_conds ) ) {
 					$display_pages_cond  = implode( ' || ', $display_conds );
 					$is_template_matched = eval( "return $display_pages_cond;" );
 					if ( ! $is_template_matched ) {
@@ -2813,7 +3300,7 @@ final class Ocean_Modal_Window {
 					}
 				}
 
-				if ( ! empty( $hide_conds ) ) {
+				if ( ! empty( $hide_conds ) && is_array( $hide_conds ) ) {
 					$hidden_pages_cond   = implode( ' || ', $hide_conds );
 					$is_template_matched = eval( "return $hidden_pages_cond;" );
 
@@ -2876,24 +3363,30 @@ final class Ocean_Modal_Window {
 				$close_btn_color       = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn_color', true );
 				$close_btn_hover_color = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn_hover_color', true );
 				$font_size             = get_post_meta( get_the_ID(), 'oceanwp_mw_font_size', true );
+				$font_size_unit        = get_post_meta( get_the_ID(), 'oceanwp_mw_font_size_unit', true );
 				$font_family           = get_post_meta( get_the_ID(), 'oceanwp_mw_font_family', true );
 				$font_weight           = get_post_meta( get_the_ID(), 'oceanwp_mw_font_weight', true );
-				$font_style            = get_post_meta( get_the_ID(), 'oceanwp_mw_font_style', true );
 				$text_transform        = get_post_meta( get_the_ID(), 'oceanwp_mw_text_transform', true );
 				$line_height           = get_post_meta( get_the_ID(), 'oceanwp_mw_line_height', true );
+				$line_height_unit      = get_post_meta( get_the_ID(), 'oceanwp_mw_line_height_unit', true );
 				$letter_spacing        = get_post_meta( get_the_ID(), 'oceanwp_mw_letter_spacing', true );
+				$letter_spacing_unit   = get_post_meta( get_the_ID(), 'oceanwp_mw_letter_spacing_unit', true );
 
 				// Responsive
 				$tablet_modal_width    = get_post_meta( get_the_ID(), 'oceanwp_mw_tablet_width', true );
 				$tablet_modal_height   = get_post_meta( get_the_ID(), 'oceanwp_mw_tablet_height', true );
 				$tablet_modal_padding  = get_post_meta( get_the_ID(), 'oceanwp_mw_tablet_padding', true );
 				$tablet_font_size      = get_post_meta( get_the_ID(), 'oceanwp_mw_tablet_font_size', true );
+				$tablet_font_weight    = get_post_meta( get_the_ID(), 'oceanwp_mw_font_weight_tablet', true );
+				$tablet_text_transform = get_post_meta( get_the_ID(), 'oceanwp_mw_text_transform_tablet', true );
 				$tablet_line_height    = get_post_meta( get_the_ID(), 'oceanwp_mw_tablet_line_height', true );
 				$tablet_letter_spacing = get_post_meta( get_the_ID(), 'oceanwp_mw_tablet_letter_spacing', true );
 				$mobile_modal_width    = get_post_meta( get_the_ID(), 'oceanwp_mw_mobile_width', true );
 				$mobile_modal_height   = get_post_meta( get_the_ID(), 'oceanwp_mw_mobile_height', true );
 				$mobile_modal_padding  = get_post_meta( get_the_ID(), 'oceanwp_mw_mobile_padding', true );
 				$mobile_font_size      = get_post_meta( get_the_ID(), 'oceanwp_mw_mobile_font_size', true );
+				$tablet_font_weight    = get_post_meta( get_the_ID(), 'oceanwp_mw_font_weight_mobile'. true );
+				$mobile_text_transform = get_post_meta( get_the_ID(), 'oceanwp_mw_text_transform_mobile', true );
 				$mobile_line_height    = get_post_meta( get_the_ID(), 'oceanwp_mw_mobile_line_height', true );
 				$mobile_letter_spacing = get_post_meta( get_the_ID(), 'oceanwp_mw_mobile_letter_spacing', true );
 
@@ -2981,8 +3474,8 @@ final class Ocean_Modal_Window {
 				}
 
 				// Add modal font size
-				if ( ! empty( $font_size ) ) {
-					$typo_css .= 'font-size:' . $font_size . ';';
+				if ( ! empty( $font_size && '0' != $font_size ) ) {
+					$typo_css .= 'font-size:' . $font_size . $font_size_unit . ';';
 				}
 
 				// Add modal font family
@@ -2995,24 +3488,19 @@ final class Ocean_Modal_Window {
 					$typo_css .= 'font-weight:' . $font_weight . ';';
 				}
 
-				// Add modal font style
-				if ( ! empty( $font_style ) ) {
-					$typo_css .= 'font-style:' . $font_style . ';';
-				}
-
 				// Add modal text transform
 				if ( ! empty( $text_transform ) ) {
 					$typo_css .= 'text-transform:' . $text_transform . ';';
 				}
 
 				// Add modal line height
-				if ( ! empty( $line_height ) ) {
-					$typo_css .= 'line-height:' . $line_height . ';';
+				if ( ! empty( $line_height && '0' != $line_height ) ) {
+					$typo_css .= 'line-height:' . $line_height . $line_height_unit . ';';
 				}
 
 				// Add modal letter spacing
-				if ( ! empty( $letter_spacing ) ) {
-					$typo_css .= 'letter-spacing:' . $letter_spacing . ';';
+				if ( ! empty( $letter_spacing && '0' != $letter_spacing ) ) {
+					$typo_css .= 'letter-spacing:' . $letter_spacing . $letter_spacing_unit . ';';
 				}
 
 				// Typography css
@@ -3028,12 +3516,12 @@ final class Ocean_Modal_Window {
 
 				// Add overlay background
 				if ( ! empty( $overlay_bg ) && '#000000' != $overlay_bg ) {
-					$overlay_css .= 'background-color:' . $overlay_bg . ';';
+					$overlay_css .= 'background-color:' . $overlay_bg . '!important;';
 				}
 
 				// Add overlay opacity
 				if ( ! empty( $overlay_opacity ) && '0.9' != $overlay_opacity ) {
-					$overlay_css .= 'opacity:' . $overlay_opacity . ';';
+					$overlay_css .= 'opacity:' . $overlay_opacity . ' !important;';
 				}
 
 				// Overlay css
@@ -3083,18 +3571,23 @@ final class Ocean_Modal_Window {
 				}
 
 				// Tablet modal font size
-				if ( ! empty( $tablet_font_size ) ) {
-					$tablet_css .= 'font-size:' . $tablet_font_size . ';';
+				if ( ! empty( $tablet_font_size && '0' != $tablet_font_size ) ) {
+					$tablet_css .= 'font-size:' . $tablet_font_size . $font_size_unit . ';';
+				}
+
+				// Tablet modal text transform
+				if ( ! empty( $tablet_text_transform ) ) {
+					$tablet_css .= 'text-transform:' . $tablet_text_transform . ';';
 				}
 
 				// Tablet modal line height
-				if ( ! empty( $tablet_line_height ) ) {
-					$tablet_css .= 'line-height:' . $tablet_line_height . ';';
+				if ( ! empty( $tablet_line_height && '0' != $tablet_line_height ) ) {
+					$tablet_css .= 'line-height:' . $tablet_line_height . $line_height_unit . ';';
 				}
 
 				// Tablet modal letter spacing
-				if ( ! empty( $tablet_letter_spacing ) ) {
-					$tablet_css .= 'letter-spacing:' . $tablet_letter_spacing . ';';
+				if ( ! empty( $tablet_letter_spacing && '0' != $tablet_letter_spacing ) ) {
+					$tablet_css .= 'letter-spacing:' . $tablet_letter_spacing . $letter_spacing_unit . ';';
 				}
 
 				// Responsive tablet
@@ -3123,18 +3616,23 @@ final class Ocean_Modal_Window {
 				}
 
 				// Mobile modal font size
-				if ( ! empty( $mobile_font_size ) ) {
-					$mobile_css .= 'font-size:' . $mobile_font_size . ';';
+				if ( ! empty( $mobile_font_size ) && '0' != $mobile_font_size ) {
+					$mobile_css .= 'font-size:' . $mobile_font_size . $font_size_unit . ';';
+				}
+
+				// Mobile modal text transform
+				if ( ! empty( $mobile_text_transform ) ) {
+					$mobile_css .= 'text-transform:' . $mobile_text_transform . ';';
 				}
 
 				// Mobile modal line height
-				if ( ! empty( $mobile_line_height ) ) {
-					$mobile_css .= 'line-height:' . $mobile_line_height . ';';
+				if ( ! empty( $mobile_line_height ) && '0' != $mobile_line_height ) {
+					$mobile_css .= 'line-height:' . $mobile_line_height . $line_height_unit . ';';
 				}
 
 				// Mobile modal letter spacing
-				if ( ! empty( $mobile_letter_spacing ) ) {
-					$mobile_css .= 'letter-spacing:' . $mobile_letter_spacing . ';';
+				if ( ! empty( $mobile_letter_spacing ) && '0' != $mobile_letter_spacing ) {
+					$mobile_css .= 'letter-spacing:' . $mobile_letter_spacing . $letter_spacing_unit . ';';
 				}
 
 				// Responsive mobile
@@ -3537,5 +4035,4 @@ if ( ! function_exists( 'ocean_modal_window_fs' ) ) {
 		}
 	}
 }
-
 // endregion
