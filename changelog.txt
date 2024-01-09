@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.2.1 - JAN XX 2024 =
+- FIXED: Metabox Settings - metabox settings are not updating.
+
 = 2.2.0 - SEP 6 2023 =
 - NEW: Metabox Settings Interface: https://docs.oceanwp.org/category/826-oceanwp-settings
 - Updated: Compatibility: WordPress version number.
