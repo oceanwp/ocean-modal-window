@@ -7,7 +7,7 @@
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.6
- * Tested up to:        6.4.2
+ * Tested up to:        6.5
  *
  * Text Domain: ocean-modal-window
  * Domain Path: /languages
@@ -116,6 +116,8 @@ final class Ocean_Modal_Window {
 		add_action( 'init', array( $this, 'omw_setup' ) );
 
 		add_action( 'init', array( $this, 'register_post_type' ), 0 );
+
+		add_filter( 'oceanwp_theme_strings', array( $this, 'register_omw_strings' ) );
 	}
 
 	/**
@@ -3250,6 +3252,39 @@ final class Ocean_Modal_Window {
 	}
 
 	/**
+	 * Register translation strings
+	 *
+	 * @param string $strings   Plugin strings.
+	 */
+	public static function register_omw_strings( $strings ) {
+
+		$strings['omw-close-button-anchor'] = apply_filters( 'omw_close_button_anchor',_x( 'modal-window-close', 'Used for creation of SEO friendly anchor links. Do not use spaces or pound keys.', 'ocean-modal-window' ) );
+
+		return $strings;
+
+	}
+
+	/**
+	 * Return SEO-friendly (crawlable) and accessibility-friendly (not redundant) links
+	 *
+	 * @since 2.2.1
+	 */
+	public function omw_get_site_name_anchors( $content = '' ) {
+		$result     = '';
+		$site_url   = esc_url( home_url( '/#' ) );
+
+		if ( $content && ! is_customize_preview() ) {
+			$result = $site_url . $content;
+		} else {
+			$result = '#';
+		}
+
+		$result = apply_filters( 'omw_get_site_name_anchors', $result );
+
+		return $result;
+	}
+
+	/**
 	 * Display the modal in the footer
 	 *
 	 * @since  1.0.0
@@ -3271,6 +3306,9 @@ final class Ocean_Modal_Window {
 		);
 
 		$status = true;
+
+		// SEO link txt.
+		$anchorlink_text = esc_html( oceanwp_theme_strings( 'omw-close-button-anchor', false ) );
 
 		if ( $query->have_posts() ) :
 
@@ -3328,7 +3366,7 @@ final class Ocean_Modal_Window {
 					// Close button
 					if ( 'on' == $close_btn ) {
 						?>
-						<a href="#" class="omw-close-modal"></a>
+						<a href="<?php echo esc_url( $this->omw_get_site_name_anchors( $anchorlink_text ) ); ?>" class="omw-close-modal"></a>
 					<?php } ?>
 
 					<div class="omw-modal-inner clr">
