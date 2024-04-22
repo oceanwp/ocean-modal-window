@@ -3336,7 +3336,7 @@ final class Ocean_Modal_Window {
 	public static function register_omw_strings( $strings ) {
 
 		$strings['omw-close-button-anchor'] = apply_filters( 'omw_close_button_anchor',_x( 'modal-window-close', 'Used for creation of SEO friendly anchor links. Do not use spaces or pound keys.', 'ocean-modal-window' ) );
-		$strings['omw-close-button-string'] = apply_filters( 'omw_close_button_anchor',_x( 'Modal Window Close', 'Used for creation of SEO friendly anchor links. Do not use spaces or pound keys.', 'ocean-modal-window' ) );
+		$strings['omw-close-button-string'] = apply_filters( 'omw_close_button_string',_x( 'Modal Window Close', 'Used for creation of SEO friendly anchor links. Do not use spaces or pound keys.', 'ocean-modal-window' ) );
 
 		return $strings;
 
