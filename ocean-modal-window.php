@@ -3335,8 +3335,8 @@ final class Ocean_Modal_Window {
 	 */
 	public static function register_omw_strings( $strings ) {
 
-		$strings['omw-close-button-anchor'] = apply_filters( 'omw_close_button_anchor',_x( 'modal-window-close', 'Used for creation of SEO friendly anchor links. Do not use spaces or pound keys.', 'ocean-modal-window' ) );
-		$strings['omw-close-button-string'] = apply_filters( 'omw_close_button_string',_x( 'Modal Window Close', 'Used for creation of SEO friendly anchor links. Do not use spaces or pound keys.', 'ocean-modal-window' ) );
+		$strings['omw-close-button-anchor'] = apply_filters( 'omw_close_button_anchor',_x( 'mwc-', 'Used for creation of SEO friendly anchor links. Do not use spaces or pound keys.', 'ocean-modal-window' ) );
+		$strings['omw-close-button-string'] = apply_filters( 'omw_close_button_string',_x( 'Close this modal window ID ', 'Used for creation of SEO friendly string. Do not use spaces or pound keys.', 'ocean-modal-window' ) );
 
 		return $strings;
 
@@ -3444,7 +3444,7 @@ final class Ocean_Modal_Window {
 					// Close button
 					if ( 'on' == $close_btn ) {
 						?>
-						<a href="<?php echo esc_url( $this->omw_get_site_name_anchors( $anchorlink_text ) ); ?>" class="omw-close-modal" aria-label="<?php echo esc_attr( oceanwp_theme_strings( 'omw-close-button-string', false ) ); ?>"></a>
+						<a href="<?php echo esc_url( $this->omw_get_site_name_anchors( $anchorlink_text ) ); ?><?php echo esc_attr( get_the_ID() ); ?>" class="omw-close-modal" aria-label="<?php echo esc_attr( oceanwp_theme_strings( 'omw-close-button-string', false ) ); ?><?php echo esc_attr( get_the_ID() ); ?>"></a>
 					<?php } ?>
 
 					<div class="omw-modal-inner clr">
