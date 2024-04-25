@@ -2,7 +2,7 @@
 Contributors: oceanwp, apprimit, wpfleek
 Tags: modal, modal popup, oceanwp
 Requires at least: 5.6
-Tested up to: 6.5
+Tested up to: 6.5.2
 Stable tag: 2.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -126,8 +126,8 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 
 == Changelog ==
 
-= 2.2.1 - JAN XX 2024 =
-- FIXED: Metabox Settings - metabox settings are not updating.
+= 2.2.1 - APR 29 2024 =
+- Improved: Accessibility: Modal window closing icon link and text.
 
 = 2.2.0 - SEP 6 2023 =
 - NEW: Metabox Settings Interface: https://docs.oceanwp.org/category/826-oceanwp-settings
