@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-04-10T03:18:21+00:00\n"
+"POT-Creation-Date: 2024-04-29T05:27:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: ocean-modal-window\n"
@@ -73,7 +73,7 @@ msgstr ""
 
 #: ocean-modal-window.php:325
 #: ocean-modal-window.php:2292
-#: ocean-modal-window.php:4022
+#: ocean-modal-window.php:4100
 msgid "Modal Window"
 msgstr ""
 
@@ -230,8 +230,8 @@ msgstr ""
 #: ocean-modal-window.php:1935
 #: ocean-modal-window.php:1962
 #: ocean-modal-window.php:1984
-#: ocean-modal-window.php:2822
-#: ocean-modal-window.php:2853
+#: ocean-modal-window.php:2899
+#: ocean-modal-window.php:2930
 msgid "Default"
 msgstr ""
 
@@ -582,97 +582,102 @@ msgstr ""
 msgid "Enable or disable the modal window for this page."
 msgstr ""
 
-#: ocean-modal-window.php:2899
-#: ocean-modal-window.php:2905
-#: ocean-modal-window.php:2914
+#: ocean-modal-window.php:2976
+#: ocean-modal-window.php:2982
+#: ocean-modal-window.php:2991
 msgid "Show on"
 msgstr ""
 
-#: ocean-modal-window.php:2910
-#: ocean-modal-window.php:2933
+#: ocean-modal-window.php:2987
+#: ocean-modal-window.php:3010
 msgid "Add new row"
 msgstr ""
 
-#: ocean-modal-window.php:2921
-#: ocean-modal-window.php:2928
-#: ocean-modal-window.php:2938
+#: ocean-modal-window.php:2998
+#: ocean-modal-window.php:3005
+#: ocean-modal-window.php:3015
 msgid "Hide on"
 msgstr ""
 
-#: ocean-modal-window.php:2971
+#: ocean-modal-window.php:3048
 #: assets/dist/modal-settings.js:2
 #: src/controls/repeator-select/index.js:58
 #: src/controls/repeator-select/index.js:109
 msgid "Please Select"
 msgstr ""
 
-#: ocean-modal-window.php:3035
+#: ocean-modal-window.php:3112
 msgid "Product Category"
 msgstr ""
 
-#: ocean-modal-window.php:3037
+#: ocean-modal-window.php:3114
 msgid "Product Tag"
 msgstr ""
 
-#: ocean-modal-window.php:3039
+#: ocean-modal-window.php:3116
 msgid "Single Product"
 msgstr ""
 
-#: ocean-modal-window.php:3091
+#: ocean-modal-window.php:3168
 msgid "All Pages"
 msgstr ""
 
-#: ocean-modal-window.php:3092
+#: ocean-modal-window.php:3169
 msgid "Home Page ( is_home() )"
 msgstr ""
 
-#: ocean-modal-window.php:3093
+#: ocean-modal-window.php:3170
 msgid "Front Page ( is_front_page() )"
 msgstr ""
 
-#: ocean-modal-window.php:3104
+#: ocean-modal-window.php:3181
 msgid "Single Post"
 msgstr ""
 
-#: ocean-modal-window.php:3105
+#: ocean-modal-window.php:3182
 msgid "Category Page"
 msgstr ""
 
-#: ocean-modal-window.php:3106
+#: ocean-modal-window.php:3183
 msgid "Archive Page"
 msgstr ""
 
-#: ocean-modal-window.php:3107
+#: ocean-modal-window.php:3184
 msgid "Logged In User"
 msgstr ""
 
-#: ocean-modal-window.php:3108
+#: ocean-modal-window.php:3185
 msgid "Logged Out User"
 msgstr ""
 
-#: ocean-modal-window.php:3173
+#: ocean-modal-window.php:3250
 msgid "Modal Link"
 msgstr ""
 
-#: ocean-modal-window.php:3189
+#: ocean-modal-window.php:3266
 msgid "This is the ID, class and the full link to open your modal."
 msgstr ""
 
-#: ocean-modal-window.php:3191
+#: ocean-modal-window.php:3268
 msgid "Modal ID:"
 msgstr ""
 
-#: ocean-modal-window.php:3194
+#: ocean-modal-window.php:3271
 msgid "Link Class:"
 msgstr ""
 
-#: ocean-modal-window.php:3197
+#: ocean-modal-window.php:3274
 msgid "Full Link:"
 msgstr ""
 
-#: ocean-modal-window.php:3261
+#: ocean-modal-window.php:3338
 msgctxt "Used for creation of SEO friendly anchor links. Do not use spaces or pound keys."
-msgid "modal-window-close"
+msgid "mwc-"
+msgstr ""
+
+#: ocean-modal-window.php:3339
+msgctxt "Used for creation of SEO friendly string. Do not use spaces or pound keys."
+msgid "Close this modal window ID "
 msgstr ""
 
 #: assets/dist/metabox.js:1

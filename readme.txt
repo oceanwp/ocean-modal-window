@@ -127,7 +127,8 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 == Changelog ==
 
 = 2.2.1 - APR 29 2024 =
-- Improved: Accessibility: Modal window closing icon link and text.
+- Updated: Accessibility: Modal closing button link and text.
+- Fixed: Metabox settings default values not displayed.
 
 = 2.2.0 - SEP 6 2023 =
 - NEW: Metabox Settings Interface: https://docs.oceanwp.org/category/826-oceanwp-settings
