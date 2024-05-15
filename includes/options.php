@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $options = [
 	'ocean_modal_window_settings' => [
 		'title' => __( 'Modal Window', 'ocean-modal-window' ),
-		'priority' => 5,
+		'priority' => 13,
 		'options' => [
 			'omw_top_quick_links' => [
 				'type' => 'ocean-links',
