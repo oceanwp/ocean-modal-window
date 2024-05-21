@@ -98,7 +98,7 @@ $options = [
                 ],
                 'preview' => 'queryWithType',
                 'css' => [
-                    '.omw-modal' => 'width'
+                    '.omw-modal' => ['width']
                 ]
             ],
 
@@ -151,7 +151,7 @@ $options = [
                 ],
                 'preview' => 'queryWithType',
                 'css' => [
-                    '.omw-modal' => 'height'
+                    '.omw-modal' => ['height']
                 ]
             ],
 
