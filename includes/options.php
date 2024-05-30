@@ -16,7 +16,7 @@ $options = [
 		'options' => [
 			'omw_top_quick_links' => [
 				'type' => 'ocean-links',
-				'label' => 'Quick Menu',
+				'label' => esc_html__( 'Quick Menu', 'ocean-modal-window' ),
 				'section' => 'ocean_modal_window_settings',
 				'transport' => 'postMessage',
 				'priority' => 10,
@@ -62,10 +62,11 @@ $options = [
                 'min'          => 200,
                 'max'          => 1200,
                 'step'         => 1,
+                'sanitize_callback' => 'oceanwp_sanitize_number_blank',
                 'setting_args' => [
                     'desktop' => [
                         'id' => 'omw_custom_width',
-                        'label' => 'Desktop',
+                        'label' => esc_html__( 'Desktop', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                             'default'   => 700,
@@ -89,7 +90,7 @@ $options = [
                     ],
                     'unit' => [
                         'id' => 'omw_custom_width_unit',
-                        'label' => 'Unit',
+                        'label' => esc_html__( 'Unit', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                             'default' => 'px',
@@ -115,10 +116,11 @@ $options = [
                 'min'          => 0,
                 'max'          => 1200,
                 'step'         => 1,
+                'sanitize_callback' => 'oceanwp_sanitize_number_blank',
                 'setting_args' => [
                     'desktop' => [
                         'id' => 'omw_custom_height',
-                        'label' => 'Desktop',
+                        'label' => esc_html__( 'Desktop', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                             'default'   => 0,
@@ -142,7 +144,7 @@ $options = [
                     ],
                     'unit' => [
                         'id' => 'omw_custom_height_unit',
-                        'label' => 'Unit',
+                        'label' => esc_html__( 'Unit', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                             'default' => 'px',
@@ -276,13 +278,14 @@ $options = [
 			],
 
             'omw_background_image' => [
-                'label' => esc_html__( 'Background Image', 'oceanwp' ),
+                'label' => esc_html__( 'Background Image', 'ocean-modal-window' ),
                 'type' => 'ocean-image',
                 'section'  => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
                 'priority' => 10,
                 'hideLabel' => false,
                 'mediaType' => 'image',
+                'sanitize_callback' => 'oceanwp_sanitize_image',
             ],
 
             'omw_divider_after_background_image' => [
@@ -297,18 +300,19 @@ $options = [
             'omw_border_type' => [
                 'id' => 'omw_border_type',
                 'type' => 'ocean-select',
-                'label' => esc_html__('Border Style', 'oceanwp' ),
+                'label' => esc_html__('Border Style', 'ocean-modal-window' ),
                 'section' => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
                 'default' => 'solid',
                 'priority' => 10,
                 'hideLabel' => false,
                 'multiple' => false,
+                'sanitize_callback' => 'sanitize_key',
                 'choices' => [
-                    'solid' 		=> esc_html__( 'Solid', 'oceanwp' ),
-                    'double' 		=> esc_html__( 'Double', 'oceanwp' ),
-                    'dashed' 		=> esc_html__( 'Dashed', 'oceanwp' ),
-                    'dotted' 		=> esc_html__( 'Dotted', 'oceanwp' ),
+                    'solid' 		=> esc_html__( 'Solid', 'ocean-modal-window' ),
+                    'double' 		=> esc_html__( 'Double', 'ocean-modal-window' ),
+                    'dashed' 		=> esc_html__( 'Dashed', 'ocean-modal-window' ),
+                    'dotted' 		=> esc_html__( 'Dotted', 'ocean-modal-window' ),
                 ],
                 'preview' => 'queryWithAttr',
                 'css' => [
@@ -319,7 +323,7 @@ $options = [
 
             'omw_border_width' => [
                 'id' => 'omw_border_width',
-                'label'    => esc_html__( 'Border Width (px)', 'oceanwp' ),
+                'label'    => esc_html__( 'Border Width (px)', 'ocean-modal-window' ),
                 'type'     => 'ocean-spacing',
                 'section'  => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
@@ -330,84 +334,84 @@ $options = [
                 'setting_args' => [
                     'spacingTop' => [
                         'id' => 'omw_top_border_width',
-                        'label' => esc_html__( 'Top', 'oceanwp' ),
+                        'label' => esc_html__( 'Top', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingRight' => [
                         'id' => 'omw_right_border_width',
-                        'label' => esc_html__( 'Right', 'oceanwp' ),
+                        'label' => esc_html__( 'Right', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingBottom' => [
                         'id' => 'omw_bottom_border_width',
-                        'label' => esc_html__( 'Bottom', 'oceanwp' ),
+                        'label' => esc_html__( 'Bottom', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingLeft' => [
                         'id' => 'omw_left_border_width',
-                        'label' => esc_html__( 'Left', 'oceanwp' ),
+                        'label' => esc_html__( 'Left', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingTopTablet' => [
                         'id' => 'omw_tablet_top_border_width',
-                        'label' => esc_html__( 'Top', 'oceanwp' ),
+                        'label' => esc_html__( 'Top', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingRightTablet' => [
                         'id' => 'omw_tablet_right_border_width',
-                        'label' => esc_html__( 'Right', 'oceanwp' ),
+                        'label' => esc_html__( 'Right', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingBottomTablet' => [
                         'id' => 'omw_tablet_bottom_border_width',
-                        'label' => esc_html__( 'Bottom', 'oceanwp' ),
+                        'label' => esc_html__( 'Bottom', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingLeftTablet' => [
                         'id' => 'omw_tablet_left_border_width',
-                        'label' => esc_html__( 'Left', 'oceanwp' ),
+                        'label' => esc_html__( 'Left', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingTopMobile' => [
                         'id' => 'omw_mobile_top_border_width',
-                        'label' => esc_html__( 'Top', 'oceanwp' ),
+                        'label' => esc_html__( 'Top', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingRightMobile' => [
                         'id' => 'omw_mobile_right_border_width',
-                        'label' => esc_html__( 'Right', 'oceanwp' ),
+                        'label' => esc_html__( 'Right', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingBottomMobile' => [
                         'id' => 'omw_mobile_right_border_width',
-                        'label' => esc_html__( 'Bottom', 'oceanwp' ),
+                        'label' => esc_html__( 'Bottom', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingLeftMobile' => [
                         'id' => 'omw_mobile_left_border_width',
-                        'label' => esc_html__( 'Left', 'oceanwp' ),
+                        'label' => esc_html__( 'Left', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
@@ -422,7 +426,7 @@ $options = [
 
             'omw_border_radius' => [
                 'id' => 'omw_border_radius',
-                'label'    => esc_html__( 'Border Radius (px)', 'oceanwp' ),
+                'label'    => esc_html__( 'Border Radius (px)', 'ocean-modal-window' ),
                 'type'     => 'ocean-spacing',
                 'section'  => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
@@ -432,84 +436,84 @@ $options = [
                 'setting_args' => [
                     'spacingTop' => [
                         'id' => 'omw_top_border_radius',
-                        'label' => esc_html__( 'Top', 'oceanwp' ),
+                        'label' => esc_html__( 'Top', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingRight' => [
                         'id' => 'omw_right_border_radius',
-                        'label' => esc_html__( 'Right', 'oceanwp' ),
+                        'label' => esc_html__( 'Right', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingBottom' => [
                         'id' => 'omw_bottom_border_radius',
-                        'label' => esc_html__( 'Bottom', 'oceanwp' ),
+                        'label' => esc_html__( 'Bottom', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingLeft' => [
                         'id' => 'omw_left_border_radius',
-                        'label' => esc_html__( 'Left', 'oceanwp' ),
+                        'label' => esc_html__( 'Left', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingTopTablet' => [
                         'id' => 'omw_tablet_top_border_radius',
-                        'label' => esc_html__( 'Top', 'oceanwp' ),
+                        'label' => esc_html__( 'Top', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingRightTablet' => [
                         'id' => 'omw_tablet_right_border_radius',
-                        'label' => esc_html__( 'Right', 'oceanwp' ),
+                        'label' => esc_html__( 'Right', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingBottomTablet' => [
                         'id' => 'omw_tablet_bottom_border_radius',
-                        'label' => esc_html__( 'Bottom', 'oceanwp' ),
+                        'label' => esc_html__( 'Bottom', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingLeftTablet' => [
                         'id' => 'omw_tablet_left_border_radius',
-                        'label' => esc_html__( 'Left', 'oceanwp' ),
+                        'label' => esc_html__( 'Left', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingTopMobile' => [
                         'id' => 'omw_mobile_top_border_radius',
-                        'label' => esc_html__( 'Top', 'oceanwp' ),
+                        'label' => esc_html__( 'Top', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingRightMobile' => [
                         'id' => 'omw_mobile_right_border_radius',
-                        'label' => esc_html__( 'Right', 'oceanwp' ),
+                        'label' => esc_html__( 'Right', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingBottomMobile' => [
                         'id' => 'omw_mobile_right_border_radius',
-                        'label' => esc_html__( 'Bottom', 'oceanwp' ),
+                        'label' => esc_html__( 'Bottom', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'spacingLeftMobile' => [
                         'id' => 'omw_mobile_left_border_radius',
-                        'label' => esc_html__( 'Left', 'oceanwp' ),
+                        'label' => esc_html__( 'Left', 'ocean-modal-window' ),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
@@ -534,7 +538,7 @@ $options = [
             'omw_typography' => [
                 'id' => 'omw_typography',
                 'type' => 'ocean-typography',
-                'label' => esc_html__('Typography', 'oceanwp'),
+                'label' => esc_html__('Typography', 'ocean-modal-window'),
                 'section' => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
                 'priority' => 10,
@@ -543,63 +547,63 @@ $options = [
                 'setting_args' => [
                     'fontFamily' => [
                         'id' => 'omw_font_family',
-                        'label' => 'Font Family',
+                        'label' => esc_html__('Font Family', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'fontWeight' => [
                         'id' => 'omw_font_weight',
-                        'label' => 'Font Weight',
+                        'label' => esc_html__('Font Weight', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'fontWeightTablet' => [
                         'id' => 'omw_tablet_font_weight',
-                        'label' => 'Font Weight',
+                        'label' => esc_html__('Font Weight', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'fontWeightMobile' => [
                         'id' => 'omw_mobile_font_weight',
-                        'label' => 'Font Weight',
+                        'label' => esc_html__('Font Weight', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'fontSubset' => [
                         'id' => 'omw_font_subset',
-                        'label' => 'Font Subset',
+                        'label' => esc_html__('Font Subset', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'fontSize' => [
                         'id' => 'omw_font_size',
-                        'label' => 'Font Size',
+                        'label' => esc_html__('Font Size', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'fontSizeTablet' => [
                         'id' => 'omw_tablet_font_size',
-                        'label' => 'Font Size',
+                        'label' => esc_html__('Font Size', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'fontSizeMobile' => [
                         'id' => 'omw_mobile_font_size',
-                        'label' => 'Font Size',
+                        'label' => esc_html__('Font Size', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'fontSizeUnit' => [
                         'id' => 'omw_font_size_unit',
-                        'label' => 'Unit',
+                        'label' => esc_html__('Unit', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                             'default'   => 'px'
@@ -607,28 +611,28 @@ $options = [
                     ],
                     'letterSpacing' => [
                         'id' => 'omw_letter_spacing',
-                        'label' => 'Letter Spacing',
+                         'label' => esc_html__('Letter Spacing', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'letterSpacingTablet' => [
                         'id' => 'omw_tablet_letter_spacing',
-                        'label' => 'Letter Spacing',
+                         'label' => esc_html__('Letter Spacing', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'letterSpacingMobile' => [
                         'id' => 'omw_mobile_letter_spacing',
-                        'label' => 'Letter Spacing',
+                         'label' => esc_html__('Letter Spacing', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'letterSpacingUnit' => [
                         'id' => 'omw_letter_spacing_unit',
-                        'label' => 'Unit',
+                        'label' => esc_html__('Unit', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                             'default'   => 'px'
@@ -636,56 +640,56 @@ $options = [
                     ],
                     'lineHeight' => [
                         'id' => 'omw_line_height',
-                        'label' => 'Line Height',
+                        'label' => esc_html__('Line Height', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'lineHeightTablet' => [
                         'id' => 'omw_tablet_line_height',
-                        'label' => 'Line Height',
+                        'label' => esc_html__('Line Height', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'lineHeightMobile' => [
                         'id' => 'omw_mobile_line_height',
-                        'label' => 'Line Height',
+                        'label' => esc_html__('Line Height', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'lineHeightUnit' => [
                         'id' => 'omw_line_height_unit',
-                        'label' => 'Unit',
+                        'label' => esc_html__('Unit', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'textTransform' => [
                         'id' => 'omw_text_transform',
-                        'label' => 'Text Transform',
+                        'label' => esc_html__('Text Transform', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'textTransformTablet' => [
                         'id' => 'omw_tablet_text_transform',
-                        'label' => 'Text Transform',
+                        'label' => esc_html__('Text Transform', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'textTransformMobile' => [
                         'id' => 'omw_mobile_text_transform',
-                        'label' => 'Text Transform',
+                        'label' => esc_html__('Text Transform', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'textDecoration' => [
                         'id' => 'omw_text_decoration',
-                        'label' => 'Text Decoration',
+                        'label' => esc_html__('Text Decoration', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
@@ -704,18 +708,19 @@ $options = [
 
             'omw_overlay_bg' => [
                 'type' => 'ocean-color',
-                'label' => esc_html__( 'Overlay Background', 'oceanwp' ),
+                'label' => esc_html__( 'Overlay Background', 'ocean-modal-window' ),
                 'section' => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
                 'priority' => 10,
                 'hideLabel' => false,
                 'showAlpha' => true,
                 'showPalette' => true,
+                'sanitize_callback' => 'wp_kses_post',
                 'setting_args' => [
                     'normal' => [
                         'id' => 'omw_overlay_bg',
                         'key' => 'normal',
-                        'label' => esc_html__( 'Select Color', 'oceanwp' ),
+                        'label' => esc_html__( 'Select Color', 'ocean-modal-window' ),
                         'selector' => [
                             '.omw-modal-overlay' => 'background-color'
                         ],
@@ -729,18 +734,19 @@ $options = [
 
             'omw_modal_bg' => [
                 'type' => 'ocean-color',
-                'label' => esc_html__( 'Background Color', 'oceanwp' ),
+                'label' => esc_html__( 'Background Color', 'ocean-modal-window' ),
                 'section' => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
                 'priority' => 10,
                 'hideLabel' => false,
                 'showAlpha' => true,
                 'showPalette' => true,
+                'sanitize_callback' => 'wp_kses_post',
                 'setting_args' => [
                     'normal' => [
                         'id' => 'omw_modal_bg',
                         'key' => 'normal',
-                        'label' => esc_html__( 'Select Color', 'oceanwp' ),
+                        'label' => esc_html__( 'Select Color', 'ocean-modal-window' ),
                         'selector' => [
                             '.omw-modal' => 'background-color'
                         ],
@@ -754,18 +760,19 @@ $options = [
 
             'omw_modal_border_color' => [
                 'type' => 'ocean-color',
-                'label' => esc_html__( 'Border Color', 'oceanwp' ),
+                'label' => esc_html__( 'Border Color', 'ocean-modal-window' ),
                 'section' => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
                 'priority' => 10,
                 'hideLabel' => false,
                 'showAlpha' => true,
                 'showPalette' => true,
+                'sanitize_callback' => 'wp_kses_post',
                 'setting_args' => [
                     'normal' => [
                         'id' => 'omw_modal_border_color',
                         'key' => 'normal',
-                        'label' => esc_html__( 'Select Color', 'oceanwp' ),
+                        'label' => esc_html__( 'Select Color', 'ocean-modal-window' ),
                         'selector' => [
                             '.omw-modal' => 'border-color'
                         ],
@@ -778,18 +785,19 @@ $options = [
 
             'omw_modal_text_color' => [
                 'type' => 'ocean-color',
-                'label' => esc_html__( 'Text Color', 'oceanwp' ),
+                'label' => esc_html__( 'Text Color', 'ocean-modal-window' ),
                 'section' => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
                 'priority' => 10,
                 'hideLabel' => false,
                 'showAlpha' => true,
                 'showPalette' => true,
+                'sanitize_callback' => 'wp_kses_post',
                 'setting_args' => [
                     'normal' => [
                         'id' => 'omw_modal_text_color',
                         'key' => 'normal',
-                        'label' => esc_html__( 'Select Color', 'oceanwp' ),
+                        'label' => esc_html__( 'Select Color', 'ocean-modal-window' ),
                         'selector' => [
                             '.omw-modal' => 'color'
                         ],
@@ -802,18 +810,19 @@ $options = [
 
             'omw_modal_title_color' => [
                 'type' => 'ocean-color',
-                'label' => esc_html__( 'Title Color', 'oceanwp' ),
+                'label' => esc_html__( 'Title Color', 'ocean-modal-window' ),
                 'section' => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
                 'priority' => 10,
                 'hideLabel' => false,
                 'showAlpha' => true,
                 'showPalette' => true,
+                'sanitize_callback' => 'wp_kses_post',
                 'setting_args' => [
                     'normal' => [
                         'id' => 'omw_modal_title_color',
                         'key' => 'normal',
-                        'label' => esc_html__( 'Select Color', 'oceanwp' ),
+                        'label' => esc_html__( 'Select Color', 'ocean-modal-window' ),
                         'selector' => [
                             '.omw-modal .omw-modal-title' => 'color'
                         ],
@@ -827,18 +836,19 @@ $options = [
 
             'omw_modal_close_btn_bg' => [
                 'type' => 'ocean-color',
-                'label' => esc_html__( 'Close Button Background', 'oceanwp' ),
+                'label' => esc_html__( 'Close Button Background', 'ocean-modal-window' ),
                 'section' => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
                 'priority' => 10,
                 'hideLabel' => false,
                 'showAlpha' => true,
                 'showPalette' => true,
+                'sanitize_callback' => 'wp_kses_post',
                 'setting_args' => [
                     'normal' => [
                         'id' => 'omw_modal_close_btn_bg',
                         'key' => 'normal',
-                        'label' => esc_html__( 'Normal', 'oceanwp' ),
+                        'label' => esc_html__( 'Normal', 'ocean-modal-window' ),
                         'selector' => [
                             '.omw-modal .omw-close-modal' => 'background-color'
                         ],
@@ -849,7 +859,7 @@ $options = [
                     'hover' => [
                         'id' => 'omw_modal_close_btn_hover_bg',
                         'key' => 'hover',
-                        'label' => esc_html__( 'Hover', 'oceanwp' ),
+                        'label' => esc_html__( 'Hover', 'ocean-modal-window' ),
                         'selector' => [
                             '.omw-modal .omw-close-modal:hover' => 'background-color'
                         ],
@@ -862,18 +872,19 @@ $options = [
 
             'omw_modal_close_btn_color' => [
                 'type' => 'ocean-color',
-                'label' => esc_html__( 'Close Button Color', 'oceanwp' ),
+                'label' => esc_html__( 'Close Button Color', 'ocean-modal-window' ),
                 'section' => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
                 'priority' => 10,
                 'hideLabel' => false,
                 'showAlpha' => true,
                 'showPalette' => true,
+                'sanitize_callback' => 'wp_kses_post',
                 'setting_args' => [
                     'normal' => [
                         'id' => 'omw_modal_close_btn_color',
                         'key' => 'normal',
-                        'label' => esc_html__( 'Normal', 'oceanwp' ),
+                        'label' => esc_html__( 'Normal', 'ocean-modal-window' ),
                         'selector' => [
                             '.omw-modal .omw-close-modal:before,.omw-modal .omw-close-modal:after' => 'background-color'
                         ],
@@ -884,7 +895,7 @@ $options = [
                     'hover' => [
                         'id' => 'omw_modal_close_btn_hover_color',
                         'key' => 'hover',
-                        'label' => esc_html__( 'Hover', 'oceanwp' ),
+                        'label' => esc_html__( 'Hover', 'ocean-modal-window' ),
                         'selector' => [
                             '.omw-modal .omw-close-modal:hover:before,.omw-modal .omw-close-modal:hover:after' => 'background-color'
                         ],
