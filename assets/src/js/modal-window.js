@@ -5,6 +5,7 @@ import delegate from "delegate";
 class OW_ModalWindow extends OW_Base {
     modal;
 
+
     getDefaultSettings() {
         return {
             selectors: {
@@ -35,6 +36,13 @@ class OW_ModalWindow extends OW_Base {
         if (!!this.elements.modalWindow) {
             this.initPerfectScrollbar();
         }
+
+        document.addEventListener("init-omw-for-element", this.bindEvent.bind(this));
+
+    }
+
+    bindEvent(event) {
+      event.target.addEventListener("click", this.openModal.bind(this));
     }
 
     bindEvents() {
