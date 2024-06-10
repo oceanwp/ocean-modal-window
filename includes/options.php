@@ -285,7 +285,6 @@ $options = [
                 'priority' => 10,
                 'hideLabel' => false,
                 'mediaType' => 'image',
-                'sanitize_callback' => 'oceanwp_sanitize_image',
             ],
 
             'omw_divider_after_background_image' => [

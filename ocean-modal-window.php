@@ -202,6 +202,8 @@ final class Ocean_Modal_Window {
 		if ( 'OceanWP' == $theme->name || 'oceanwp' == $theme->template ) {
 			add_action( 'customize_preview_init', array( $this, 'customize_preview_js' ) );
 			add_action( 'customize_register', array( $this, 'customize_register' ) );
+			add_filter( 'ocean_customize_options_data', array( $this, 'local_customize_options') );
+			add_filter( 'ocean_customize_options_data', array( $this, 'local_customize_options') );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 999 );
 			add_filter( 'ocean_metaboxes_post_types_scripts', array( $this, 'post_type' ) );
 			add_action( 'butterbean_register', array( $this, 'metabox' ), 10, 2 );
@@ -333,6 +335,18 @@ final class Ocean_Modal_Window {
 
 			OceanWP_Customizer_Init::register_options_recursive($wp_customize, $section_key, $section_options['options'] );
 		}
+	}
+
+	/**
+	 * Added localize in customizer js
+	 */
+	public function local_customize_options($options) {
+		$path = $this->plugin_path . 'includes/';
+		$optiondata = ocean_customize_options('options', false, $path);
+
+		$options['ocean-modal-window'] = $optiondata;
+
+		return $options;
 	}
 
 	/**
