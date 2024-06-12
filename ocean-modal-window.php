@@ -1414,6 +1414,12 @@ final class Ocean_Modal_Window {
 	 */
 
 	public function enqueue_styles() {
+
+		// Run this only on the frontend.
+		if (is_admin()) {
+			return;
+		}
+
 		$meta_modal = get_post_meta( oceanwp_post_id(), 'omw_enable_modal_window', true );
 
 		// If Modal Window is disabled.
