@@ -9,45 +9,49 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$options = [
-	'ocean_modal_window_settings' => [
-		'title' => __( 'Modal Window', 'ocean-modal-window' ),
-		'priority' => 13,
-		'options' => [
-			'omw_top_quick_links' => [
-				'type' => 'ocean-links',
-				'label' => esc_html__( 'Quick Menu', 'ocean-modal-window' ),
-				'section' => 'ocean_modal_window_settings',
-				'transport' => 'postMessage',
-				'priority' => 10,
-				'class' => 'top-quick-links',
-				'linkIcon' => 'link-2',
-				'titleIcon' => 'three-dot-menu',
-				'active_callback' => 'ocean_is_oe_active',
-				'links' => [
-					'website_layout' => [
-						'label' => esc_html__('Website Layout', 'ocean-modal-window'),
-						'url' => '#'
-					],
-					'scroll_top' => [
-						'label' => esc_html__('Scroll To Top', 'ocean-modal-window'),
-						'url' => '#'
-					],
-					'pagination' => [
-						'label' => esc_html__('Pagination', 'ocean-modal-window'),
-						'url' => '#'
-					]
-				]
-			],
+/**
+ * Customizer Options
+ */
+function omw_customizer_options() {
 
-			'omw_divider_after_top_quick_links' => [
-				'type' => 'ocean-divider',
-				'section' => 'ocean_modal_window_settings',
-				'transport' => 'postMessage',
-				'priority' => 10,
-				'top' => 10,
-				'bottom' => 10
-			],
+    $options = [
+        'title' => __( 'Modal Window', 'ocean-modal-window' ),
+        'priority' => 13,
+        'options' => [
+            'omw_top_quick_links' => [
+                'type' => 'ocean-links',
+                'label' => esc_html__( 'Quick Menu', 'ocean-modal-window' ),
+                'section' => 'ocean_modal_window_settings',
+                'transport' => 'postMessage',
+                'priority' => 10,
+                'class' => 'top-quick-links',
+                'linkIcon' => 'link-2',
+                'titleIcon' => 'three-dot-menu',
+                'active_callback' => 'ocean_is_oe_active',
+                'links' => [
+                    'website_layout' => [
+                        'label' => esc_html__('Website Layout', 'ocean-modal-window'),
+                        'url' => '#'
+                    ],
+                    'scroll_top' => [
+                        'label' => esc_html__('Scroll To Top', 'ocean-modal-window'),
+                        'url' => '#'
+                    ],
+                    'pagination' => [
+                        'label' => esc_html__('Pagination', 'ocean-modal-window'),
+                        'url' => '#'
+                    ]
+                ]
+            ],
+
+            'omw_divider_after_top_quick_links' => [
+                'type' => 'ocean-divider',
+                'section' => 'ocean_modal_window_settings',
+                'transport' => 'postMessage',
+                'priority' => 10,
+                'top' => 10,
+                'bottom' => 10
+            ],
 
             'omw_custom_width' => [
                 'id'      => 'omw_custom_width',
@@ -158,13 +162,13 @@ $options = [
             ],
 
             'omw_divider_after_custom_height' => [
-				'type' => 'ocean-divider',
-				'section' => 'ocean_modal_window_settings',
-				'transport' => 'postMessage',
-				'priority' => 10,
-				'top' => 10,
-				'bottom' => 10
-			],
+                'type' => 'ocean-divider',
+                'section' => 'ocean_modal_window_settings',
+                'transport' => 'postMessage',
+                'priority' => 10,
+                'top' => 10,
+                'bottom' => 10
+            ],
 
             'omw_padding' => [
                 'id' => 'omw_padding',
@@ -269,13 +273,13 @@ $options = [
             ],
 
             'omw_divider_after_padding' => [
-				'type' => 'ocean-divider',
-				'section' => 'ocean_modal_window_settings',
-				'transport' => 'postMessage',
-				'priority' => 10,
-				'top' => 10,
-				'bottom' => 10
-			],
+                'type' => 'ocean-divider',
+                'section' => 'ocean_modal_window_settings',
+                'transport' => 'postMessage',
+                'priority' => 10,
+                'top' => 10,
+                'bottom' => 10
+            ],
 
             'omw_background_image' => [
                 'label' => esc_html__( 'Background Image', 'ocean-modal-window' ),
@@ -288,13 +292,13 @@ $options = [
             ],
 
             'omw_divider_after_background_image' => [
-				'type' => 'ocean-divider',
-				'section' => 'ocean_modal_window_settings',
-				'transport' => 'postMessage',
-				'priority' => 10,
-				'top' => 10,
-				'bottom' => 10
-			],
+                'type' => 'ocean-divider',
+                'section' => 'ocean_modal_window_settings',
+                'transport' => 'postMessage',
+                'priority' => 10,
+                'top' => 10,
+                'bottom' => 10
+            ],
 
             'omw_border_type' => [
                 'id' => 'omw_border_type',
@@ -526,13 +530,13 @@ $options = [
             ],
 
             'omw_divider_after_border_radius' => [
-				'type' => 'ocean-divider',
-				'section' => 'ocean_modal_window_settings',
-				'transport' => 'postMessage',
-				'priority' => 10,
-				'top' => 10,
-				'bottom' => 10
-			],
+                'type' => 'ocean-divider',
+                'section' => 'ocean_modal_window_settings',
+                'transport' => 'postMessage',
+                'priority' => 10,
+                'top' => 10,
+                'bottom' => 10
+            ],
 
             'omw_typography' => [
                 'id' => 'omw_typography',
@@ -610,21 +614,21 @@ $options = [
                     ],
                     'letterSpacing' => [
                         'id' => 'omw_letter_spacing',
-                         'label' => esc_html__('Letter Spacing', 'ocean-modal-window'),
+                        'label' => esc_html__('Letter Spacing', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'letterSpacingTablet' => [
                         'id' => 'omw_tablet_letter_spacing',
-                         'label' => esc_html__('Letter Spacing', 'ocean-modal-window'),
+                        'label' => esc_html__('Letter Spacing', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
                     ],
                     'letterSpacingMobile' => [
                         'id' => 'omw_mobile_letter_spacing',
-                         'label' => esc_html__('Letter Spacing', 'ocean-modal-window'),
+                        'label' => esc_html__('Letter Spacing', 'ocean-modal-window'),
                         'attr' => [
                             'transport' => 'postMessage',
                         ],
@@ -697,13 +701,13 @@ $options = [
             ],
 
             'omw_divider_after_typography' => [
-				'type' => 'ocean-divider',
-				'section' => 'ocean_modal_window_settings',
-				'transport' => 'postMessage',
-				'priority' => 10,
-				'top' => 1,
-				'bottom' => 10
-			],
+                'type' => 'ocean-divider',
+                'section' => 'ocean_modal_window_settings',
+                'transport' => 'postMessage',
+                'priority' => 10,
+                'top' => 1,
+                'bottom' => 10
+            ],
 
             'omw_overlay_bg' => [
                 'type' => 'ocean-color',
@@ -906,5 +910,8 @@ $options = [
             ],
 
         ]
-    ]
-];
+    ];
+
+	return apply_filters( 'omw_customizer_options', $options );
+
+}
