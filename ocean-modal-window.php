@@ -300,7 +300,7 @@ final class Ocean_Modal_Window {
 			&& class_exists( 'Ocean_Extra_Theme_Panel' ) ) {
 
 			if ( empty( Ocean_Extra_Theme_Panel::get_setting( 'ocean_modal_window_panel' ) ) ) {
-				return false;
+				return $options;
 			}
 
 		}
