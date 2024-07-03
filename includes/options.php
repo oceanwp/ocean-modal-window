@@ -18,41 +18,6 @@ function omw_customizer_options() {
         'title' => __( 'Modal Window', 'ocean-modal-window' ),
         'priority' => 13,
         'options' => [
-            'omw_top_quick_links' => [
-                'type' => 'ocean-links',
-                'label' => esc_html__( 'Quick Menu', 'ocean-modal-window' ),
-                'section' => 'ocean_modal_window_settings',
-                'transport' => 'postMessage',
-                'priority' => 10,
-                'class' => 'top-quick-links',
-                'linkIcon' => 'link-2',
-                'titleIcon' => 'three-dot-menu',
-                'active_callback' => 'ocean_is_oe_active',
-                'links' => [
-                    'website_layout' => [
-                        'label' => esc_html__('Website Layout', 'ocean-modal-window'),
-                        'url' => '#'
-                    ],
-                    'scroll_top' => [
-                        'label' => esc_html__('Scroll To Top', 'ocean-modal-window'),
-                        'url' => '#'
-                    ],
-                    'pagination' => [
-                        'label' => esc_html__('Pagination', 'ocean-modal-window'),
-                        'url' => '#'
-                    ]
-                ]
-            ],
-
-            'omw_divider_after_top_quick_links' => [
-                'type' => 'ocean-divider',
-                'section' => 'ocean_modal_window_settings',
-                'transport' => 'postMessage',
-                'priority' => 10,
-                'top' => 10,
-                'bottom' => 10
-            ],
-
             'omw_custom_width' => [
                 'id'      => 'omw_custom_width',
                 'label'    => esc_html__( 'Custom Width', 'ocean-modal-window' ),
@@ -529,13 +494,14 @@ function omw_customizer_options() {
                 ],
             ],
 
-            'omw_divider_after_border_radius' => [
-                'type' => 'ocean-divider',
+            'omw_title_for_typography_and_colors' => [
+                'type' => 'ocean-title',
+                'label' => esc_html__('Typography and Colors', 'ocean-modal-window'),
                 'section' => 'ocean_modal_window_settings',
                 'transport' => 'postMessage',
                 'priority' => 10,
-                'top' => 10,
-                'bottom' => 10
+                'top' => 20,
+                'bottom' => 20
             ],
 
             'omw_typography' => [
@@ -908,6 +874,22 @@ function omw_customizer_options() {
                     ]
                 ]
             ],
+
+            'omw_modal_divider_for_need_help_link' => [
+				'type' => 'ocean-divider',
+				'section' => 'ocean_modal_window_settings',
+				'transport' => 'postMessage',
+				'priority' => 10,
+			],
+
+			'omw_modal_need_help_link' => [
+				'type' => 'ocean-content',
+				'isContent' => sprintf( esc_html__( '%1$s Need Help? %2$s', 'oceanwp' ), '<a href="http://docs.oceanwp.org/category/369-shortcodes" target="_blank">', '</a>' ),
+				'class' => 'need-help',
+				'section' => 'ocean_modal_window_settings',
+				'transport' => 'postMessage',
+				'priority' => 10,
+			]
 
         ]
     ];
