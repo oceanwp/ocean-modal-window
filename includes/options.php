@@ -884,7 +884,7 @@ function omw_customizer_options() {
 
 			'omw_modal_need_help_link' => [
 				'type' => 'ocean-content',
-				'isContent' => sprintf( esc_html__( '%1$s Need Help? %2$s', 'oceanwp' ), '<a href="http://docs.oceanwp.org/category/369-shortcodes" target="_blank">', '</a>' ),
+				'isContent' => ocean_render_content_need_help(),
 				'class' => 'need-help',
 				'section' => 'ocean_modal_window_settings',
 				'transport' => 'postMessage',
