@@ -16,7 +16,7 @@ function omw_customizer_options() {
 
     $options = [
         'title' => __( 'Modal Window', 'ocean-modal-window' ),
-        'priority' => 13,
+        'priority' => 15,
         'options' => [
             'omw_custom_width' => [
                 'id'      => 'omw_custom_width',
