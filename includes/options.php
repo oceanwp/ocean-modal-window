@@ -254,6 +254,7 @@ function omw_customizer_options() {
                 'priority' => 10,
                 'hideLabel' => false,
                 'mediaType' => 'image',
+                'savetype' => 'url',
             ],
 
             'omw_divider_after_background_image' => [
