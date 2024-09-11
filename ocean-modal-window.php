@@ -3,11 +3,11 @@
  * Plugin Name:         Ocean Modal Window
  * Plugin URI:          https://oceanwp.org/extension/ocean-modal-window/
  * Description:         Create the good kind of popups with ease. Display any content in a modal, anywhere on your website.
- * Version:             2.2.1
+ * Version:             2.2.2
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.6
- * Tested up to:        6.5.2
+ * Tested up to:        6.5.3
  *
  * Text Domain: ocean-modal-window
  * Domain Path: /languages
@@ -86,6 +86,14 @@ final class Ocean_Modal_Window {
 	 */
 	public $plugin_path;
 
+	/**
+	 * The plugin data.
+	 *
+	 * @var     array
+	 * @access  public
+	 */
+	public $plugin_data;
+
 	// Admin - Start
 	/**
 	 * The admin object.
@@ -107,7 +115,8 @@ final class Ocean_Modal_Window {
 		$this->token       = 'ocean-modal-window';
 		$this->plugin_url  = plugin_dir_url( __FILE__ );
 		$this->plugin_path = plugin_dir_path( __FILE__ );
-		$this->version     = '2.2.1';
+		$this->plugin_data = get_file_data( __FILE__, array( 'Version' => 'Version' ), false );
+		$this->version     = $this->plugin_data['Version'];
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
@@ -2272,7 +2281,8 @@ final class Ocean_Modal_Window {
 	 */
 	public static function register_omw_strings( $strings ) {
 
-		$strings['omw-close-button-anchor'] = apply_filters( 'omw_close_button_anchor',_x( 'modal-window-close', 'Used for creation of SEO friendly anchor links. Do not use spaces or pound keys.', 'ocean-modal-window' ) );
+		$strings['omw-close-button-anchor'] = apply_filters( 'omw_close_button_anchor',_x( 'mwc-', 'Used for creation of SEO friendly anchor links. Do not use spaces or pound keys.', 'ocean-modal-window' ) );
+		$strings['omw-close-button-string'] = apply_filters( 'omw_close_button_string',_x( 'Close this modal window ID ', 'Used for creation of SEO friendly string. Do not use spaces or pound keys.', 'ocean-modal-window' ) );
 
 		return $strings;
 
@@ -2380,7 +2390,7 @@ final class Ocean_Modal_Window {
 					// Close button
 					if ( 'on' == $close_btn ) {
 						?>
-						<a href="<?php echo esc_url( $this->omw_get_site_name_anchors( $anchorlink_text ) ); ?>" class="omw-close-modal"></a>
+						<a href="<?php echo esc_url( $this->omw_get_site_name_anchors( $anchorlink_text ) ); ?><?php echo esc_attr( get_the_ID() ); ?>" class="omw-close-modal" aria-label="<?php echo esc_attr( oceanwp_theme_strings( 'omw-close-button-string', false ) ); ?><?php echo esc_attr( get_the_ID() ); ?>"></a>
 					<?php } ?>
 
 					<div class="omw-modal-inner clr">
