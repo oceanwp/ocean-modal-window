@@ -2,654 +2,740 @@
 # This file is distributed under the same license as the Ocean Modal Window plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ocean Modal Window 2.2.2\n"
+"Project-Id-Version: Ocean Modal Window 2.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ocean-modal-window\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-05-20T06:52:21+00:00\n"
+"POT-Creation-Date: 2024-09-20T04:26:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.10.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: ocean-modal-window\n"
 
 #. Plugin Name of the plugin
-#: C:/laragon/www/rc-owp/wp-content/plugins/ocean-modal-window/ocean-modal-window.php
+#: ocean-modal-window.php
 msgid "Ocean Modal Window"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: C:/laragon/www/rc-owp/wp-content/plugins/ocean-modal-window/ocean-modal-window.php
+#: ocean-modal-window.php
 msgid "https://oceanwp.org/extension/ocean-modal-window/"
 msgstr ""
 
 #. Description of the plugin
-#: C:/laragon/www/rc-owp/wp-content/plugins/ocean-modal-window/ocean-modal-window.php
+#: ocean-modal-window.php
 msgid "Create the good kind of popups with ease. Display any content in a modal, anywhere on your website."
 msgstr ""
 
 #. Author of the plugin
-#: C:/laragon/www/rc-owp/wp-content/plugins/ocean-modal-window/ocean-modal-window.php
+#: ocean-modal-window.php
 msgid "OceanWP"
 msgstr ""
 
 #. Author URI of the plugin
-#: C:/laragon/www/rc-owp/wp-content/plugins/ocean-modal-window/ocean-modal-window.php
+#: ocean-modal-window.php
 msgid "https://oceanwp.org/"
 msgstr ""
 
-#: ocean-modal-window.php:246
-msgid "Modal"
-msgstr ""
-
-#: ocean-modal-window.php:247
-msgid "Modal Item"
-msgstr ""
-
-#: ocean-modal-window.php:248
-msgid "Add New"
-msgstr ""
-
-#: ocean-modal-window.php:249
-#: ocean-modal-window.php:251
-msgid "Add New Item"
-msgstr ""
-
-#: ocean-modal-window.php:250
-msgid "Edit Item"
-msgstr ""
-
-#: ocean-modal-window.php:252
-msgid "View Item"
-msgstr ""
-
-#: ocean-modal-window.php:253
-msgid "Search Items"
-msgstr ""
-
-#: ocean-modal-window.php:254
-msgid "No Items Found"
-msgstr ""
-
-#: ocean-modal-window.php:255
-msgid "No Items Found In Trash"
-msgstr ""
-
-#: ocean-modal-window.php:334
-#: ocean-modal-window.php:2301
-#: ocean-modal-window.php:4109
+#: includes/options.php:18
+#: ocean-modal-window.php:1237
+#: ocean-modal-window.php:3050
 msgid "Modal Window"
 msgstr ""
 
-#: ocean-modal-window.php:345
-#: ocean-modal-window.php:1448
-msgid "General"
+#: includes/options.php:30
+#: ocean-modal-window.php:502
+#: ocean-modal-window.php:991
+#: ocean-modal-window.php:1113
+#: assets/dist/modal-settings.js:2
+msgid "Custom Width"
 msgstr ""
 
-#: ocean-modal-window.php:368
-#: ocean-modal-window.php:1062
-#: ocean-modal-window.php:1238
-msgid "Custom Width (px)"
+#: includes/options.php:45
+#: includes/options.php:99
+msgid "Desktop"
 msgstr ""
 
-#: ocean-modal-window.php:398
-#: ocean-modal-window.php:1092
-#: ocean-modal-window.php:1268
-msgid "Custom Height (px)"
+#: includes/options.php:53
+#: includes/options.php:107
+msgid "Tablet"
 msgstr ""
 
-#: ocean-modal-window.php:428
-#: ocean-modal-window.php:1612
+#: includes/options.php:61
+#: includes/options.php:115
+msgid "Mobile"
+msgstr ""
+
+#: includes/options.php:69
+#: includes/options.php:123
+#: includes/options.php:597
+#: includes/options.php:626
+#: includes/options.php:655
+msgid "Unit"
+msgstr ""
+
+#: includes/options.php:84
+#: ocean-modal-window.php:525
+#: ocean-modal-window.php:1014
+#: ocean-modal-window.php:1136
+#: assets/dist/modal-settings.js:2
+msgid "Custom Height"
+msgstr ""
+
+#: includes/options.php:147
+msgid "Padding (px)"
+msgstr ""
+
+#: includes/options.php:157
+#: includes/options.php:185
+#: includes/options.php:213
+#: includes/options.php:320
+#: includes/options.php:348
+#: includes/options.php:376
+#: includes/options.php:429
+#: includes/options.php:457
+#: includes/options.php:485
+msgid "Top"
+msgstr ""
+
+#: includes/options.php:164
+#: includes/options.php:192
+#: includes/options.php:220
+#: includes/options.php:327
+#: includes/options.php:355
+#: includes/options.php:383
+#: includes/options.php:436
+#: includes/options.php:464
+#: includes/options.php:492
+msgid "Right"
+msgstr ""
+
+#: includes/options.php:171
+#: includes/options.php:199
+#: includes/options.php:227
+#: includes/options.php:334
+#: includes/options.php:362
+#: includes/options.php:390
+#: includes/options.php:443
+#: includes/options.php:471
+#: includes/options.php:499
+msgid "Bottom"
+msgstr ""
+
+#: includes/options.php:178
+#: includes/options.php:206
+#: includes/options.php:234
+#: includes/options.php:341
+#: includes/options.php:369
+#: includes/options.php:397
+#: includes/options.php:450
+#: includes/options.php:478
+#: includes/options.php:506
+msgid "Left"
+msgstr ""
+
+#: includes/options.php:257
+#: ocean-modal-window.php:548
 #: assets/dist/modal-settings.js:2
 msgid "Background Image"
 msgstr ""
 
-#: ocean-modal-window.php:442
-#: ocean-modal-window.php:1627
-msgid "Styling"
+#: includes/options.php:279
+msgid "Border Style"
 msgstr ""
 
-#: ocean-modal-window.php:464
-#: ocean-modal-window.php:1121
-#: ocean-modal-window.php:1297
-#: ocean-modal-window.php:1637
-#: ocean-modal-window.php:2101
-#: ocean-modal-window.php:2223
-#: assets/dist/modal-settings.js:2
-msgid "Padding"
-msgstr ""
-
-#: ocean-modal-window.php:465
-#: ocean-modal-window.php:491
-#: ocean-modal-window.php:549
-#: ocean-modal-window.php:1122
-#: ocean-modal-window.php:1298
-msgid "Format: top right bottom left."
-msgstr ""
-
-#: ocean-modal-window.php:490
-#: ocean-modal-window.php:1654
-#: assets/dist/modal-settings.js:2
-msgid "Border Width"
-msgstr ""
-
-#: ocean-modal-window.php:517
-#: ocean-modal-window.php:1671
-msgid "Border Type"
-msgstr ""
-
-#: ocean-modal-window.php:523
-#: ocean-modal-window.php:1674
+#: includes/options.php:288
+#: ocean-modal-window.php:610
 #: assets/dist/modal-settings.js:2
 msgid "Solid"
 msgstr ""
 
-#: ocean-modal-window.php:524
-#: ocean-modal-window.php:1675
+#: includes/options.php:289
+#: ocean-modal-window.php:611
 #: assets/dist/modal-settings.js:2
 msgid "Double"
 msgstr ""
 
-#: ocean-modal-window.php:525
-#: ocean-modal-window.php:1676
-#: assets/dist/modal-settings.js:2
-msgid "Dotted"
-msgstr ""
-
-#: ocean-modal-window.php:526
-#: ocean-modal-window.php:1677
+#: includes/options.php:290
+#: ocean-modal-window.php:613
 #: assets/dist/modal-settings.js:2
 msgid "Dashed"
 msgstr ""
 
-#: ocean-modal-window.php:548
-#: ocean-modal-window.php:1694
-#: assets/dist/modal-settings.js:2
-msgid "Border Radius"
-msgstr ""
-
-#: ocean-modal-window.php:564
-#: ocean-modal-window.php:1709
-msgid "Colors"
-msgstr ""
-
+#: includes/options.php:291
 #: ocean-modal-window.php:612
-#: ocean-modal-window.php:1737
 #: assets/dist/modal-settings.js:2
-msgid "Overlay Opacity"
+msgid "Dotted"
 msgstr ""
 
-#: ocean-modal-window.php:825
-#: ocean-modal-window.php:1896
-#: assets/dist/modal-settings.js:3
-msgid "Typography"
+#: includes/options.php:309
+msgid "Border Width (px)"
 msgstr ""
 
-#: ocean-modal-window.php:847
-#: ocean-modal-window.php:1147
-#: ocean-modal-window.php:1323
-#: ocean-modal-window.php:1906
-#: ocean-modal-window.php:2118
-#: ocean-modal-window.php:2240
-msgid "Font Size"
+#: includes/options.php:419
+msgid "Border Radius (px)"
 msgstr ""
 
-#: ocean-modal-window.php:848
-#: ocean-modal-window.php:1148
-#: ocean-modal-window.php:1324
-#: ocean-modal-window.php:1907
-#: ocean-modal-window.php:2119
-#: ocean-modal-window.php:2241
-msgid "Enter your custom font size (px - em - rem)."
+#: includes/options.php:521
+msgid "Typography and Colors"
 msgstr ""
 
-#: ocean-modal-window.php:873
-#: ocean-modal-window.php:1923
+#: includes/options.php:532
+msgid "MW Typography"
+msgstr ""
+
+#: includes/options.php:541
+#: ocean-modal-window.php:859
 msgid "Font Family"
 msgstr ""
 
-#: ocean-modal-window.php:898
-#: ocean-modal-window.php:1941
+#: includes/options.php:548
+#: includes/options.php:555
+#: includes/options.php:562
+#: ocean-modal-window.php:877
 msgid "Font Weight"
 msgstr ""
 
-#: ocean-modal-window.php:899
-#: ocean-modal-window.php:1942
-msgid "Important: Not all fonts support every font weight."
+#: includes/options.php:569
+msgid "Font Subset"
 msgstr ""
 
-#: ocean-modal-window.php:905
-#: ocean-modal-window.php:941
-#: ocean-modal-window.php:972
-#: ocean-modal-window.php:1944
-#: ocean-modal-window.php:1971
-#: ocean-modal-window.php:1993
-#: ocean-modal-window.php:2908
-#: ocean-modal-window.php:2939
-msgid "Default"
+#: includes/options.php:576
+#: includes/options.php:583
+#: includes/options.php:590
+#: ocean-modal-window.php:842
+#: ocean-modal-window.php:1054
+#: ocean-modal-window.php:1176
+msgid "Font Size"
 msgstr ""
 
-#: ocean-modal-window.php:906
-#: ocean-modal-window.php:1945
-msgid "Extra Light: 100"
-msgstr ""
-
-#: ocean-modal-window.php:907
-#: ocean-modal-window.php:1946
-msgid "Light: 200"
-msgstr ""
-
-#: ocean-modal-window.php:908
-#: ocean-modal-window.php:1947
-msgid "Book: 300"
-msgstr ""
-
-#: ocean-modal-window.php:909
-#: ocean-modal-window.php:1948
-msgid "Normal: 400"
-msgstr ""
-
-#: ocean-modal-window.php:910
-#: ocean-modal-window.php:1949
-msgid "Semibold: 600"
-msgstr ""
-
-#: ocean-modal-window.php:911
-#: ocean-modal-window.php:1950
-msgid "Bold: 700"
-msgstr ""
-
-#: ocean-modal-window.php:912
-#: ocean-modal-window.php:1951
-msgid "Extra Bold: 800"
-msgstr ""
-
-#: ocean-modal-window.php:934
-#: ocean-modal-window.php:1968
-msgid "Font Style"
-msgstr ""
-
-#: ocean-modal-window.php:935
-#: ocean-modal-window.php:1969
-msgid "Select your custom font style."
-msgstr ""
-
-#: ocean-modal-window.php:942
-#: ocean-modal-window.php:1972
-msgid "Normal"
-msgstr ""
-
-#: ocean-modal-window.php:943
-#: ocean-modal-window.php:1973
-msgid "Italic"
-msgstr ""
-
-#: ocean-modal-window.php:965
-#: ocean-modal-window.php:1990
-msgid "Text Transform"
-msgstr ""
-
+#: includes/options.php:605
+#: includes/options.php:612
+#: includes/options.php:619
 #: ocean-modal-window.php:966
-#: ocean-modal-window.php:1991
-msgid "Select your custom text transform."
-msgstr ""
-
-#: ocean-modal-window.php:973
-#: ocean-modal-window.php:1994
-msgid "Capitalize"
-msgstr ""
-
-#: ocean-modal-window.php:974
-#: ocean-modal-window.php:1995
-msgid "Lowercase"
-msgstr ""
-
-#: ocean-modal-window.php:975
-#: ocean-modal-window.php:1996
-msgid "Uppercase"
-msgstr ""
-
-#: ocean-modal-window.php:997
-#: ocean-modal-window.php:1173
-#: ocean-modal-window.php:1349
-#: ocean-modal-window.php:2013
-#: ocean-modal-window.php:2135
-#: ocean-modal-window.php:2257
-msgid "Line Height"
-msgstr ""
-
-#: ocean-modal-window.php:998
-#: ocean-modal-window.php:1174
-#: ocean-modal-window.php:1350
-#: ocean-modal-window.php:2014
-#: ocean-modal-window.php:2136
-#: ocean-modal-window.php:2258
-msgid "Enter your custom line height (px - em - rem)."
-msgstr ""
-
-#: ocean-modal-window.php:1023
-#: ocean-modal-window.php:1199
-#: ocean-modal-window.php:1375
-#: ocean-modal-window.php:2030
-#: ocean-modal-window.php:2152
-#: ocean-modal-window.php:2274
+#: ocean-modal-window.php:1088
+#: ocean-modal-window.php:1210
 msgid "Letter Spacing"
 msgstr ""
 
-#: ocean-modal-window.php:1024
-#: ocean-modal-window.php:1200
-#: ocean-modal-window.php:1376
-#: ocean-modal-window.php:2031
-#: ocean-modal-window.php:2153
-#: ocean-modal-window.php:2275
-msgid "Enter your custom letter spacing (px - em - rem)."
+#: includes/options.php:634
+#: includes/options.php:641
+#: includes/options.php:648
+#: ocean-modal-window.php:949
+#: ocean-modal-window.php:1071
+#: ocean-modal-window.php:1193
+msgid "Line Height"
 msgstr ""
 
-#: ocean-modal-window.php:1039
-#: ocean-modal-window.php:2045
-msgid "Tablet Device"
+#: includes/options.php:662
+#: includes/options.php:669
+#: includes/options.php:676
+#: ocean-modal-window.php:926
+msgid "Text Transform"
 msgstr ""
 
-#: ocean-modal-window.php:1215
-#: ocean-modal-window.php:2167
-msgid "Mobile Device"
+#: includes/options.php:683
+msgid "Text Decoration"
 msgstr ""
 
-#: ocean-modal-window.php:1436
+#: includes/options.php:702
+msgid "MW Overlay Background"
+msgstr ""
+
+#: includes/options.php:714
+#: includes/options.php:740
+#: includes/options.php:766
+#: includes/options.php:791
+#: includes/options.php:816
+msgid "Select Color"
+msgstr ""
+
+#: includes/options.php:728
+msgid "MW Background"
+msgstr ""
+
+#: includes/options.php:754
+msgid "MW Border"
+msgstr ""
+
+#: includes/options.php:779
+msgid "MW Text"
+msgstr ""
+
+#: includes/options.php:804
+msgid "MW Title"
+msgstr ""
+
+#: includes/options.php:830
+msgid "MW Close Bttn Background"
+msgstr ""
+
+#: includes/options.php:842
+#: includes/options.php:878
+#: ocean-modal-window.php:908
+msgid "Normal"
+msgstr ""
+
+#: includes/options.php:853
+#: includes/options.php:889
+msgid "Hover"
+msgstr ""
+
+#: includes/options.php:866
+msgid "MW Close Button"
+msgstr ""
+
+#: ocean-modal-window.php:245
+msgid "Modal"
+msgstr ""
+
+#: ocean-modal-window.php:246
+msgid "Modal Item"
+msgstr ""
+
+#: ocean-modal-window.php:247
+msgid "Add New"
+msgstr ""
+
+#: ocean-modal-window.php:248
+#: ocean-modal-window.php:250
+msgid "Add New Item"
+msgstr ""
+
+#: ocean-modal-window.php:249
+msgid "Edit Item"
+msgstr ""
+
+#: ocean-modal-window.php:251
+msgid "View Item"
+msgstr ""
+
+#: ocean-modal-window.php:252
+msgid "Search Items"
+msgstr ""
+
+#: ocean-modal-window.php:253
+msgid "No Items Found"
+msgstr ""
+
+#: ocean-modal-window.php:254
+msgid "No Items Found In Trash"
+msgstr ""
+
+#: ocean-modal-window.php:372
 msgid "Modal Settings"
 msgstr ""
 
-#: ocean-modal-window.php:1458
+#: ocean-modal-window.php:384
+msgid "General"
+msgstr ""
+
+#: ocean-modal-window.php:394
 msgid "Select A Template"
 msgstr ""
 
-#: ocean-modal-window.php:1459
+#: ocean-modal-window.php:395
 msgid "Select your template created in Theme Panel > My Library."
 msgstr ""
 
-#: ocean-modal-window.php:1476
+#: ocean-modal-window.php:412
 #: assets/dist/modal-settings.js:2
 msgid "Display Title"
 msgstr ""
 
-#: ocean-modal-window.php:1477
+#: ocean-modal-window.php:413
 msgid "Enable or disable the title."
 msgstr ""
 
-#: ocean-modal-window.php:1479
-#: ocean-modal-window.php:1530
-#: ocean-modal-window.php:2314
+#: ocean-modal-window.php:415
+#: ocean-modal-window.php:466
+#: ocean-modal-window.php:1250
 #: assets/dist/metabox.js:1
 #: assets/dist/modal-settings.js:2
 msgid "Enable"
 msgstr ""
 
-#: ocean-modal-window.php:1480
-#: ocean-modal-window.php:1531
-#: ocean-modal-window.php:2315
+#: ocean-modal-window.php:416
+#: ocean-modal-window.php:467
+#: ocean-modal-window.php:1251
 #: assets/dist/metabox.js:1
 #: assets/dist/modal-settings.js:2
 msgid "Disable"
 msgstr ""
 
-#: ocean-modal-window.php:1498
+#: ocean-modal-window.php:434
 #: assets/dist/modal-settings.js:2
 msgid "Title Tag"
 msgstr ""
 
-#: ocean-modal-window.php:1499
+#: ocean-modal-window.php:435
 msgid "Select title tag for this modal."
 msgstr ""
 
-#: ocean-modal-window.php:1527
+#: ocean-modal-window.php:463
 #: assets/dist/modal-settings.js:2
 msgid "Display Close Button"
 msgstr ""
 
-#: ocean-modal-window.php:1528
+#: ocean-modal-window.php:464
 msgid "Enable or disable the close button."
 msgstr ""
 
-#: ocean-modal-window.php:1549
+#: ocean-modal-window.php:485
 #: assets/dist/modal-settings.js:2
 msgid "Conditional Logic"
 msgstr ""
 
-#: ocean-modal-window.php:1550
+#: ocean-modal-window.php:486
 msgid "Enable Conditional Logic for this Modal."
 msgstr ""
 
-#: ocean-modal-window.php:1566
-#: ocean-modal-window.php:2055
-#: ocean-modal-window.php:2177
-#: assets/dist/modal-settings.js:2
-msgid "Custom Width"
-msgstr ""
-
-#: ocean-modal-window.php:1567
-#: ocean-modal-window.php:2056
-#: ocean-modal-window.php:2178
+#: ocean-modal-window.php:503
+#: ocean-modal-window.php:992
+#: ocean-modal-window.php:1114
 msgid "Enter your custom width for the modal. Default is 700px."
 msgstr ""
 
-#: ocean-modal-window.php:1589
-#: ocean-modal-window.php:2078
-#: ocean-modal-window.php:2200
-#: assets/dist/modal-settings.js:2
-msgid "Custom Height"
-msgstr ""
-
-#: ocean-modal-window.php:1590
-#: ocean-modal-window.php:2079
-#: ocean-modal-window.php:2201
+#: ocean-modal-window.php:526
+#: ocean-modal-window.php:1015
+#: ocean-modal-window.php:1137
 msgid "Enter your custom height for the modal. 0 equal auto height."
 msgstr ""
 
-#: ocean-modal-window.php:1613
+#: ocean-modal-window.php:549
 msgid "Select a custom image for your modal."
 msgstr ""
 
-#: ocean-modal-window.php:1638
-#: ocean-modal-window.php:2102
-#: ocean-modal-window.php:2224
+#: ocean-modal-window.php:563
+msgid "Styling"
+msgstr ""
+
+#: ocean-modal-window.php:573
+#: ocean-modal-window.php:1037
+#: ocean-modal-window.php:1159
+#: assets/dist/modal-settings.js:2
+msgid "Padding"
+msgstr ""
+
+#: ocean-modal-window.php:574
+#: ocean-modal-window.php:1038
+#: ocean-modal-window.php:1160
 #: assets/dist/modal-settings.js:2
 msgid "Enter your custom padding for the modal. ex: 20px 30px 20px 30px (Top Right Bottom Left). Default is 50px."
 msgstr ""
 
-#: ocean-modal-window.php:1655
+#: ocean-modal-window.php:590
+#: assets/dist/modal-settings.js:2
+msgid "Border Width"
+msgstr ""
+
+#: ocean-modal-window.php:591
 #: assets/dist/modal-settings.js:2
 msgid "Enter your custom border width for the modal. ex: 2px 1px 2px 1px (Top Right Bottom Left). Default is 0."
 msgstr ""
 
-#: ocean-modal-window.php:1672
+#: ocean-modal-window.php:607
+msgid "Border Type"
+msgstr ""
+
+#: ocean-modal-window.php:608
 msgid "Select your border type if a border width is defined."
 msgstr ""
 
-#: ocean-modal-window.php:1695
+#: ocean-modal-window.php:630
+#: assets/dist/modal-settings.js:2
+msgid "Border Radius"
+msgstr ""
+
+#: ocean-modal-window.php:631
 msgid "Enter your custom border radius for the modal.  ex: 2px 1px 2px 1px (Top Right Bottom Left). Default is 0."
 msgstr ""
 
-#: ocean-modal-window.php:1719
+#: ocean-modal-window.php:645
+msgid "Colors"
+msgstr ""
+
+#: ocean-modal-window.php:655
 #: assets/dist/modal-settings.js:2
 msgid "Overlay Background Color"
 msgstr ""
 
-#: ocean-modal-window.php:1720
+#: ocean-modal-window.php:656
 msgid "Select a hex color code for the modal overlay, ex: #333"
 msgstr ""
 
-#: ocean-modal-window.php:1738
+#: ocean-modal-window.php:673
+#: assets/dist/modal-settings.js:2
+msgid "Overlay Opacity"
+msgstr ""
+
+#: ocean-modal-window.php:674
 msgid "Enter your custom opacity for the overlay. Default is 0.9."
 msgstr ""
 
-#: ocean-modal-window.php:1760
+#: ocean-modal-window.php:696
 #: assets/dist/modal-settings.js:2
 msgid "Background Color"
 msgstr ""
 
-#: ocean-modal-window.php:1761
+#: ocean-modal-window.php:697
 msgid "Select a hex color code for the modal background, ex: #333"
 msgstr ""
 
-#: ocean-modal-window.php:1778
+#: ocean-modal-window.php:714
 #: assets/dist/modal-settings.js:2
 msgid "Border Color"
 msgstr ""
 
-#: ocean-modal-window.php:1779
+#: ocean-modal-window.php:715
 msgid "Select a hex color code, ex: #333"
 msgstr ""
 
-#: ocean-modal-window.php:1795
+#: ocean-modal-window.php:731
 #: assets/dist/modal-settings.js:2
 msgid "Text Color"
 msgstr ""
 
-#: ocean-modal-window.php:1796
-#: ocean-modal-window.php:1813
-#: ocean-modal-window.php:1865
-#: ocean-modal-window.php:1882
+#: ocean-modal-window.php:732
+#: ocean-modal-window.php:749
+#: ocean-modal-window.php:801
+#: ocean-modal-window.php:818
 msgid "Select a hex color code, ex: #fff"
 msgstr ""
 
-#: ocean-modal-window.php:1812
+#: ocean-modal-window.php:748
 #: assets/dist/modal-settings.js:2
 msgid "Title Color"
 msgstr ""
 
-#: ocean-modal-window.php:1830
+#: ocean-modal-window.php:766
 #: assets/dist/modal-settings.js:2
 msgid "Close Button Background"
 msgstr ""
 
-#: ocean-modal-window.php:1831
+#: ocean-modal-window.php:767
 msgid "Select a hex color code, ex: #fe5252"
 msgstr ""
 
-#: ocean-modal-window.php:1847
+#: ocean-modal-window.php:783
 msgid "Close Button Hover Background"
 msgstr ""
 
-#: ocean-modal-window.php:1848
+#: ocean-modal-window.php:784
 msgid "Select a hex color code, ex: #222"
 msgstr ""
 
-#: ocean-modal-window.php:1864
+#: ocean-modal-window.php:800
 #: assets/dist/modal-settings.js:2
 msgid "Close Button Color"
 msgstr ""
 
-#: ocean-modal-window.php:1881
+#: ocean-modal-window.php:817
 msgid "Close Button Hover Color"
 msgstr ""
 
-#: ocean-modal-window.php:1924
+#: ocean-modal-window.php:832
+#: assets/dist/modal-settings.js:3
+msgid "Typography"
+msgstr ""
+
+#: ocean-modal-window.php:843
+#: ocean-modal-window.php:1055
+#: ocean-modal-window.php:1177
+msgid "Enter your custom font size (px - em - rem)."
+msgstr ""
+
+#: ocean-modal-window.php:860
 msgid "Select your custom font."
 msgstr ""
 
-#: ocean-modal-window.php:2311
+#: ocean-modal-window.php:878
+msgid "Important: Not all fonts support every font weight."
+msgstr ""
+
+#: ocean-modal-window.php:880
+#: ocean-modal-window.php:907
+#: ocean-modal-window.php:929
+#: ocean-modal-window.php:1844
+#: ocean-modal-window.php:1875
+msgid "Default"
+msgstr ""
+
+#: ocean-modal-window.php:881
+msgid "Extra Light: 100"
+msgstr ""
+
+#: ocean-modal-window.php:882
+msgid "Light: 200"
+msgstr ""
+
+#: ocean-modal-window.php:883
+msgid "Book: 300"
+msgstr ""
+
+#: ocean-modal-window.php:884
+msgid "Normal: 400"
+msgstr ""
+
+#: ocean-modal-window.php:885
+msgid "Semibold: 600"
+msgstr ""
+
+#: ocean-modal-window.php:886
+msgid "Bold: 700"
+msgstr ""
+
+#: ocean-modal-window.php:887
+msgid "Extra Bold: 800"
+msgstr ""
+
+#: ocean-modal-window.php:904
+msgid "Font Style"
+msgstr ""
+
+#: ocean-modal-window.php:905
+msgid "Select your custom font style."
+msgstr ""
+
+#: ocean-modal-window.php:909
+msgid "Italic"
+msgstr ""
+
+#: ocean-modal-window.php:927
+msgid "Select your custom text transform."
+msgstr ""
+
+#: ocean-modal-window.php:930
+msgid "Capitalize"
+msgstr ""
+
+#: ocean-modal-window.php:931
+msgid "Lowercase"
+msgstr ""
+
+#: ocean-modal-window.php:932
+msgid "Uppercase"
+msgstr ""
+
+#: ocean-modal-window.php:950
+#: ocean-modal-window.php:1072
+#: ocean-modal-window.php:1194
+msgid "Enter your custom line height (px - em - rem)."
+msgstr ""
+
+#: ocean-modal-window.php:967
+#: ocean-modal-window.php:1089
+#: ocean-modal-window.php:1211
+msgid "Enter your custom letter spacing (px - em - rem)."
+msgstr ""
+
+#: ocean-modal-window.php:981
+msgid "Tablet Device"
+msgstr ""
+
+#: ocean-modal-window.php:1103
+msgid "Mobile Device"
+msgstr ""
+
+#: ocean-modal-window.php:1247
 msgid "Enable Modal Window For This Page"
 msgstr ""
 
-#: ocean-modal-window.php:2312
+#: ocean-modal-window.php:1248
 msgid "Enable or disable the modal window for this page."
 msgstr ""
 
-#: ocean-modal-window.php:2985
-#: ocean-modal-window.php:2991
-#: ocean-modal-window.php:3000
+#: ocean-modal-window.php:1921
+#: ocean-modal-window.php:1927
+#: ocean-modal-window.php:1936
 msgid "Show on"
 msgstr ""
 
-#: ocean-modal-window.php:2996
-#: ocean-modal-window.php:3019
+#: ocean-modal-window.php:1932
+#: ocean-modal-window.php:1955
 msgid "Add new row"
 msgstr ""
 
-#: ocean-modal-window.php:3007
-#: ocean-modal-window.php:3014
-#: ocean-modal-window.php:3024
+#: ocean-modal-window.php:1943
+#: ocean-modal-window.php:1950
+#: ocean-modal-window.php:1960
 msgid "Hide on"
 msgstr ""
 
-#: ocean-modal-window.php:3057
+#: ocean-modal-window.php:1993
 #: assets/dist/modal-settings.js:2
 msgid "Please Select"
 msgstr ""
 
-#: ocean-modal-window.php:3121
+#: ocean-modal-window.php:2057
 msgid "Product Category"
 msgstr ""
 
-#: ocean-modal-window.php:3123
+#: ocean-modal-window.php:2059
 msgid "Product Tag"
 msgstr ""
 
-#: ocean-modal-window.php:3125
+#: ocean-modal-window.php:2061
 msgid "Single Product"
 msgstr ""
 
-#: ocean-modal-window.php:3177
+#: ocean-modal-window.php:2113
 msgid "All Pages"
 msgstr ""
 
-#: ocean-modal-window.php:3178
+#: ocean-modal-window.php:2114
 msgid "Home Page ( is_home() )"
 msgstr ""
 
-#: ocean-modal-window.php:3179
+#: ocean-modal-window.php:2115
 msgid "Front Page ( is_front_page() )"
 msgstr ""
 
-#: ocean-modal-window.php:3190
+#: ocean-modal-window.php:2126
 msgid "Single Post"
 msgstr ""
 
-#: ocean-modal-window.php:3191
+#: ocean-modal-window.php:2127
 msgid "Category Page"
 msgstr ""
 
-#: ocean-modal-window.php:3192
+#: ocean-modal-window.php:2128
 msgid "Archive Page"
 msgstr ""
 
-#: ocean-modal-window.php:3193
+#: ocean-modal-window.php:2129
 msgid "Logged In User"
 msgstr ""
 
-#: ocean-modal-window.php:3194
+#: ocean-modal-window.php:2130
 msgid "Logged Out User"
 msgstr ""
 
-#: ocean-modal-window.php:3259
+#: ocean-modal-window.php:2195
 msgid "Modal Link"
 msgstr ""
 
-#: ocean-modal-window.php:3275
+#: ocean-modal-window.php:2211
 msgid "This is the ID, class and the full link to open your modal."
 msgstr ""
 
-#: ocean-modal-window.php:3277
+#: ocean-modal-window.php:2213
 msgid "Modal ID:"
 msgstr ""
 
-#: ocean-modal-window.php:3280
+#: ocean-modal-window.php:2216
 msgid "Link Class:"
 msgstr ""
 
-#: ocean-modal-window.php:3283
+#: ocean-modal-window.php:2219
 msgid "Full Link:"
 msgstr ""
 
-#: ocean-modal-window.php:3347
+#: ocean-modal-window.php:2283
 msgctxt "Used for creation of SEO friendly anchor links. Do not use spaces or pound keys."
-msgid "mwc-"
-msgstr ""
-
-#: ocean-modal-window.php:3348
-msgctxt "Used for creation of SEO friendly string. Do not use spaces or pound keys."
-msgid "Close this modal window ID "
+msgid "modal-window-close"
 msgstr ""
 
 #: assets/dist/metabox.js:1
