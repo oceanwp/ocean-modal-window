@@ -262,6 +262,7 @@ function omw_customizer_options() {
 				'hideLabel' => false,
 				'mediaType' => 'image',
 				'savetype'  => 'url',
+				'sanitize_callback' => 'ocean_sanitize_image_control'
 			],
 
 			'omw_divider_after_background_image' => [

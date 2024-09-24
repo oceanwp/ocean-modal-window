@@ -114,6 +114,7 @@ final class Ocean_Modal_Window {
 	public function __construct( $widget_areas = array() ) {
 		$this->token       = 'ocean-modal-window';
 		$this->plugin_url  = plugin_dir_url( __FILE__ );
+		$this->plugin_path = plugin_dir_path( __FILE__ );
 		$this->plugin_data = get_file_data( __FILE__, array( 'Version' => 'Version' ), false );
 		$this->version     = $this->plugin_data['Version'];
 
