@@ -3,11 +3,11 @@
  * Plugin Name:         Ocean Modal Window
  * Plugin URI:          https://oceanwp.org/extension/ocean-modal-window/
  * Description:         Create the good kind of popups with ease. Display any content in a modal, anywhere on your website.
- * Version:             2.2.2
+ * Version:             2.2.3
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.6
- * Tested up to:        6.5.3
+ * Tested up to:        6.6.2
  *
  * Text Domain: ocean-modal-window
  * Domain Path: /languages
@@ -227,6 +227,29 @@ final class Ocean_Modal_Window {
 			if ( current_user_can( $capabilities ) ) {
 				add_action( 'butterbean_register', array( $this, 'new_tab' ), 10, 2 );
 				add_action( 'enqueue_block_editor_assets', array( $this, 'metabox_assets' ) );
+			}
+
+			$theme_version = $theme->version;
+
+			$current_theme_version = $theme_version;
+
+			if ( get_template_directory() == get_stylesheet_directory() ) {
+				$current_theme_version  = $theme_version;
+			} else {
+				$parent = wp_get_theme()->parent();
+				if ( ! empty( $parent) ) {
+					$current_theme_version = $parent->Version;
+				}
+			}
+
+			if ( version_compare( $current_theme_version, '3.6.1', '<=' ) ) {
+
+				$is_ocean_extra_active = class_exists( 'Ocean_Extra' );
+				$is_ocean_extra_version_valid = defined( 'OE_VERSION' ) && version_compare( OE_VERSION, '2.3.1', '<=' );
+
+				if ( ! $is_ocean_extra_active || $is_ocean_extra_version_valid ) {
+					include_once $this->plugin_path . '/includes/update-message.php';
+				}
 			}
 		}
 	}
