@@ -126,6 +126,10 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 
 == Changelog ==
 
+= 2.2.3 - OCT 11 2024 =
+- Added: Conditional checks for future updates.
+- Updated: Compatibility: WordPress version number.
+
 = 2.2.2 - MAY 20 2024 =
 - Updated: Compatibility: WordPress version number.
 

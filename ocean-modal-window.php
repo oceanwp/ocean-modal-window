@@ -228,6 +228,29 @@ final class Ocean_Modal_Window {
 				add_action( 'butterbean_register', array( $this, 'new_tab' ), 10, 2 );
 				add_action( 'enqueue_block_editor_assets', array( $this, 'metabox_assets' ) );
 			}
+
+			$theme_version = $theme->version;
+
+			$current_theme_version = $theme_version;
+
+			if ( get_template_directory() == get_stylesheet_directory() ) {
+				$current_theme_version  = $theme_version;
+			} else {
+				$parent = wp_get_theme()->parent();
+				if ( ! empty( $parent) ) {
+					$current_theme_version = $parent->Version;
+				}
+			}
+
+			if ( version_compare( $current_theme_version, '3.6.1', '<=' ) ) {
+
+				$is_ocean_extra_active = class_exists( 'Ocean_Extra' );
+				$is_ocean_extra_version_valid = defined( 'OE_VERSION' ) && version_compare( OE_VERSION, '2.3.1', '<=' );
+
+				if ( ! $is_ocean_extra_active || $is_ocean_extra_version_valid ) {
+					include_once $this->plugin_path . '/includes/update-message.php';
+				}
+			}
 		}
 	}
 
