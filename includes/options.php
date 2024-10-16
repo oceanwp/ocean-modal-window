@@ -900,7 +900,7 @@ function omw_customizer_options() {
 
 			'omw_modal_need_help_link' => [
 				'type'      => 'ocean-content',
-				'isContent' => sprintf( esc_html__( '%1$s Need Help? %2$s', 'oceanwp' ), '<a href="https://docs.oceanwp.org/article/913-customizer-modal-window/" target="_blank">', '</a>' ),
+				'isContent' => sprintf( esc_html__( '%1$s Need Help? %2$s', 'ocean-modal-window' ), '<a href="https://docs.oceanwp.org/article/913-customizer-modal-window/" target="_blank">', '</a>' ),
 				'class'     => 'need-help',
 				'section'   => 'ocean_modal_window_settings',
 				'transport' => 'postMessage',
