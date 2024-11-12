@@ -128,6 +128,7 @@ module.exports = function (grunt) {
                     "!node_modules/**",
                     "!build/**",
                     "!src/**",
+                    "!omw-src/**",
                     "!.git/**",
                     "!changelog.txt",
                     "!vendor/**",

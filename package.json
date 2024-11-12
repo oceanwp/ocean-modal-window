@@ -4,8 +4,8 @@
   "description": "Ocean Modal Window",
   "main": "Gruntfile.js",
   "scripts": {
-    "build": "wp-scripts build src/metabox src/modal-settings --output-path=assets/dist",
-    "start": "wp-scripts start src/metabox src/modal-settings --output-path=assets/dist",
+    "build": "wp-scripts build omw-src/metabox omw-src/modal-settings --output-path=assets/dist",
+    "start": "wp-scripts start omw-src/metabox omw-src/modal-settings --output-path=assets/dist",
     "lint:js": "wp-scripts lint-js",
     "lint:pkg-json": "wp-scripts lint-pkg-json",
     "lint:php": "composer lint:php",

@@ -268,6 +268,7 @@ build/
 
 # src folder
 src/
+omw-src/
 
 # vendor folder
 vendor/
