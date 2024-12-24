@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 2.3.1 - DEC 24 2024 =
+- Added: Compatibility: WordPress: Bottom margin styles for wp.components.SelectControl is deprecated since 6.7 and will be removed in version 7.0.
+- Added: Compatibility: WordPress: Bottom margin styles for wp.components.BaseControl is deprecated since 6.7 and will be removed in version 7.0.
+- Added: Compatibility: WordPress: Bottom margin styles for wp.components.TextControl is deprecated since 6.7 and will be removed in version 7.0.
+- Added: Compatibility: WordPress: Bottom margin styles for wp.components.RangeControl is deprecated since 6.7 and will be removed in version 7.0.
+
 = 2.3.0 - OCT 16 2024 =
 - NEW: Customizer: Library upgraded to default WordPress ReactJS.
 - NEW: Customizer: Customizer Controls.
