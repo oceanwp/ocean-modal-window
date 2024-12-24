@@ -2,8 +2,8 @@
 Contributors: oceanwp, apprimit, wpfleek
 Tags: modal, modal popup, oceanwp
 Requires at least: 5.6
-Tested up to: 6.6
-Stable tag: 2.3.0
+Tested up to: 6.7
+Stable tag: 2.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -125,6 +125,12 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 15. Overview of the Ocean Modal Window options and settings in the WordPress dashboard.
 
 == Changelog ==
+
+= 2.3.1 - DEC 24 2024 =
+- Added: Compatibility: WordPress: Bottom margin styles for wp.components.SelectControl is deprecated since 6.7 and will be removed in version 7.0.
+- Added: Compatibility: WordPress: Bottom margin styles for wp.components.BaseControl is deprecated since 6.7 and will be removed in version 7.0.
+- Added: Compatibility: WordPress: Bottom margin styles for wp.components.TextControl is deprecated since 6.7 and will be removed in version 7.0.
+- Added: Compatibility: WordPress: Bottom margin styles for wp.components.RangeControl is deprecated since 6.7 and will be removed in version 7.0.
 
 = 2.3.0 - OCT 16 2024 =
 - NEW: Customizer: Library upgraded to default WordPress ReactJS.
