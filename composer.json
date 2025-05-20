@@ -28,7 +28,15 @@
 		],
         "lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
         "lint:summary": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor --exclude node_modules .",
-        "make-pot": "wp i18n make-pot . languages/ocean-modal-window.pot --exclude=build"
+        "make-pot": "wp i18n make-pot . languages/ocean-modal-window.pot --exclude=build",
+         "update-mo": [
+            "msgmerge --backup=off --update languages/ocean-modal-window-es_ES.po languages/ocean-modal-window.pot",
+            "msgmerge --backup=off --update languages/ocean-modal-window-pl_PL.po languages/ocean-modal-window.pot",
+            "msgmerge --backup=off --update languages/ocean-modal-window-fr_FR.po languages/ocean-modal-window.pot",
+            "msgfmt languages/ocean-modal-window-es_ES.po -o languages/ocean-modal-window-es_ES.mo",
+            "msgfmt languages/ocean-modal-window-pl_PL.po -o languages/ocean-modal-window-pl_PL.mo",
+            "msgfmt languages/ocean-modal-window-fr_FR.po -o languages/ocean-modal-window-fr_FR.mo"
+        ]
     },
 
     "config": {
