@@ -209,6 +209,9 @@ final class Ocean_Modal_Window {
 		$theme = wp_get_theme();
 
 		if ( 'OceanWP' == $theme->name || 'oceanwp' == $theme->template ) {
+
+			require_once $this->plugin_path . '/includes/helper.php';
+
 			add_action( 'customize_preview_init', array( $this, 'customize_preview_js' ) );
 			add_filter( 'ocean_customize_options_data', array( $this, 'register_customize_options') );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 999 );
