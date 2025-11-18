@@ -3,7 +3,7 @@
  * Plugin Name:         Ocean Modal Window
  * Plugin URI:          https://oceanwp.org/extension/ocean-modal-window/
  * Description:         Create the good kind of popups with ease. Display any content in a modal, anywhere on your website.
- * Version:             2.3.2
+ * Version:             2.3.3
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.6
@@ -2382,7 +2382,12 @@ final class Ocean_Modal_Window {
 
 				if ( ! empty( $display_conds ) && is_array( $display_conds ) ) {
 					$display_pages_cond  = implode( ' || ', $display_conds );
-					$is_template_matched = eval( "return $display_pages_cond;" );
+					// $is_template_matched = eval( "return $display_pages_cond;" );
+					$is_template_matched = false;
+					if ( function_exists( 'oe_match_conditions' ) ) {
+						$is_template_matched = oe_match_conditions( $display_pages_cond );
+					}
+
 					if ( ! $is_template_matched ) {
 						$status = false;
 					}
@@ -2390,7 +2395,11 @@ final class Ocean_Modal_Window {
 
 				if ( ! empty( $hide_conds ) && is_array( $hide_conds ) ) {
 					$hidden_pages_cond   = implode( ' || ', $hide_conds );
-					$is_template_matched = eval( "return $hidden_pages_cond;" );
+					// $is_template_matched = eval( "return $hidden_pages_cond;" );
+					$is_template_matched = false;
+					if ( function_exists( 'oe_match_conditions' ) ) {
+						$is_template_matched = oe_match_conditions( $hidden_pages_cond );
+					}
 
 					if ( $is_template_matched ) {
 						$status = false;
