@@ -10,41 +10,129 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Helpers
+ *
+ * @since 1.0.0
+ */
+function omw_get_condition_choices() {
+
+	$data = array();
+
+	// Pages.
+	$added_page_list = array();
+    $get_page_list = [];
+
+    if ( function_exists( 'oe_get_page_template_list' ) ) {
+        $get_page_list = oe_get_page_template_list();
+    }
+
+	if ( ! empty( $get_page_list ) ) {
+		$temp_page_list = array();
+
+		if ( isset( $get_page_list['pages'] ) && ! empty( $get_page_list['pages'] ) ) {
+			foreach ( $get_page_list['pages'] as $pg_funcs => $pg_template ) {
+
+				$temp_page_list[] = array(
+					'label' => $pg_template,
+					'value' => $pg_funcs
+				);
+			}
+
+			$added_page_list[] = array(
+				'label' => esc_html__( 'Pages', 'ocean-extra' ),
+				'options' => $temp_page_list
+			);
+		}
+
+		$temp_page_list = array();
+
+		if ( isset( $get_page_list['categories'] ) && ! empty( $get_page_list['categories'] ) ) {
+			foreach ( $get_page_list['categories'] as $pg_funcs => $pg_template ) {
+
+				$temp_page_list[] = array(
+					'label' => $pg_template,
+					'value' => $pg_funcs
+				);
+			}
+
+			$added_page_list[] = array(
+				'label' => esc_html__( 'Categories', 'ocean-extra' ),
+				'options' => $temp_page_list
+			);
+		}
+
+		$temp_page_list = array();
+
+		if ( isset( $get_page_list['shop'] ) && ! empty( $get_page_list['shop'] ) ) {
+			foreach ( $get_page_list['shop'] as $pg_funcs => $pg_template ) {
+
+				$temp_page_list[] = array(
+					'label' => $pg_template,
+					'value' => $pg_funcs
+				);
+			}
+
+			$added_page_list[] = array(
+				'label' => esc_html__( 'Shop', 'ocean-extra' ),
+				'options' => $temp_page_list
+			);
+		}
+
+		$temp_page_list = array();
+
+		if ( isset( $get_page_list['shop_categories'] ) && ! empty( $get_page_list['shop_categories'] ) ) {
+			foreach ( $get_page_list['shop_categories'] as $pg_funcs => $pg_template ) {
+
+				$temp_page_list[] = array(
+					'label' => $pg_template,
+					'value' => $pg_funcs
+				);
+			}
+
+			$added_page_list[] = array(
+				'label'   => esc_html__( 'Product Categories', 'ocean-extra' ),
+				'options' => $temp_page_list
+			);
+		}
+
+		$temp_page_list = array();
+
+		if ( isset( $get_page_list['others'] ) && ! empty( $get_page_list['others'] ) ) {
+			foreach ( $get_page_list['others'] as $pg_funcs => $pg_template ) {
+
+				$temp_page_list[] = array(
+					'label' => $pg_template,
+					'value' => $pg_funcs
+				);
+			}
+
+			$added_page_list[] = array(
+				'label'   => esc_html__( 'others', 'ocean-extra' ),
+				'options' => $temp_page_list
+			);
+		}
+
+		$temp_page_list = array();
+	}
+
+	$page_list = $added_page_list;
+
+	$data['page_list'] = $page_list;
+
+	// Return data.
+	return apply_filters( 'omw_post_settings_data_choices', $data );
+
+}
+
 if ( ! function_exists( 'oe_get_allowed_condition_values' ) ) {
     /**
      * Get allowed condition values
      */
     function oe_get_allowed_condition_values() {
 
-        $choices = oe_get_choices();
+        $choices = omw_get_condition_choices();
         $allowed = [];
-
-        // Menu
-        if ( ! empty( $choices['menu'] ) ) {
-            foreach ( $choices['menu'] as $m ) {
-                if ( isset( $m['value'] ) ) {
-                    $allowed[] = (string) $m['value'];
-                }
-            }
-        }
-
-        // Templates
-        if ( ! empty( $choices['templates'] ) ) {
-            foreach ( $choices['templates'] as $t ) {
-                if ( isset( $t['value'] ) ) {
-                    $allowed[] = (string) $t['value'];
-                }
-            }
-        }
-
-        // Widget areas
-        if ( ! empty( $choices['widget_area'] ) ) {
-            foreach ( $choices['widget_area'] as $w ) {
-                if ( isset( $w['value'] ) ) {
-                    $allowed[] = (string) $w['value'];
-                }
-            }
-        }
 
         // Page list (nested)
         if ( ! empty( $choices['page_list'] ) ) {
@@ -59,20 +147,11 @@ if ( ! function_exists( 'oe_get_allowed_condition_values' ) ) {
             }
         }
 
-        // User roles
-        if ( ! empty( $choices['user_roles'] ) ) {
-            foreach ( $choices['user_roles'] as $r ) {
-                if ( isset( $r['value'] ) ) {
-                    $allowed[] = (string) $r['value'];
-                }
-            }
-        }
-
         return array_unique( $allowed );
     }
 }
 
-if ( ! function_exists( 'oe_match_conditions' ) ) {
+if ( ! function_exists( 'omw_match_conditions' ) ) {
     /**
      * Safe evaluator for display/hide conditions.
      *
@@ -88,7 +167,7 @@ if ( ! function_exists( 'oe_match_conditions' ) ) {
      *
      * @since 2.3.3
      */
-    function oe_match_conditions( $values ) {
+    function omw_match_conditions( $values ) {
 
         if ( empty( $values ) ) {
 			return false;

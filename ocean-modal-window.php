@@ -1877,6 +1877,14 @@ final class Ocean_Modal_Window {
 		if ( function_exists( 'wp_set_script_translations' ) ) {
 			wp_set_script_translations( 'omw-metabox-settings', 'ocean-modal-window' );
 		}
+
+		wp_localize_script(
+			'omw-metabox-settings',
+			'omw_metabox_params',
+			array(
+				'ConditionsChoices' => omw_get_condition_choices()
+			)
+		);
 	}
 
 	/**
@@ -2416,8 +2424,8 @@ final class Ocean_Modal_Window {
 					$display_pages_cond  = implode( ' || ', $display_conds );
 					// $is_template_matched = eval( "return $display_pages_cond;" );
 					$is_template_matched = false;
-					if ( function_exists( 'oe_match_conditions' ) ) {
-						$is_template_matched = oe_match_conditions( $display_pages_cond );
+					if ( function_exists( 'omw_match_conditions' ) ) {
+						$is_template_matched = omw_match_conditions( $display_pages_cond );
 					}
 
 					if ( ! $is_template_matched ) {
@@ -2429,8 +2437,8 @@ final class Ocean_Modal_Window {
 					$hidden_pages_cond   = implode( ' || ', $hide_conds );
 					// $is_template_matched = eval( "return $hidden_pages_cond;" );
 					$is_template_matched = false;
-					if ( function_exists( 'oe_match_conditions' ) ) {
-						$is_template_matched = oe_match_conditions( $hidden_pages_cond );
+					if ( function_exists( 'omw_match_conditions' ) ) {
+						$is_template_matched = omw_match_conditions( $hidden_pages_cond );
 					}
 
 					if ( $is_template_matched ) {
