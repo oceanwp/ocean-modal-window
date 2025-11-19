@@ -1304,7 +1304,8 @@ final class Ocean_Modal_Window {
 	* Sanitize function for array
 	*/
 	public function omw_sanitize_array($meta_value) {
-		if (!is_array($meta_value)) {
+
+		if ( ! is_array( $meta_value ) ) {
 			return array();
 		}
 
@@ -1315,6 +1316,34 @@ final class Ocean_Modal_Window {
 		return $meta_value;
 	}
 
+	public function omw_sanitize_conditions( $meta_value ) {
+
+		if ( ! is_array( $meta_value ) ) {
+			return array();
+		}
+
+		// Get allowed values from your choices system
+		$allowed = [];
+        if ( function_exists( 'oe_get_allowed_condition_values' ) ) {
+            $allowed = oe_get_allowed_condition_values();
+        }
+		$allowed = array_map( 'sanitize_text_field', (array) $allowed );
+
+		$clean = array();
+
+		foreach ( $meta_value as $key => $value ) {
+
+			// Always sanitize raw text first
+			$value = sanitize_text_field( $value );
+
+			// Allow ONLY values from the allowed list
+			if ( in_array( $value, $allowed, true ) ) {
+				$clean[$key] = $value;
+			}
+		}
+
+		return $clean;
+	}
 
 	/**
 	 * Post setting arguments
@@ -1774,7 +1803,7 @@ final class Ocean_Modal_Window {
 			),
 			'subType' => 'ocean_modal_window',
 			'value'  => '',
-			'sanitize' => array( $this, 'omw_sanitize_array' ),
+			'sanitize' => array( $this, 'omw_sanitize_conditions' ),
 		);
 
 		$defaults['mw_hide_on'] = array(
@@ -1790,7 +1819,7 @@ final class Ocean_Modal_Window {
 			),
 			'subType' => 'ocean_modal_window',
 			'value'  => '',
-			'sanitize' => array( $this, 'omw_sanitize_array' ),
+			'sanitize' => array( $this, 'omw_sanitize_conditions' ),
 		);
 
 		return apply_filters( 'omw_post_meta_args', $defaults );
