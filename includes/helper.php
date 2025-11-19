@@ -10,6 +10,67 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! function_exists( 'oe_get_allowed_condition_values' ) ) {
+    /**
+     * Get allowed condition values
+     */
+    function oe_get_allowed_condition_values() {
+
+        $choices = oe_get_choices();
+        $allowed = [];
+
+        // Menu
+        if ( ! empty( $choices['menu'] ) ) {
+            foreach ( $choices['menu'] as $m ) {
+                if ( isset( $m['value'] ) ) {
+                    $allowed[] = (string) $m['value'];
+                }
+            }
+        }
+
+        // Templates
+        if ( ! empty( $choices['templates'] ) ) {
+            foreach ( $choices['templates'] as $t ) {
+                if ( isset( $t['value'] ) ) {
+                    $allowed[] = (string) $t['value'];
+                }
+            }
+        }
+
+        // Widget areas
+        if ( ! empty( $choices['widget_area'] ) ) {
+            foreach ( $choices['widget_area'] as $w ) {
+                if ( isset( $w['value'] ) ) {
+                    $allowed[] = (string) $w['value'];
+                }
+            }
+        }
+
+        // Page list (nested)
+        if ( ! empty( $choices['page_list'] ) ) {
+            foreach ( $choices['page_list'] as $group ) {
+                if ( ! empty( $group['options'] ) ) {
+                    foreach ( $group['options'] as $opt ) {
+                        if ( isset( $opt['value'] ) ) {
+                            $allowed[] = (string) $opt['value'];
+                        }
+                    }
+                }
+            }
+        }
+
+        // User roles
+        if ( ! empty( $choices['user_roles'] ) ) {
+            foreach ( $choices['user_roles'] as $r ) {
+                if ( isset( $r['value'] ) ) {
+                    $allowed[] = (string) $r['value'];
+                }
+            }
+        }
+
+        return array_unique( $allowed );
+    }
+}
 
 if ( ! function_exists( 'oe_match_conditions' ) ) {
     /**
