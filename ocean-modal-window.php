@@ -2395,8 +2395,6 @@ final class Ocean_Modal_Window {
 			)
 		);
 
-		$status = true;
-
 		// SEO link txt.
 		$anchorlink_text = esc_html( oceanwp_theme_strings( 'omw-close-button-anchor', false ) );
 
@@ -2404,6 +2402,8 @@ final class Ocean_Modal_Window {
 
 			while ( $query->have_posts() ) :
 				$query->the_post();
+
+				$status = true;
 
 				// Get the template
 				$templates = get_post_meta( get_the_ID(), 'oceanwp_mw_template', true );
@@ -2417,10 +2417,11 @@ final class Ocean_Modal_Window {
 				$close_btn = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn', true );
 				$close_btn = $close_btn ? $close_btn : 'on';
 
-				$display_conds = get_post_meta( get_the_ID(), 'mw_display_on', true );
-				$hide_conds    = get_post_meta( get_the_ID(), 'mw_hide_on', true );
+				$is_conds_logic = get_post_meta( get_the_ID(), 'oceanwp_mw_cond_logic', true );
+				$display_conds  = get_post_meta( get_the_ID(), 'mw_display_on', true );
+				$hide_conds     = get_post_meta( get_the_ID(), 'mw_hide_on', true );
 
-				if ( ! empty( $display_conds ) && is_array( $display_conds ) ) {
+				if ( ! empty( $is_conds_logic ) && ! empty( $display_conds ) && is_array( $display_conds ) ) {
 					$display_pages_cond  = implode( ' || ', $display_conds );
 					// $is_template_matched = eval( "return $display_pages_cond;" );
 					$is_template_matched = false;
@@ -2433,7 +2434,7 @@ final class Ocean_Modal_Window {
 					}
 				}
 
-				if ( ! empty( $hide_conds ) && is_array( $hide_conds ) ) {
+				if ( ! empty( $is_conds_logic ) && ! empty( $hide_conds ) && is_array( $hide_conds ) ) {
 					$hidden_pages_cond   = implode( ' || ', $hide_conds );
 					// $is_template_matched = eval( "return $hidden_pages_cond;" );
 					$is_template_matched = false;
