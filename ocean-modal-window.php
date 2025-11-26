@@ -3,11 +3,11 @@
  * Plugin Name:         Ocean Modal Window
  * Plugin URI:          https://oceanwp.org/extension/ocean-modal-window/
  * Description:         Create the good kind of popups with ease. Display any content in a modal, anywhere on your website.
- * Version:             2.3.2
+ * Version:             2.3.3
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.6
- * Tested up to:        6.8
+ * Tested up to:        6.9
  *
  * Text Domain: ocean-modal-window
  * Domain Path: /languages
@@ -209,6 +209,9 @@ final class Ocean_Modal_Window {
 		$theme = wp_get_theme();
 
 		if ( 'OceanWP' == $theme->name || 'oceanwp' == $theme->template ) {
+
+			require_once $this->plugin_path . '/includes/helper.php';
+
 			add_action( 'customize_preview_init', array( $this, 'customize_preview_js' ) );
 			add_filter( 'ocean_customize_options_data', array( $this, 'register_customize_options') );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 999 );
@@ -1301,7 +1304,8 @@ final class Ocean_Modal_Window {
 	* Sanitize function for array
 	*/
 	public function omw_sanitize_array($meta_value) {
-		if (!is_array($meta_value)) {
+
+		if ( ! is_array( $meta_value ) ) {
 			return array();
 		}
 
@@ -1312,6 +1316,34 @@ final class Ocean_Modal_Window {
 		return $meta_value;
 	}
 
+	public function omw_sanitize_conditions( $meta_value ) {
+
+		if ( ! is_array( $meta_value ) ) {
+			return array();
+		}
+
+		// Get allowed values from your choices system
+		$allowed = [];
+        if ( function_exists( 'oe_get_allowed_condition_values' ) ) {
+            $allowed = oe_get_allowed_condition_values();
+        }
+		$allowed = array_map( 'sanitize_text_field', (array) $allowed );
+
+		$clean = array();
+
+		foreach ( $meta_value as $key => $value ) {
+
+			// Always sanitize raw text first
+			$value = sanitize_text_field( $value );
+
+			// Allow ONLY values from the allowed list
+			if ( in_array( $value, $allowed, true ) ) {
+				$clean[$key] = $value;
+			}
+		}
+
+		return $clean;
+	}
 
 	/**
 	 * Post setting arguments
@@ -1771,7 +1803,7 @@ final class Ocean_Modal_Window {
 			),
 			'subType' => 'ocean_modal_window',
 			'value'  => '',
-			'sanitize' => array( $this, 'omw_sanitize_array' ),
+			'sanitize' => array( $this, 'omw_sanitize_conditions' ),
 		);
 
 		$defaults['mw_hide_on'] = array(
@@ -1787,7 +1819,7 @@ final class Ocean_Modal_Window {
 			),
 			'subType' => 'ocean_modal_window',
 			'value'  => '',
-			'sanitize' => array( $this, 'omw_sanitize_array' ),
+			'sanitize' => array( $this, 'omw_sanitize_conditions' ),
 		);
 
 		return apply_filters( 'omw_post_meta_args', $defaults );
@@ -1845,6 +1877,14 @@ final class Ocean_Modal_Window {
 		if ( function_exists( 'wp_set_script_translations' ) ) {
 			wp_set_script_translations( 'omw-metabox-settings', 'ocean-modal-window' );
 		}
+
+		wp_localize_script(
+			'omw-metabox-settings',
+			'omw_metabox_params',
+			array(
+				'ConditionsChoices' => omw_get_condition_choices()
+			)
+		);
 	}
 
 	/**
@@ -2355,8 +2395,6 @@ final class Ocean_Modal_Window {
 			)
 		);
 
-		$status = true;
-
 		// SEO link txt.
 		$anchorlink_text = esc_html( oceanwp_theme_strings( 'omw-close-button-anchor', false ) );
 
@@ -2364,6 +2402,8 @@ final class Ocean_Modal_Window {
 
 			while ( $query->have_posts() ) :
 				$query->the_post();
+
+				$status = true;
 
 				// Get the template
 				$templates = get_post_meta( get_the_ID(), 'oceanwp_mw_template', true );
@@ -2377,20 +2417,28 @@ final class Ocean_Modal_Window {
 				$close_btn = get_post_meta( get_the_ID(), 'oceanwp_mw_close_btn', true );
 				$close_btn = $close_btn ? $close_btn : 'on';
 
-				$display_conds = get_post_meta( get_the_ID(), 'mw_display_on', true );
-				$hide_conds    = get_post_meta( get_the_ID(), 'mw_hide_on', true );
+				$is_conds_logic = get_post_meta( get_the_ID(), 'oceanwp_mw_cond_logic', true );
+				$display_conds  = get_post_meta( get_the_ID(), 'mw_display_on', true );
+				$hide_conds     = get_post_meta( get_the_ID(), 'mw_hide_on', true );
 
-				if ( ! empty( $display_conds ) && is_array( $display_conds ) ) {
+				if ( ! empty( $is_conds_logic ) && ! empty( $display_conds ) && is_array( $display_conds ) ) {
 					$display_pages_cond  = implode( ' || ', $display_conds );
-					$is_template_matched = eval( "return $display_pages_cond;" );
+					$is_template_matched = false;
+					if ( function_exists( 'omw_match_conditions' ) ) {
+						$is_template_matched = omw_match_conditions( $display_pages_cond );
+					}
+
 					if ( ! $is_template_matched ) {
 						$status = false;
 					}
 				}
 
-				if ( ! empty( $hide_conds ) && is_array( $hide_conds ) ) {
+				if ( ! empty( $is_conds_logic ) && ! empty( $hide_conds ) && is_array( $hide_conds ) ) {
 					$hidden_pages_cond   = implode( ' || ', $hide_conds );
-					$is_template_matched = eval( "return $hidden_pages_cond;" );
+					$is_template_matched = false;
+					if ( function_exists( 'omw_match_conditions' ) ) {
+						$is_template_matched = omw_match_conditions( $hidden_pages_cond );
+					}
 
 					if ( $is_template_matched ) {
 						$status = false;

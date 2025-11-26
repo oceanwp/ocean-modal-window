@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 2.3.3 - NOV 26 2025 =
+- Added: Compatibility: WordPress: Upcoming 6.9 version.
+- Fixed: Potential vulnerability patched: Report by WPScan from Nov 17th.
+
 = 2.3.2 - MAY 19 2025 =
 - Updated: Compatibility: WordPress version number.
 

@@ -2,7 +2,7 @@
 /**
  * OceanWP Customizer Class: Modal Window
  *
- * @package OceanWP WordPress theme
+ * @package Ocean_Modal_Window
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

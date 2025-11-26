@@ -2,7 +2,7 @@
 /**
  * OceanWP plugin update message
  *
- * @package OceanWP WordPress theme
+ * @package Ocean_Modal_Window
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
