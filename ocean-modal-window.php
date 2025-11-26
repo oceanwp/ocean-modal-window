@@ -7,7 +7,7 @@
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.6
- * Tested up to:        6.8
+ * Tested up to:        6.9
  *
  * Text Domain: ocean-modal-window
  * Domain Path: /languages
@@ -2423,7 +2423,6 @@ final class Ocean_Modal_Window {
 
 				if ( ! empty( $is_conds_logic ) && ! empty( $display_conds ) && is_array( $display_conds ) ) {
 					$display_pages_cond  = implode( ' || ', $display_conds );
-					// $is_template_matched = eval( "return $display_pages_cond;" );
 					$is_template_matched = false;
 					if ( function_exists( 'omw_match_conditions' ) ) {
 						$is_template_matched = omw_match_conditions( $display_pages_cond );
@@ -2436,7 +2435,6 @@ final class Ocean_Modal_Window {
 
 				if ( ! empty( $is_conds_logic ) && ! empty( $hide_conds ) && is_array( $hide_conds ) ) {
 					$hidden_pages_cond   = implode( ' || ', $hide_conds );
-					// $is_template_matched = eval( "return $hidden_pages_cond;" );
 					$is_template_matched = false;
 					if ( function_exists( 'omw_match_conditions' ) ) {
 						$is_template_matched = omw_match_conditions( $hidden_pages_cond );

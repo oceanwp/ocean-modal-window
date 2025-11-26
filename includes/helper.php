@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Helpers
  *
- * @since 1.0.0
+ * @since 2.3.3
  */
 function omw_get_condition_choices() {
 
@@ -128,6 +128,8 @@ function omw_get_condition_choices() {
 if ( ! function_exists( 'oe_get_allowed_condition_values' ) ) {
     /**
      * Get allowed condition values
+	 *
+	 * @since 2.3.3
      */
     function oe_get_allowed_condition_values() {
 
