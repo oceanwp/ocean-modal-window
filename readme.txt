@@ -126,6 +126,9 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 
 == Changelog ==
 
+= 2.3.5 - AUG 18 2026 =
+- Added: Compatibility: WordPress 7.1.
+
 = 2.3.4 - MAY 20 2026 =
 - Updated: Compatibility: WordPress version number.
 
