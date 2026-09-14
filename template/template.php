@@ -58,10 +58,14 @@ else {
 
 	// If Gutenberg.
 	if ( ocean_is_block_template( $get_id ) ) {
+		// Process shortcodes intentionally stored in the template before rendering blocks.
+		$get_content = do_shortcode( $get_content );
 		$get_content = apply_filters( 'ocean_modal_window_template_content', do_blocks( $get_content ) );
+	} else {
+		$get_content = do_shortcode( $get_content );
 	}
 
-	// Display template content.
-	echo do_shortcode( $get_content );
+	// Display template content without re-processing rendered block output.
+	echo $get_content;
 
 }
