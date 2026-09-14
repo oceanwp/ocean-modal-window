@@ -3,7 +3,7 @@ Contributors: oceanwp, apprimit, wpfleek
 Tags: modal, modal popup, oceanwp
 Requires at least: 5.6
 Tested up to: 7.1
-Stable tag: 2.3.5
+Stable tag: 2.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -125,6 +125,9 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 15. Overview of the Ocean Modal Window options and settings in the WordPress dashboard.
 
 == Changelog ==
+
+= 2.3.6 - SEP 14 2026 =
+- Improved: Customizer: Custom Templates: Gutenberg template processing and rendering.
 
 = 2.3.5 - AUG 18 2026 =
 - Added: Compatibility: WordPress 7.1.

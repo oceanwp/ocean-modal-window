@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 2.3.6 - SEP 14 2026 =
+- Improved: Customizer: Custom Templates: Gutenberg template processing and rendering.
+
 = 2.3.5 - AUG 18 2026 =
 - Added: Compatibility: WordPress 7.1.
 
