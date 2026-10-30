@@ -48,6 +48,6 @@ Front end:
 - `modal_display()` on `wp_footer` queries every published modal, skips those whose rules fail, and prints `<div id="omw-{ID}" class="omw-modal">`. Rules are evaluated by `omw_match_conditions()`, which only accepts values from the allowed choice list (no `eval`).
 - Any link with class `omw-open-modal` and `href="#omw-{ID}"` opens it (the CPT edit screen shows this in a "Modal Link" side box). JS also listens for an `init-omw-for-element` event to bind new elements.
 - When `oceanwp_mw_template` is set, `template/template.php` renders it (Elementor, Beaver Builder, SiteOrigin or blocks). This template is included from the plugin only; there is no theme override path.
-- Per-modal and global CSS is appended through `ocean_head_css`; fonts load in `load_fonts()`.
+- Per-modal CSS is printed in a `<style>` tag right after each modal in `modal_display()`. Global CSS from the `omw_` Theme Mods goes through `ocean_head_css`. Fonts load in `load_fonts()`.
 
 AJAX: `wp_ajax_get_mw_conditional_rules` returns the condition-row HTML for the CPT edit screen. It is logged-in only and has no nonce or capability check.
